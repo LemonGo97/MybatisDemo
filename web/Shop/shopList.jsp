@@ -41,7 +41,7 @@
     </marquee>
 </div>
 <div class="layui-row" style="text-align:center; margin-top: 10px">
-    <form id="customerform" class="layui-form layui-col-md12 we-search" method="get">
+    <form id="shopform" class="layui-form layui-col-md12 we-search" method="get">
         商家搜索：
         <div class="layui-inline">
             <input type="text" name="shopname" placeholder="店铺名称" autocomplete="off" class="layui-input">
@@ -62,7 +62,7 @@
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-event="addUser"><i class="layui-icon layui-icon-add-1"></i>添加用户</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-event="addShop"><i class="layui-icon layui-icon-add-1"></i>添加用户</button>
         <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-event="delBatch"><i class="layui-icon layui-icon-delete"></i> 批量删除</button>
     </div>
 </script>
@@ -150,14 +150,14 @@
             var checkStatus = table.checkStatus(obj.config.id)
                 , data = checkStatus.data; //获取选中的数据
             switch (obj.event) {
-                case 'addUser':
+                case 'addShop':
                     layer.open({
                         type: 2,
                         area: ['750px', '540px'],
                         title: "添加",
                         fixed: false, //不固定
                         maxmin: true,
-                        content: '<%=path%>/Customer/child/addCustomer.jsp',
+                        content: '<%=path%>/Shop/child/addShop.jsp',
                         end: function () {
                             location.reload();
                         }
@@ -167,10 +167,10 @@
                     if (data.length === 0) {
                         layer.msg('请至少选择一行');
                     } else {
-                        var delIds = "userIds=";
+                        var delIds = "shopIds=";
                         for (var i = 0; i < data.length; i++) {
                             // console.log(data[i].userId);
-                            delIds += (data[i].userId + ',');
+                            delIds += (data[i].shopId + ',');
                         }
 
                         // obj.del();
@@ -212,14 +212,14 @@
             } else if (layEvent === 'del') {
                 layer.confirm('真的删除这个用户么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构
-                    console.log(obj.data.userId);//获取选中行的userid
+                    console.log(obj.data.shopId);//获取选中行的userid
                     layer.close(index);
                     //向服务端发送删除指令
                     $.ajax({
                         type: "get",//提交方式
-                        url: "<%=path%>/customerdelOne",//提交的地址
+                        url: "<%=path%>/shopdelOne",//提交的地址
                         // data: data.field,//携带的数据参数
-                        data: "userId=" + obj.data.userId,
+                        data: "shopId=" + obj.data.shopId,
                         datatype: "text",
                         success: function () {//成功之后返回的信息 msg就是返回的内容
                             layer.alert("删除成功", {
@@ -249,14 +249,14 @@
                     area: ['750px', '558px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: '<%=path%>/Customer/child/editCustomer.jsp',
+                    content: '<%=path%>/Shop/child/editShop.jsp',
                     success: function(layero, index){
                         var body = layer.getChildFrame('body',index);//建立父子联系
                         var inputList = body.find('input');//获取所有input元素的数组
-                        $(inputList[0]).val(obj.data.userId);//给第一个input标签赋值为当前行的username
-                        $(inputList[1]).val(obj.data.username);
+                        $(inputList[0]).val(obj.data.shopId);//给第一个input标签赋值为当前行的username
+                        $(inputList[1]).val(obj.data.shopName);
                         // $(inputList[2]).val(obj.data.password);
-                        $(inputList[3]).val(obj.data.createdate);
+                        $(inputList[3]).val(obj.data.createDate);
                         $(inputList[4]).val(obj.data.telephone);
                     },
                     end: function () {
