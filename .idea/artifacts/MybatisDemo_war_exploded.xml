@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MybatisDemo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MybatisDemo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MybatisDemo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MybatisDemo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.6" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.11.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.11.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.11.1" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.51" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

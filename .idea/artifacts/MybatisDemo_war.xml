@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MybatisDemo:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/MybatisDemo_war</output-path>
+    <root id="archive" name="MybatisDemo_war.war">
+      <element id="artifact" artifact-name="MybatisDemo:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.11.1" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.11.1" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-web:2.11.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

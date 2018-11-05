@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Shop">
+    <!--查询所有用户信息-->
+    <!--其中，start是页码，pageSize是条数-->
+    <!--分页select user_id,username,password,createdate,telephone from tbl_customer limit (start-1)*pageSize,pageSize-->
+    <select id="queryShopList" parameterType="com.ambition.entity.Shop.Shop" resultMap="shopListResult">
+        SELECT shop_id,shopname,password,shopaddress,createdate,shopstate,telephone,businessman,delete_status from tbl_shop where delete_status = #{deleteStatus}
+        <if test="shopName!=null &amp;&amp; !&quot;&quot;.equals(shopName.trim())">
+            and shopname like '%' #{shopName} '%'
+        </if>
+        <if test="telephone!=null &amp;&amp; !&quot;&quot;.equals(telephone.trim())">
+            and telephone like '%' #{telephone} '%'
+        </if>
+        <if test="startDate!=null &amp;&amp; !&quot;&quot;.equals(startDate.trim())">
+            <if test="endDate!=null  &amp;&amp; !&quot;&quot;.equals(endDate.trim())">
+                and createdate between #{startDate} and #{endDate}
+            </if>
+        </if>
+        <if test="pages!=null &amp;&amp; limits!=null ">
+                limit #{pages} , #{limits}
+        </if>
+    </select>
+    <!--其中，id标签表示数据库中主键，column表示数据库中字段名称，property表示实体类中的字段名称-->
+    <!--其中，除主键外的其他数据使用result标签-->
+    <resultMap id="shopListResult" type="com.ambition.entity.Shop.Shop">
+        <id column="shop_id" jdbcType="INTEGER" property="shopId"/>
+        <result column="shopname" jdbcType="VARCHAR" javaType="String" property="shopName"/>
+        <result column="password" jdbcType="VARCHAR" javaType="String" property="passWord"/>
+        <result column="shopaddress" jdbcType="VARCHAR" javaType="String" property="shopAddress"/>
+        <result column="createdate" jdbcType="DATE" javaType="java.sql.Date" property="createDate"/>
+        <result column="shopstate" jdbcType="INTEGER" javaType="Integer" property="shopState"/>
+        <result column="telephone" jdbcType="VARCHAR" javaType="String" property="telephone"/>
+        <result column="businessman" jdbcType="VARCHAR" javaType="String" property="businessMan"/>
+        <result column="delete_status" jdbcType="INTEGER" javaType="Integer" property="deleteStatus"/>
+    </resultMap>
+
+    <!--<delete id="deleteOne" parameterType="Object">-->
+    <!--delete from tbl_customer where user_id = #{_parameter}-->
+    <!--</delete>-->
+
+    <!--&lt;!&ndash;实现批量删除，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符&ndash;&gt;-->
+    <!--<delete id="deleteBatch" parameterType="java.util.List">-->
+    <!--delete from tbl_customer where user_id in (-->
+    <!--<foreach collection="list" item="item" separator=",">-->
+    <!--#{item}-->
+    <!--</foreach>-->
+    <!--)-->
+    <!--</delete>-->
+
+
+    <!--实现单个假删除，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
+    <update id="deleteOne" parameterType="Object">
+      update tbl_shop set delete_status = 1 where shop_id = #{_parameter}
+    </update>
+
+    <!--实现批量假删除，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
+    <update id="deleteBatch" parameterType="java.util.List">
+        update tbl_shop set delete_status = 1 where shop_id in (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <!--实现单个用户恢复，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
+    <update id="recOne" parameterType="Object">
+      update tbl_shop set delete_status = 0 where shop_id = #{_parameter}
+    </update>
+
+    <!--实现批量用户恢复，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
+    <update id="recBatch" parameterType="java.util.List">
+        update tbl_shop set delete_status = 0 where shop_id in (
+        <foreach collection="list" item="item" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <!--实现用户信息修改-->
+    <update id="editShop" parameterType="com.ambition.entity.Shop.Shop">
+      update tbl_shop set telephone = #{telephone} , password=#{passWord},shopname=#{shopName},shopaddress=#{shopAddress},businessman=#{businessMan} where shop_id = #{shopId}
+    </update>
+
+
+    <!--用户注册开始-->
+    <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->
+    <insert id="addShop" parameterType="com.ambition.entity.Shop.Shop">
+		insert into tbl_shop (username, password, createdate, telephone,delete_status)
+		 values (#{shopName},#{passWord},#{shopAddress},#{createDate},#{shopState},#{telephone},#{businessMan},#{deleteStatus} )
+	</insert>
+    <!--负责查询刚刚插入的主键ID，并返回Integer类型-->
+    <select id="queryAddid" resultType="java.lang.Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+    <!--插入刚刚查到的tbl_customer表中的自增ID为tbl_cu_address中的customer_id-->
+    <insert id="addCustomeraddress" parameterType="Integer">
+		insert into tbl_cu_address (customer_id,address1,address2,address3)
+		values (#{_parameter},null,null,null)
+	</insert>
+    <insert id="addCustomerstate" parameterType="Integer">
+		insert into tbl_cu_state (customer_id,customer_state)
+		values (#{_parameter},0)
+	</insert>
+    <!--用户注册结束-->
+
+</mapper>
