@@ -1,11 +1,11 @@
-package com.ambition.controller.Customer;
+package com.ambition.controller.Shop;
 /**
  * @Author: ambition
  * @Date: 2018/10/30 15:19
  * @Version 1.0
  */
 
-import com.ambition.service.Customer.MaintainService;
+import com.ambition.service.Shop.MaintainService;
 import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
@@ -17,28 +17,28 @@ import java.io.IOException;
 
 /**
  * @program: MybatisDemo
- * @description: 恢复单条用户数据
+ * @description: 删除单条用户数据
  * @author: ambition
  * @create: 2018-10-30 15:19
  **/
-@WebServlet(name = "RecOneCustomerServlet", urlPatterns = "/recone")
-public class RecOneServlet extends HttpServlet {
+@WebServlet(name = "DeleteOneShopServlet", urlPatterns = "/shopdelOne")
+public class DeleteOneServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        LogTools.show("RecOneServlet","doGet");
+        LogTools.show("DeleteOneShopServlet","doGet");
 
         //设置编码
         req.setCharacterEncoding("UTF-8");
 
         //接受页面的值
-        String userId=req.getParameter("userId");
+        String shopId=req.getParameter("shopId");
 
-        //调用维护服务的恢复单个用户方法
+        //调用维护服务的删除单个用户方法
         MaintainService maintainService=new MaintainService();
-        maintainService.recOne(userId);
-        LogTools.show("RecOneServlet",userId);
+        maintainService.deleteOne(shopId);
+        LogTools.show("DeleteOneShopServlet",shopId);
     }
 
     @Override

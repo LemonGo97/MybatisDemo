@@ -56,20 +56,26 @@
                    autocomplete="off"
                    class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">密码必须大于6位</div>
+        <div class="layui-form-mid layui-word-aux"  style="margin-left: 20px;">密码必须大于6位</div>
     </div>
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>注册日期&nbsp;&nbsp;&nbsp;<font size="3" color="#cc4d1a">不可更改</font></legend>
+        <legend>所在地&负责人&nbsp;&nbsp;&nbsp;<font size="3" color="#cc4d1a">必填</font></legend>
     </fieldset>
-
     <div class="layui-form-item">
+        <div class="layui-inline">
 
-        <div class="layui-input-inline">
-            <input id="datetm" type="date" name="createdate"  disabled="disabled"
-                   autocomplete="off" class="layui-input">
+            <div class="layui-input-inline">
+                <input id="shopAddress" type="text" name="shopAddress"
+                       autocomplete="off" class="layui-input"/>
+            </div>
+            <div class="layui-input-inline" style="margin-left: 20px;">
+                <input id="businessMan" type="text" name="businessMan"
+                       autocomplete="off" class="layui-input"/>
+            </div>
         </div>
     </div>
+
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>商铺联系方式&nbsp;&nbsp;&nbsp;<font size="3" color="#cc4d1a">这将是你登陆系统的依据</font></legend>
     </fieldset>
@@ -92,9 +98,9 @@
 <script src="<%=path%>/layui/layui.all.js"></script>
 <%--<script src="<%=path%>/layui/lay/modules/jquery.js"></script>--%>
 <script>
-    layui.use(['jquery','form'], function () {
-            var $ = layui.$
-            ,form = layui.form;
+    layui.use(['jquery', 'form'], function () {
+        var $ = layui.$
+            , form = layui.form;
         form.verify({
             username: function (value) { //value：表单的值、item：表单的DOM对象
                 if (!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)) {
@@ -125,22 +131,22 @@
             $.ajax({
                 type: "POST",//提交方式
                 url: "<%=path%>/editShop",//提交的地址
-                data: "shopname="+$("#shopname").val()+"&password="+$("#pass1").val()+"&telephone="+$("#telephone").val()+"&shopId="+$("#shopId").val(),
+                data: "shopname=" + $("#shopname").val() + "&password=" + $("#pass1").val() + "&telephone=" + $("#telephone").val() + "&shopId=" + $("#shopId").val() + "&shopAddress=" + $("#shopAddress").val() + "&businessMan=" + $("#businessMan").val(),
                 datatype: "text",
-                success: function(){//成功之后返回的信息 msg就是返回的内容
-                    layer.alert("用户信息修改成功，点击关闭按钮返回",{
+                success: function () {//成功之后返回的信息 msg就是返回的内容
+                    layer.alert("用户信息修改成功，点击关闭按钮返回", {
                         time: 0
-                        ,btn:['Sure']
-                        ,icon:6
-                        ,yes:function () {
+                        , btn: ['Sure']
+                        , icon: 6
+                        , yes: function () {
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layer.close(index);
                         }
                     })
                 },
-                error:function(){//失败后调用的函数
-                    layer.alert("用户信息修改注册失败，请稍后重试",{
-                        icon:6
+                error: function () {//失败后调用的函数
+                    layer.alert("用户信息修改注册失败，请稍后重试", {
+                        icon: 6
                     })
                 }
             });

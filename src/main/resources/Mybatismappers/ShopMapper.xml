@@ -78,6 +78,13 @@
         )
     </update>
 
+
+    <!--实现商铺审核状态的修改-->
+    <update id="editshopState" parameterType="com.ambition.entity.Shop.Shop">
+        update tbl_shop set shopstate = #{shopState} where shop_id = #{shopId}
+    </update>
+
+
     <!--实现用户信息修改-->
     <update id="editShop" parameterType="com.ambition.entity.Shop.Shop">
       update tbl_shop set telephone = #{telephone} , password=#{passWord},shopname=#{shopName},shopaddress=#{shopAddress},businessman=#{businessMan} where shop_id = #{shopId}
@@ -87,7 +94,7 @@
     <!--用户注册开始-->
     <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->
     <insert id="addShop" parameterType="com.ambition.entity.Shop.Shop">
-		insert into tbl_shop (username, password, createdate, telephone,delete_status)
+		insert into tbl_shop (shopname, password,shopaddress, createdate, shopstate,telephone,businessman,delete_status)
 		 values (#{shopName},#{passWord},#{shopAddress},#{createDate},#{shopState},#{telephone},#{businessMan},#{deleteStatus} )
 	</insert>
     <!--负责查询刚刚插入的主键ID，并返回Integer类型-->
@@ -95,11 +102,11 @@
 		SELECT LAST_INSERT_ID()
 	</select>
     <!--插入刚刚查到的tbl_customer表中的自增ID为tbl_cu_address中的customer_id-->
-    <insert id="addCustomeraddress" parameterType="Integer">
+    <insert id="addShopaddress" parameterType="Integer">
 		insert into tbl_cu_address (customer_id,address1,address2,address3)
 		values (#{_parameter},null,null,null)
 	</insert>
-    <insert id="addCustomerstate" parameterType="Integer">
+    <insert id="addShopstate" parameterType="Integer">
 		insert into tbl_cu_state (customer_id,customer_state)
 		values (#{_parameter},0)
 	</insert>

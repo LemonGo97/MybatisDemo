@@ -20,7 +20,7 @@ import java.util.List;
  * @Date: 2018/11/1 0:52
  * @Version 1.0
  */
-@WebServlet(name = "JSONServlet",urlPatterns = "/jsonCustomer")
+@WebServlet(name = "CustomerJSONServlet",urlPatterns = "/jsonCustomer")
 public class JSONServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request,response);

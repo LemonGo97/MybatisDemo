@@ -30,6 +30,9 @@
         .layui-input-inline {
             margin-left: 180px;
         }
+        .layui-layer-content{
+            overflow: auto;
+        }
     </style>
 </head>
 <body>

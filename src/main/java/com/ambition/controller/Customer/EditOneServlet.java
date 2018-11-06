@@ -23,7 +23,7 @@ import java.io.IOException;
  * @author: ambition
  * @create: 2018-11-04 01:20
  **/
-@WebServlet(name = "EditOneServlet",urlPatterns = "/editCustomer")
+@WebServlet(name = "EditOneCustomerServlet",urlPatterns = "/editCustomer")
 public class EditOneServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

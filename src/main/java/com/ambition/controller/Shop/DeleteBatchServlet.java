@@ -1,11 +1,11 @@
-package com.ambition.controller.Customer;
+package com.ambition.controller.Shop;
 /**
  * @Author: ambition
  * @Date: 2018/10/30 16:12
  * @Version 1.0
  */
 
-import com.ambition.service.Customer.MaintainService;
+import com.ambition.service.Shop.MaintainService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,12 +18,12 @@ import java.util.List;
 
 /**
  * @program: MybatisDemo
- * @description: 批量恢复控制层
+ * @description: 批量删除控制层
  * @author: ambition
  * @create: 2018-10-30 16:12
  **/
-@WebServlet(name = "RecBatchCustomerServlet",urlPatterns = "/recbatch")
-public class RecBatchServlet extends HttpServlet {
+@WebServlet(name = "DeleteBatchShopServlet",urlPatterns = "/shopdeletebatch")
+public class DeleteBatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doGet(req,resp);
@@ -37,10 +37,10 @@ public class RecBatchServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
 
         //接受页面的值
-        List<String> userIds = Arrays.asList(req.getParameter("userIds").split(","));
+        List<String> shopIds = Arrays.asList(req.getParameter("shopIds").split(","));
 
-        //调用维护服务的批量恢复方法
+        //调用维护服务的批量删除方法
         MaintainService maintainService=new MaintainService();
-        maintainService.recBatch(userIds);
+        maintainService.deleteBatch(shopIds);
     }
 }

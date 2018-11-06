@@ -1,14 +1,12 @@
-package com.ambition.controller.Customer;
+package com.ambition.controller.Shop;
 /**
  * @Author: ambition
  * @Date: 2018/10/30 22:42
  * @Version 1.0
  */
 
-import com.ambition.db.KeyChain;
-import com.ambition.service.Customer.MaintainService;
+import com.ambition.service.Shop.MaintainService;
 import com.ambition.util.LogTools;
-import com.ambition.util.decimal._DES;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * @program: MybatisDemo
@@ -24,31 +21,33 @@ import java.io.PrintWriter;
  * @author: ambition
  * @create: 2018-10-30 22:42
  **/
-@WebServlet(name = "AddOneCustomerServlet",urlPatterns = "/addOnecustomer")
+@WebServlet(name = "AddOneShopServlet",urlPatterns = "/addOneShop")
 public class AddOneServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LogTools.show("AddOneServlet","doGet");
+        LogTools.show("AddOneShopServlet","doGet");
         this.doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        LogTools.show("AddOneServlet","doPost");
+        LogTools.show("AddOneShopServlet","doPost");
 
         //设置编码
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
         //接受页面的值
-        String username=req.getParameter("username");
+        String shopname=req.getParameter("shopname");
+        String bussinessman=req.getParameter("businessMan");
         String password=req.getParameter("password");
         String telephone=req.getParameter("telephone");
+        String shopaddress=req.getParameter("shopaddress");
 
 
         //调用维护服务的添加方法
         MaintainService maintainService=new MaintainService();
-        maintainService.addCustomer(username,password,telephone);
+        maintainService.addShop(shopname,bussinessman,password,telephone,shopaddress);
     }
 }

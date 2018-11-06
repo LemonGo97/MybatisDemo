@@ -189,13 +189,13 @@ public class ShopDao {
      * @Author: ambition
      * @Date: 2018/11/3
      */
-    public void recBatch(List<String> userIds){
+    public void recBatch(List<String> shopIds){
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
             sqlSession=dbAccess.getSqlSession();
             //通过sqlSession执行Sql语句
-            sqlSession.update("Shop.recBatch",userIds);
+            sqlSession.update("Shop.recBatch",shopIds);
             sqlSession.commit();
             LogTools.show("ShopDao","批量恢复事务成功提交");
         } catch (Exception e) {
@@ -217,7 +217,7 @@ public class ShopDao {
      * @Author: ambition 
      * @Date: 2018/11/3 
      */ 
-    public void addShop( String shopname,String password, String telephone){
+    public void addShop( String shopname,String bussinessman,String password,String telephone,String shopaddress){
         DBAccess dbAccess = new DBAccess();
         LogTools.show("ShopDao","执行Mybatis语句成功");
         SqlSession sqlSession = null;
@@ -225,8 +225,11 @@ public class ShopDao {
             sqlSession=dbAccess.getSqlSession();
             Shop shop=new Shop();
             shop.setShopName(shopname);
+            shop.setBusinessMan(bussinessman);
             shop.setPassWord(password);
             shop.setTelephone(telephone);
+            shop.setShopAddress(shopaddress);
+            shop.setShopState(0);
             shop.setDeleteStatus(0);
             shop.setCreateDate(new Date(System.currentTimeMillis()));
             //通过sqlSession执行Sql语句、
@@ -265,13 +268,13 @@ public class ShopDao {
             //通过sqlSession执行Sql语句
             reInsert = sqlSession.selectOne("Shop.queryAddid");
             LogTools.DEBUG("获取到的主键",reInsert);
-//            LogTools.show("CustomerDao","执行Mybatis语句成功");
+//            LogTools.show("ShopDao","执行Mybatis语句成功");
         } catch (Exception e) {
-//            LogTools.show("CustomerDao","执行Mybatis语句之前失败");
+//            LogTools.show("ShopDao","执行Mybatis语句之前失败");
             e.printStackTrace();
         } finally {
             if (sqlSession != null) {
-//                LogTools.show("CustomerDao","关闭Mybatis连接");
+//                LogTools.show("ShopDao","关闭Mybatis连接");
                 sqlSession.close();
             }
         }
@@ -280,37 +283,37 @@ public class ShopDao {
 
 
     /** 
-     * @Description: 添加Customer的其他两张表的信息
+     * @Description: 添加Shop的其他两张表的信息
      * @Param:
      * @return:
      * @Author: ambition 
      * @Date: 2018/11/3 
      */ 
-    public void addCustomerothers(Integer customerId){
+    public void addShopothers(Integer shopId){
         DBAccess dbAccess = new DBAccess();
-        LogTools.show("CustomerDao","执行Mybatis语句成功");
+        LogTools.show("ShopDao","执行Mybatis语句成功");
         SqlSession sqlSession = null;
         try {
             sqlSession=dbAccess.getSqlSession();
             //通过sqlSession执行Sql语句
-            sqlSession.insert("Customer.addCustomeraddress",customerId);
-            sqlSession.insert("Customer.addCustomerstate",customerId);
+            sqlSession.insert("Shop.addShopaddress",shopId);
+            sqlSession.insert("Shop.addShopstate",shopId);
             sqlSession.commit();
-            LogTools.show("CustomerDao","执行Mybatis语句成功");
+            LogTools.show("ShopDao","执行Mybatis语句成功");
         } catch (Exception e) {
             sqlSession.rollback();
-            LogTools.show("CustomerDao","执行Mybatis语句之前失败");
+            LogTools.show("ShopDao","执行Mybatis语句之前失败");
             e.printStackTrace();
         } finally {
             if (sqlSession != null) {
-                LogTools.show("CustomerDao","关闭Mybatis连接");
+                LogTools.show("ShopDao","关闭Mybatis连接");
                 sqlSession.close();
             }
         }
     }
 
 
-    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,Integer userId){
+    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,Integer shopId){
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -322,13 +325,36 @@ public class ShopDao {
             shop.setTelephone(telephone);
             shop.setShopAddress(shopaddress);
             shop.setBusinessMan(businessman);
-            shop.setShopId(userId);
-            sqlSession.update("Customer.editCustomer",shop);
+            shop.setShopId(shopId);
+            sqlSession.update("Shop.editShop",shop);
             sqlSession.commit();
-            LogTools.show("CustomerDao","用户修改事务成功提交");
+            LogTools.show("ShopDao","用户修改事务成功提交");
         } catch (Exception e) {
             sqlSession.rollback();
-            LogTools.show("CustomerDao","用户修改事务失败，回滚操作");
+            LogTools.show("ShopDao","用户修改事务失败，回滚操作");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    public void editshopState(Integer shopId,Integer shopState){
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            Shop shop=new Shop();
+            shop.setShopState(shopState);
+            shop.setShopId(shopId);
+            LogTools.DEBUG("editshopState",shop);
+            sqlSession.update("Shop.editshopState",shop);
+            sqlSession.commit();
+        } catch (Exception e) {
+            sqlSession.rollback();
+            LogTools.show("ShopDao","用户修改事务失败，回滚操作");
             e.printStackTrace();
         } finally {
             if (sqlSession != null) {

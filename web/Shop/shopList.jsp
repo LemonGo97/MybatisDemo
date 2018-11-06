@@ -29,8 +29,8 @@
 <body>
 <div class="weadmin-nav">
 			<span class="layui-breadcrumb">
-		        <a href="/">首页</a>
-		        <a href="">商家管理</a>
+		        <a>首页</a>
+		        <a>商家管理</a>
 		        <a><cite>店铺列表</cite></a>
 		    </span>
     <a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
@@ -62,17 +62,20 @@
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-event="addShop"><i class="layui-icon layui-icon-add-1"></i>添加用户</button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal layui-btn-radius" lay-event="delBatch"><i class="layui-icon layui-icon-delete"></i> 批量删除</button>
+        <button class="layui-btn layui-btn-sm " lay-event="addShop"><i class="layui-icon layui-icon-add-1"></i>添加商铺</button>
+        <button class="layui-btn layui-btn-sm " lay-event="delBatch"><i class="layui-icon layui-icon-delete"></i> 批量拉黑</button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">拉黑</a>
 </script>
 <script type="text/html" id="btnDemo">
     <div class="layui-input-block">
-        <input type="checkbox" name="status" lay-skin="switch" lay-text="ON|OFF">
+
+    <input value="{{d.shopId}}" type="checkbox" {{#  if(d.shopState == 1){ }}checked{{#  } }} name="status" lay-skin="switch" lay-text="是|否" lay-filter="switchTest">
+
+
     </div>
 </script>
 
@@ -96,7 +99,7 @@
         table.render({
             elem: '#demo'
             , url: '<%=path%>/jsonShop?del=0' //数据接口
-            , title: '用户表'
+            , title: '商户表'
             , height: 472
             , page: true //开启分页
             , toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -110,7 +113,7 @@
                 , {field: 'passWord', title: '管理密码', align: "center"}
                 , {field: 'shopAddress', title: '店铺所在地', sort: true, align: "center"}
                 , {field: 'createDate', title: '注册日期', sort: true, align: "center"}
-                , {field: 'shopState', title: '审核状态',toolbar: '#btnDemo',  align: "center"}
+                , {field: 'shopState', title: '审核状态',toolbar: '#btnDemo',  align: "center" }
                 , {field: 'businessMan', title: '负责人', align: "center"}
                 , {field: 'telephone', title: '电话号码', align: "center"}
                 , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo', title: '操作'}
@@ -123,7 +126,7 @@
                 elem: '#demo'
                 , url: '<%=path%>/jsonShop?del=0' //数据接口
                 , where: data.field
-                , title: '用户表'
+                , title: '商户表'
                 , height: 472
                 , page: true //开启分页
                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -145,6 +148,14 @@
             });
             return false;
         });
+
+
+        form.on("switch(switchTest)",function () {
+            $.post({url:'<%=path%>/shopState',data:{shopId:this.value,shopState:this.checked}});
+        });
+
+
+
         //监听头工具栏事件
         table.on('toolbar(test)', function (obj) {
             var checkStatus = table.checkStatus(obj.config.id)
@@ -153,7 +164,7 @@
                 case 'addShop':
                     layer.open({
                         type: 2,
-                        area: ['750px', '540px'],
+                        area: ['830px', '470px'],
                         title: "添加",
                         fixed: false, //不固定
                         maxmin: true,
@@ -176,11 +187,11 @@
                         // obj.del();
                         $.ajax({
                             type: "get",//提交方式
-                            url: "<%=path%>/deletebatch",//提交的地址
+                            url: "<%=path%>/shopdeletebatch",//提交的地址
                             data: delIds,
                             datatype: "text",
                             success: function () {//成功之后返回的信息 msg就是返回的内容
-                                layer.alert("批量删除成功",{
+                                layer.alert("批量拉黑成功",{
                                     time: 0
                                     ,btn:['Sure']
                                     ,icon:6
@@ -190,7 +201,7 @@
                                 })
                             },
                             error: function () {//失败后调用的函数
-                                layer.alert("删除失败，稍后重试", {
+                                layer.alert("拉黑失败，稍后重试", {
                                     icon: 6
                                 })
                             }
@@ -210,7 +221,7 @@
             if (layEvent === 'detail') {
                 layer.msg('查看操作');
             } else if (layEvent === 'del') {
-                layer.confirm('真的删除这个用户么', function (index) {
+                layer.confirm('真的拉黑这个店铺么', function (index) {
                     obj.del(); //删除对应行（tr）的DOM结构
                     console.log(obj.data.shopId);//获取选中行的userid
                     layer.close(index);
@@ -222,12 +233,12 @@
                         data: "shopId=" + obj.data.shopId,
                         datatype: "text",
                         success: function () {//成功之后返回的信息 msg就是返回的内容
-                            layer.alert("删除成功", {
+                            layer.alert("拉黑成功", {
                                 icon: 6
                             })
                         },
                         error: function () {//失败后调用的函数
-                            layer.alert("删除失败，稍后重试", {
+                            layer.alert("拉黑失败，稍后重试", {
                                 icon: 6
                             })
                         }
@@ -246,7 +257,7 @@
                 layer.open({
                     type: 2,
                     title: "修改",
-                    area: ['750px', '558px'],
+                    area: ['750px', '575px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: '<%=path%>/Shop/child/editShop.jsp',
@@ -255,9 +266,10 @@
                         var inputList = body.find('input');//获取所有input元素的数组
                         $(inputList[0]).val(obj.data.shopId);//给第一个input标签赋值为当前行的username
                         $(inputList[1]).val(obj.data.shopName);
-                        // $(inputList[2]).val(obj.data.password);
-                        $(inputList[3]).val(obj.data.createDate);
-                        $(inputList[4]).val(obj.data.telephone);
+                        $(inputList[2]).val(obj.data.password);
+                        $(inputList[3]).val(obj.data.shopAddress);
+                        $(inputList[4]).val(obj.data.businessMan);
+                        $(inputList[5]).val(obj.data.telephone);
                     },
                     end: function () {
                         location.reload();
