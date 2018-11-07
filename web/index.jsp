@@ -91,7 +91,7 @@
 								</a>
 							</li>
 							<li>
-								<a _href="<%=path%>/after/pages/article/category.jsp">
+								<a _href="/shopRec">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>商家黑名单</cite>
 								</a>

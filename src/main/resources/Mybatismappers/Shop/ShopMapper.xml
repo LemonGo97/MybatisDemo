@@ -97,10 +97,7 @@
 		insert into tbl_shop (shopname, password,shopaddress, createdate, shopstate,telephone,businessman,delete_status)
 		 values (#{shopName},#{passWord},#{shopAddress},#{createDate},#{shopState},#{telephone},#{businessMan},#{deleteStatus} )
 	</insert>
-    <!--负责查询刚刚插入的主键ID，并返回Integer类型-->
-    <select id="queryAddid" resultType="java.lang.Integer">
-		SELECT LAST_INSERT_ID()
-	</select>
+
     <!--插入刚刚查到的tbl_customer表中的自增ID为tbl_cu_address中的customer_id-->
     <insert id="addShopaddress" parameterType="Integer">
 		insert into tbl_cu_address (customer_id,address1,address2,address3)
