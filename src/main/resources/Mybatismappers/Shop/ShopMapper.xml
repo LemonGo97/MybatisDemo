@@ -98,15 +98,5 @@
 		 values (#{shopName},#{passWord},#{shopAddress},#{createDate},#{shopState},#{telephone},#{businessMan},#{deleteStatus} )
 	</insert>
 
-    <!--插入刚刚查到的tbl_customer表中的自增ID为tbl_cu_address中的customer_id-->
-    <insert id="addShopaddress" parameterType="Integer">
-		insert into tbl_cu_address (customer_id,address1,address2,address3)
-		values (#{_parameter},null,null,null)
-	</insert>
-    <insert id="addShopstate" parameterType="Integer">
-		insert into tbl_cu_state (customer_id,customer_state)
-		values (#{_parameter},0)
-	</insert>
-    <!--用户注册结束-->
 
 </mapper>
