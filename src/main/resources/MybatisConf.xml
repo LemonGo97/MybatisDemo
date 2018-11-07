@@ -13,7 +13,9 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="Mybatismappers/CustomerMapper.xml"/>
-        <mapper resource="Mybatismappers/ShopMapper.xml"/>
+        <mapper resource="Mybatismappers/Customer/CustomerMapper.xml"/>
+        <mapper resource="Mybatismappers/Customer/CustomerAddressMapper.xml"/>
+        <mapper resource="Mybatismappers/Customer/CustomerStatesMapper.xml"/>
+        <mapper resource="Mybatismappers/Shop/ShopMapper.xml"/>
     </mappers>
 </configuration>

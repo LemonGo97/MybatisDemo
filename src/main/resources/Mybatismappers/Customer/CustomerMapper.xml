@@ -6,7 +6,7 @@
     <!--其中，start是页码，pageSize是条数-->
     <!--分页select user_id,username,password,createdate,telephone from tbl_customer limit (start-1)*pageSize,pageSize-->
     <select id="queryCustomerList" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
-        SELECT user_id,username,password,createdate,telephone from tbl_customer where delete_status = #{isDel}
+        SELECT user_id,username,password,createdate,telephone,customer_state, address1,address2,address3 from( tbl_customer a LEFT JOIN tbl_cu_address b ON a.user_id=b.customer_id)LEFT JOIN tbl_cu_state c  ON a.user_id=c.customer_id  where delete_status = #{isDel}
         <if test="username!=null &amp;&amp; !&quot;&quot;.equals(username.trim())">
             and username like '%' #{username} '%'
         </if>
@@ -30,6 +30,8 @@
         <result column="password" jdbcType="VARCHAR" javaType="String" property="password"/>
         <result column="createdate" jdbcType="DATE" javaType="java.sql.Date" property="createdate"/>
         <result column="telephone" jdbcType="VARCHAR" javaType="String" property="telephone"/>
+        <collection property="customerAddressList" resultMap="CustomerAddress.customerAddressList"/>
+        <collection property="customerStates" resultMap="CustomerStates.customerStatesList"/>
     </resultMap>
 
     <!--<delete id="deleteOne" parameterType="Object">-->
@@ -82,14 +84,10 @@
 
     <!--用户注册开始-->
     <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->
-    <insert id="addCustomer" parameterType="com.ambition.entity.Customer.Customer">
+    <insert id="addCustomer" useGeneratedKeys="true" keyProperty="userId" keyColumn="user_id" parameterType="com.ambition.entity.Customer.Customer">
 		insert into tbl_customer (username, password, createdate, telephone,delete_status)
 		 values (#{username},#{password},#{createdate},#{telephone},#{delete_status} )
 	</insert>
-    <!--负责查询刚刚插入的主键ID，并返回Integer类型-->
-    <select id="queryAddid" resultType="java.lang.Integer">
-		SELECT LAST_INSERT_ID()
-	</select>
     <!--插入刚刚查到的tbl_customer表中的自增ID为tbl_cu_address中的customer_id-->
     <insert id="addCustomeraddress" parameterType="Integer">
 		insert into tbl_cu_address (customer_id,address1,address2,address3)

@@ -57,7 +57,14 @@
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="address">地址</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/html" id="statusDemo">
+    <div class="layui-input-block"  style="margin-left: 0px">
+        <input value="{{d.shopId}}" type="checkbox" {{#  if(d.customerStates.customerState == 1){ }}checked{{#  } }} name="status" lay-skin="switch"  disabled="disabled"  lay-text="在线|离线">
+    </div>
 </script>
 
 
@@ -94,6 +101,7 @@
                 , {field: 'password', title: '密码', sort: true, align: "center"}
                 , {field: 'createdate', title: '注册日期', sort: true, align: "center"}
                 , {field: 'telephone', title: '电话号码', align: "center"}
+                , {field: 'customerStates',width: 100, title: '状态', align: "center", toolbar: '#statusDemo'}
                 , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo', title: '操作', align: "center"}
             ]]
         });
@@ -117,6 +125,7 @@
                     , {field: 'password', title: '密码', sort: true, align: "center"}
                     , {field: 'createdate', title: '注册日期', sort: true, align: "center"}
                     , {field: 'telephone', title: '电话号码', align: "center"}
+                    , {field: 'customerStates',width: 100, title: '状态', align: "center", toolbar: '#statusDemo'}
                     , {fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo', title: '操作', align: "center"}
                 ]]
             });
@@ -149,29 +158,34 @@
                             // console.log(data[i].userId);
                             delIds += (data[i].userId + ',');
                         }
-
-                        // obj.del();
-                        $.ajax({
-                            type: "get",//提交方式
-                            url: "<%=path%>/deletebatch",//提交的地址
-                            data: delIds,
-                            datatype: "text",
-                            success: function () {//成功之后返回的信息 msg就是返回的内容
-                                layer.alert("批量删除成功",{
-                                    time: 0
-                                    ,btn:['Sure']
-                                    ,icon:6
-                                    ,yes: function () {
-                                        location.reload();//重新加载页面
-                                    }
-                                })
-                            },
-                            error: function () {//失败后调用的函数
-                                layer.alert("删除失败，稍后重试", {
-                                    icon: 6
-                                })
-                            }
+                        layer.confirm('确定不是手滑要拉黑这些人？', {
+                            btn: ['Sure','Don\'t！'] //按钮
+                        }, function(){
+                            $.ajax({
+                                type: "get",//提交方式
+                                url: "<%=path%>/deletebatch",//提交的地址
+                                data: delIds,
+                                datatype: "text",
+                                success: function () {//成功之后返回的信息 msg就是返回的内容
+                                    layer.alert("批量拉黑成功",{
+                                        time: 1000
+                                        ,btn:['Okay']
+                                        ,icon:6
+                                        ,yes: function () {
+                                            location.reload();//重新加载页面
+                                        }
+                                    })
+                                }
+                            });
+                        }, function(){
+                            layer.alert('你看看你，差点就手滑了！！！', {
+                                time: 1000, //20s后自动关闭
+                                icon: 5,
+                                btn: [ '我错了。。。']
+                            });
                         });
+                        // obj.del();
+
 
                     }
                     break;
@@ -235,6 +249,36 @@
                         // $(inputList[2]).val(obj.data.password);
                         $(inputList[3]).val(obj.data.createdate);
                         $(inputList[4]).val(obj.data.telephone);
+                    },
+                    end: function () {
+                        location.reload();
+                    }
+                });
+            }else if (layEvent === 'address') {
+
+                // var arr = [];
+                // console.log( data.length);
+                // for(var i = 1; i< data.length; i++){
+                //     console.log(123);
+                //     console.log($(data[i]).text());
+                //     arr.push($(data[i]).text());//拿到点击按钮的当前那条信息的内容 放到一个数组里
+                // }
+
+                layer.open({
+                    type: 2,
+                    title: "修改",
+                    area: ['750px', '558px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '<%=path%>/Customer/child/editAddress.jsp',
+                    success: function(layero, index){
+                        var body = layer.getChildFrame('body',index);//建立父子联系
+                        var inputList = body.find('input');//获取所有input元素的数组
+                        $(inputList[0]).val(obj.data.userId);//给第一个input标签赋值为当前行的username
+                        $(inputList[1]).val(obj.data.username);
+                        $(inputList[2]).val(obj.data.customerAddressList.address1);
+                        $(inputList[3]).val(obj.data.customerAddressList.address2);
+                        $(inputList[4]).val(obj.data.customerAddressList.address3);
                     },
                     end: function () {
                         location.reload();

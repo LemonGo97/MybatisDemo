@@ -1,6 +1,7 @@
 package com.ambition.controller.Customer;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ambition.entity.Customer.Customer;
 import com.ambition.service.Customer.ListService;
@@ -26,6 +27,43 @@ public class JSONServlet extends HttpServlet {
         this.doGet(request,response);
     }
 
+    /*
+    * 比如说我要去取"customerAddressList  "address1":"涓婃捣",  这个数据 怎么展示到数据表格里
+    *
+    * "address1":"涓婃捣" 你能不能取到
+    *
+    *
+    *
+    * 不知道怎么取，
+    *
+    * J
+    *
+    * */
+
+    public void i(String str){
+        /**{
+         * state:1,
+         * data":[
+         *         {
+         *             "createdate":"2018-09-27",
+         *             "customerAddressList":[
+         *                 {
+         *                     "address1":"涓婃捣",
+         *                     "address2":"鍖椾含",
+         *                     "address3":"澶╂触"
+         *                 }
+         *             ]
+         *        },
+         * }
+         */
+        JSONObject json = JSON.parseObject(str);
+        json.getJSONArray("data")
+                .getJSONObject(0)
+                .getJSONArray("customerAddressList")
+                .getJSONObject(0)
+                .getString("address1");
+
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码
         response.setCharacterEncoding("UTF-8");

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CustomerAddress">
+    <resultMap id="customerAddressList" type="com.ambition.entity.Customer.CustomerAddress">
+        <id column="record_id" jdbcType="INTEGER" property="recordId"/>
+        <result column="customer_id" jdbcType="INTEGER" javaType="Integer" property="customerId"/>
+        <result column="address1" jdbcType="VARCHAR" javaType="String" property="address1"/>
+        <result column="address2" jdbcType="VARCHAR" javaType="String" property="address2"/>
+        <result column="address3" jdbcType="VARCHAR" javaType="String" property="address3"/>
+    </resultMap>
+
+    <!--实现用户信息修改-->
+    <update id="editCustomerAddress" parameterType="com.ambition.entity.Customer.CustomerAddress">
+      update tbl_cu_address set address1 = #{address1} , address2=#{address2},address3=#{address3} where customer_id = #{customerId}
+    </update>
+</mapper>

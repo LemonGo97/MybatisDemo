@@ -30,18 +30,24 @@ public class ListService {
             Integer limits=Integer.valueOf(limit);
             //使用PageUtils中写的方法，把从数据库中取出的数据序列化（转为JSON）
             JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd";
-            String str=JSON.toJSONString(customerDao.queryCustomerList(username,startdate,enddate,telephone,pages,limits,delFlag), SerializerFeature.WriteDateUseDateFormat);
-            String layuiJSON= LayuiPageUtils.doJSON(str,customerDao.queryCustomerListnum(username,startdate,enddate,telephone,delFlag));
-            LogTools.show("JSON<layuiFormat>",layuiJSON);
-            LogTools.show("JSON<layuiFormat>",str.substring(1,str.length()));
+            List<Customer> customers=customerDao.queryCustomerList(username,startdate,enddate,telephone,pages,limits,delFlag);
+            int num=customerDao.queryCustomerListnum(username,startdate,enddate,telephone,delFlag);
+
+            String str=JSON.toJSONString(customers, SerializerFeature.WriteDateUseDateFormat);
+            String layuiJSON= LayuiPageUtils.doJSON(str,num);
+            LogTools.DEBUG("连表查询：",layuiJSON);
             return layuiJSON;
         }else{
             Integer pages=null;
             Integer limits=null;
             //使用PageUtils中写的方法，把从数据库中取出的数据序列化（转为JSON）
             JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd";
-            String str=JSON.toJSONString(customerDao.queryCustomerList(username,startdate,enddate,telephone,pages,limits,delFlag), SerializerFeature.WriteDateUseDateFormat);
-            String layuiJSON= LayuiPageUtils.doJSON(str,customerDao.queryCustomerListnum(username,startdate,enddate,telephone,delFlag));
+            List<Customer> customers=customerDao.queryCustomerList(username,startdate,enddate,telephone,pages,limits,delFlag);
+            int num=customerDao.queryCustomerListnum(username,startdate,enddate,telephone,delFlag);
+
+            String str=JSON.toJSONString(customers, SerializerFeature.WriteDateUseDateFormat);
+            String layuiJSON= LayuiPageUtils.doJSON(str,num);
+            LogTools.DEBUG("连表查询：",layuiJSON);
             return layuiJSON;
         }
     }

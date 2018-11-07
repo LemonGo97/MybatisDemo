@@ -69,15 +69,9 @@ public class MaintainService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        customerDao.addCustomer(username, password, telephone);
-        LogTools.show("MaintainService", "添加单条操作成功");
-    }
-
-    public int queryAddid(){
-        CustomerDao customerDao = new CustomerDao();
-        int customerId= customerDao.queryAddid();
-        LogTools.show("MaintainService", "查询到刚刚插入到主表中的ID:"+customerId);
-        return customerId;
+        Integer userId=customerDao.addCustomer(username, password, telephone);
+        LogTools.show("MaintainService", "添加单条操作成功:"+userId);
+        addCustomerothers(userId);
     }
 
     public void addCustomerothers(Integer customerId){
@@ -94,5 +88,10 @@ public class MaintainService {
             e.printStackTrace();
         }
         customerDao.editCustomer(username, password,  telephone, Integer.valueOf(userId));
+    }
+
+    public void editCustomerAddress(String userId, String address1, String address2, String address3) {
+        CustomerDao customerDao=new CustomerDao();
+        customerDao.editCustomerAddress(Integer.valueOf(userId),address1,address2,address3);
     }
 }

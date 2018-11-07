@@ -18,13 +18,18 @@ import java.util.List;
 
 public class Customer {
 
+
     private Integer userId;
     private String username;
     private String password;
     private Date createdate;
     private String telephone;
-
     private Integer delete_status;
+
+    //以下是子表的检索
+
+    private CustomerAddress customerAddressList;
+    private CustomerState customerStates;
 
     //以下是检索时候的几个传递检索条件的值，数据库中并无此字段
     private String startdate;

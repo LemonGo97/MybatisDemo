@@ -7,6 +7,7 @@ package com.ambition.dao;
 
 import com.ambition.db.DBAccess;
 import com.ambition.entity.Customer.Customer;
+import com.ambition.entity.Customer.CustomerAddress;
 import com.ambition.util.LogTools;
 import org.apache.ibatis.session.SqlSession;
 
@@ -215,13 +216,14 @@ public class CustomerDao {
      * @Author: ambition 
      * @Date: 2018/11/3 
      */ 
-    public void addCustomer( String username,String password, String telephone){
+    public Integer addCustomer( String username,String password, String telephone){
         DBAccess dbAccess = new DBAccess();
         LogTools.show("CustomerDao","执行Mybatis语句成功");
         SqlSession sqlSession = null;
+        Customer customer=null;
         try {
             sqlSession=dbAccess.getSqlSession();
-            Customer customer=new Customer();
+            customer=new Customer();
             customer.setUsername(username);
             customer.setPassword(password);
             customer.setTelephone(telephone);
@@ -234,6 +236,8 @@ public class CustomerDao {
             sqlSession.commit();
 //            LogTools.show("CustomerDao",reinsert);
             LogTools.show("CustomerDao","执行Mybatis语句成功");
+
+            return customer.getUserId();
         } catch (Exception e) {
             sqlSession.rollback();
             LogTools.show("CustomerDao","执行Mybatis语句之前失败");
@@ -244,38 +248,8 @@ public class CustomerDao {
                 sqlSession.close();
             }
         }
+        return customer.getUserId();
     }
-
-    /** 
-     * @Description: 获取系统刚添加的主键ID
-     * @Param:
-     * @return:  int
-     * @Author: ambition 
-     * @Date: 2018/11/3 
-     */ 
-    public int queryAddid(){
-        DBAccess dbAccess = new DBAccess();
-//        LogTools.show("CustomerDao","执行Mybatis语句成功");
-        SqlSession sqlSession = null;
-        int reInsert = -1;
-        try {
-            sqlSession=dbAccess.getSqlSession();
-            //通过sqlSession执行Sql语句
-            reInsert = sqlSession.selectOne("Customer.queryAddid");
-            LogTools.DEBUG("获取到的主键",reInsert);
-//            LogTools.show("CustomerDao","执行Mybatis语句成功");
-        } catch (Exception e) {
-//            LogTools.show("CustomerDao","执行Mybatis语句之前失败");
-            e.printStackTrace();
-        } finally {
-            if (sqlSession != null) {
-//                LogTools.show("CustomerDao","关闭Mybatis连接");
-                sqlSession.close();
-            }
-        }
-        return reInsert;
-    }
-
 
     /** 
      * @Description: 添加Customer的其他两张表的信息
@@ -325,6 +299,31 @@ public class CustomerDao {
         } catch (Exception e) {
             sqlSession.rollback();
             LogTools.show("CustomerDao","用户修改事务失败，回滚操作");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    public void editCustomerAddress(Integer CustomerId, String address1, String address2, String address3) {
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            CustomerAddress customerAddress=new CustomerAddress();
+            customerAddress.setCustomerId(CustomerId);
+            customerAddress.setAddress1(address1);
+            customerAddress.setAddress2(address2);
+            customerAddress.setAddress3(address3);
+            sqlSession.update("CustomerAddress.editCustomerAddress",customerAddress);
+            sqlSession.commit();
+            LogTools.show("CustomerDao","地址修改事务成功提交");
+        } catch (Exception e) {
+            sqlSession.rollback();
+            LogTools.show("CustomerDao","地址修改事务失败，回滚操作");
             e.printStackTrace();
         } finally {
             if (sqlSession != null) {
