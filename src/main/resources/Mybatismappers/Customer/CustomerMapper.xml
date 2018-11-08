@@ -99,4 +99,7 @@
 	</insert>
     <!--用户注册结束-->
 
+    <select id="doLogin" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
+        SELECT user_id,username from tbl_customer where delete_status = #{isDel} and telephone=#{telephone} and password=#{password}
+    </select>
 </mapper>

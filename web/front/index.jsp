@@ -3,12 +3,18 @@
 <html>
 <head>
     <title></title>
+    <link href="<%=path%>/front/assets/css/amazeui.min.css" rel="stylesheet">
+    <link href="<%=path%>/front/css/main.css" rel="stylesheet">
+    <script language="javascript" src="<%=path%>/front/assets/js/jquery.min.js"></script>
+    <script language="javascript" src="<%=path%>/front/assets/js/amazeui.min.js"></script>
+    <style>
+        .am-icon-btn{
+            padding-top: 12px;
+        }
+    </style>
 </head>
 
-<link href="<%=path%>/front/assets/css/amazeui.min.css" rel="stylesheet">
-<link href="<%=path%>/front/css/main.css" rel="stylesheet">
-<script language="javascript" src="<%=path%>/front/assets/js/jquery.min.js"></script>
-<script language="javascript" src="<%=path%>/front/assets/js/amazeui.min.js"></script>
+
 
 <body>
 <%--<script>$.AMUI.progress.start();</script>--%>
@@ -16,22 +22,22 @@
 <div id="main">
 
     <div id="nav" class="am-animation-slide-left">
-        <div id="nav-logo"><img src="images/ico.png"/></div>
+        <div id="nav-logo"><img src="<%=path%>/front/images/ico.png"/></div>
         <div id="navul">
             <ul>
-                <a href="#" target="jumpage">
+                <a href="/customeRec" target="jumpage">
                     <li>
                         <i class="am-icon-files-o am-icon-btn"></i>
                         <div>文件柜</div>
                     </li>
                 </a>
-                <a href="#" target="jumpage">
+                <a href="/customerlist" target="jumpage">
                     <li>
                         <i class="am-icon-user-plus am-icon-btn"></i>
                         <div>用户管理</div>
                     </li>
                 </a>
-                <a href="#" target="jumpage">
+                <a href="/shoplist" target="jumpage">
                     <li>
                         <i class="am-icon-gear am-icon-btn"></i>
                         <div>系统设置</div>
@@ -52,7 +58,7 @@
 
         <div id="userinfo" class="am-u-lg-6 am-animation-slide-top">
             <ul>
-                <li id="face"><img src="images/wos.jpg"/></li>
+                <li id="face"><img src="<%=path%>/front/images/wos.jpg"/></li>
                 <li id="nickname">
                     <div id="nickname_username">姜威</div>
                     <div id="nickname_role">高级管理员</div>
