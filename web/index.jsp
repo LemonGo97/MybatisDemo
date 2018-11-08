@@ -43,7 +43,7 @@
 					</dl>
 				</li>
 				<li class="layui-nav-item to-index">
-					<a href="<%=path%>/login.jsp">前台首页</a>
+					<a href="<%=path%>/front/index.jsp">前台首页</a>
 				</li>
 			</ul>
 
@@ -85,13 +85,13 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a _href="/shoplist">
+								<a _href="/shoplist"  target="jumpage">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>店铺列表</cite>
 								</a>
 							</li>
 							<li>
-								<a _href="/shopRec">
+								<a _href="/shopRec"  target="jumpage">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>商家黑名单</cite>
 								</a>
