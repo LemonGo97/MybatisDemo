@@ -29,12 +29,14 @@ public class LoginServlet extends HttpServlet {
         LoginService loginService=new LoginService();
         List<Customer> customers=loginService.CustomerLogin(telephone,password,isDel);
 
+
         if (customers!=null&&customers.size()!=0) {
             request.getRequestDispatcher("/front/index.jsp").forward(request, response);
             //登陆成功
             LogTools.DEBUG("LoginServlet","登陆成功");
         } else {
-            response.sendRedirect("/front/login.jsp");
+//            response.sendRedirect("/front/login.jsp");
+            response.sendRedirect("/front/login.jsp?error=yes");
             //登陆失败
             LogTools.DEBUG("LoginServlet","登陆失败");
         }

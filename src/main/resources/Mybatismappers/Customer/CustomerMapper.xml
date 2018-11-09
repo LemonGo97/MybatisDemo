@@ -102,4 +102,9 @@
     <select id="doLogin" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
         SELECT user_id,username from tbl_customer where delete_status = #{isDel} and telephone=#{telephone} and password=#{password}
     </select>
+
+    <select id="doRegQuery" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
+        SELECT user_id from tbl_customer where  telephone=#{telephone}
+    </select>
+
 </mapper>

@@ -13,6 +13,7 @@ import com.ambition.entity.Customer.Customer;
 import com.ambition.util.LogTools;
 import com.ambition.util.decimal._DES;
 import com.ambition.util.layui.LayuiPageUtils;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.List;
 
@@ -30,6 +31,17 @@ public class LoginService {
         }
         List<Customer> customers = customerDao.CustomerLogin(telephone, passwords, delFlag);
         return customers;
+
+    }
+    public boolean CustomerRegQuery(String telephone) {
+        CustomerDao customerDao = new CustomerDao();
+
+        List<Customer> customers = customerDao.CustomerRegQuery(telephone);
+        if (customers.size()!=0){
+            return false;
+        }else{
+            return true;
+        }
 
     }
 }

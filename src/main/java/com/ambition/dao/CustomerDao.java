@@ -357,4 +357,28 @@ public class CustomerDao {
         }
         return customersList;
     }
+
+    public List<Customer> CustomerRegQuery(String telephone) {
+
+        DBAccess dbAccess = new DBAccess();
+        List<Customer> customersList = new ArrayList<Customer>();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            Customer customer=new Customer();
+            customer.setTelephone(telephone);
+            customersList=sqlSession.selectList("Customer.doRegQuery",customer);
+            LogTools.show("CustomerDao","执行Mybatis查询全部用户语句成功");
+        } catch (Exception e) {
+            LogTools.show("CustomerDao","执行Mybatis查询全部用户语句之前失败");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                LogTools.show("CustomerDao","关闭Mybatis连接");
+                sqlSession.close();
+            }
+        }
+        return customersList;
+    }
 }

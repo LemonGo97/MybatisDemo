@@ -27,14 +27,42 @@
     <link rel="stylesheet" type="text/css" href="<%=path%>/front/css/component.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/front/css/content.css" />
     <script src="<%=path%>/front/js/modernizr.custom.js"></script>
+    <script src="<%=path%>/front/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //动态绑定失去焦点事件
+            $("#telephone").blur(function(){
+                //进行ajax提交
+                $.ajax({
+                    type: "GET",//提交方式
+                    url: "/customeRegister.do",//提交的地址
+                    data: "telephone="+$(this).val(),//携带的数据参数
+                    datatype:"text",//数据类型
+                    success: function(msg){//成功之后返回的信息 msg就是返回的内容
+                        // $("#usernameMsg").html(msg);
+                        if (msg=="nope"){
+                            alert("这个手机号已被注册")
+                        }else if(msg=="empty"){
+                            alert("手机号不能为空")
+                        }else {
 
+                        }
+                    },
+                    error:function(){//失败后调用的函数
+
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="">
     <header class="codrops-header" style="margin-top: 70px;">
         <h1>云印享打印服务平台</h1>
     </header>
-    <section style="margin-top: 80px">
+
+    <section style="margin-top: 40px">
         <p>如果您是第一次访问我们的网站，请先<strong>注册</strong></p>
         <div class="mockup-content">
             <p>Pea horseradish azuki bean lettuce avocado asparagus okra.</p>
@@ -45,7 +73,7 @@
                         <div class="content-style-form content-style-form-1">
                             <span class="icon icon-close">关闭</span>
                             <h2>登 陆</h2>
-                            <form method="post" id="formtest" action="/customerlogin.do">
+                            <form method="post" id="formsignin" action="/customerlogin.do">
                                 <input type="text" name="isDel" value="0" hidden/>
                                 <p><label>手机号</label><input type="text" name="telephone" maxlength="11"/></p>
                                 <p><label>密码</label><input type="password" name="password" maxlength="20"/></p>
@@ -63,12 +91,12 @@
                         <div class="content-style-form content-style-form-2">
                             <span class="icon icon-close">关闭</span>
                             <h2>注 册</h2>
-                            <form>
-                                <p><label>您的昵称</label><input type="text" maxlength="8" /></p>
-                                <p><label>您的手机号码</label><input type="text" maxlength="11"  /></p>
-                                <p><label>输入您的密码</label><input type="password" /></p>
+                            <form id="formsignup" method="post" action="/customeRegister.do">
+                                <p><label>您的昵称</label><input type="text" name="username" maxlength="8" /></p>
+                                <p><label>您的手机号码</label><input id="telephone" name="telephone" type="text" maxlength="11"  /></p>
+                                <p><label>输入您的密码</label><input type="password" name="password" /></p>
                                 <p><label>请再输入一次密码</label><input type="password" /></p>
-                                <p><button>注 册</button></p>
+                                <p><button onclick="mysingup()">注 册</button></p>
                             </form>
                         </div>
                     </div>
@@ -83,11 +111,14 @@
 <script src="<%=path%>/front/js/uiMorphingButton_fixed.js"></script>
 <script>
     function mysingin() {
-        var formtest = document.getElementById('formtest');
-        formtest.submit();
+        var formsignin = document.getElementById('formsignin');
+        formsignin.submit();
     }
-
-
+    function mysingup() {
+        var formsignup = document.getElementById('formsignup');
+        formsignup.submit();
+        alert("注册成功，请使用手机号和密码登陆")
+    }
     (function() {
         var docElem = window.document.documentElement, didScroll, scrollPosition;
 
@@ -152,6 +183,11 @@
         } );
     })();
 </script>
-
+<script>
+    var errori ='<%=request.getParameter("error")%>';
+    if(errori=='yes'){
+        alert("登录失败,请检查你的用户名和密码!");
+    }
+</script>
 </body>
 </html>
