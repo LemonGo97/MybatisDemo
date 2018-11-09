@@ -14,7 +14,7 @@
             margin: 0 auto;
             font-size: 14px;
             line-height: 20px;
-            overflow: hidden;
+            overflow: auto;
         }
 
         p {

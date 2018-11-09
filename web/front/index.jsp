@@ -25,22 +25,28 @@
         <div id="nav-logo"><img src="<%=path%>/front/images/ico.png"/></div>
         <div id="navul">
             <ul>
-                <a href="/customeRec" target="jumpage">
+                <a href="<%=path%>/after/pages/welcome.jsp" target="jumpage">
                     <li>
-                        <i class="am-icon-files-o am-icon-btn"></i>
-                        <div>文件柜</div>
+                        <i class="am-icon-home am-icon-btn"></i>
+                        <div>个人首页</div>
                     </li>
                 </a>
-                <a href="/customerlist" target="jumpage">
+                <a href="<%=path%>/front/begin.jsp" target="jumpage">
                     <li>
-                        <i class="am-icon-user-plus am-icon-btn"></i>
-                        <div>用户管理</div>
+                        <i class="am-icon-print am-icon-btn"></i>
+                        <div>开始打印</div>
                     </li>
                 </a>
-                <a href="/shoplist" target="jumpage">
+                <a href="<%=path%>/front/order.jsp" target="jumpage">
                     <li>
-                        <i class="am-icon-gear am-icon-btn"></i>
-                        <div>系统设置</div>
+                        <i class="am-icon-list am-icon-btn"></i>
+                        <div>订单管理</div>
+                    </li>
+                </a>
+                <a href="<%=path%>/front/personal.jsp" target="jumpage">
+                    <li>
+                        <i class="am-icon-child am-icon-btn"></i>
+                        <div>个人设置</div>
                     </li>
                 </a>
             </ul>

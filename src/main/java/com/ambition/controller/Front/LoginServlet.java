@@ -31,7 +31,9 @@ public class LoginServlet extends HttpServlet {
 
 
         if (customers!=null&&customers.size()!=0) {
-            request.getRequestDispatcher("/front/index.jsp").forward(request, response);
+
+            response.sendRedirect("/front/index.jsp");
+           //request.getRequestDispatcher("/front/index.jsp").forward(request, response);
             //登陆成功
             LogTools.DEBUG("LoginServlet","登陆成功");
         } else {
@@ -41,5 +43,6 @@ public class LoginServlet extends HttpServlet {
             LogTools.DEBUG("LoginServlet","登陆失败");
         }
     }
+
 
 }
