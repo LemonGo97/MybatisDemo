@@ -41,11 +41,9 @@
                     success: function(msg){//成功之后返回的信息 msg就是返回的内容
                         // $("#usernameMsg").html(msg);
                         if (msg=="nope"){
-                            alert("这个手机号已被注册")
+                            layer.msg("这个手机号已被注册")
                         }else if(msg=="empty"){
-                            alert("手机号不能为空")
-                        }else {
-
+                            layer.msg("手机号不能为空")
                         }
                     },
                     error:function(){//失败后调用的函数
@@ -55,6 +53,7 @@
             });
         });
     </script>
+    <script src="<%=path%>/layui/layui.all.js"></script>
 </head>
 <body>
 <div class="">
@@ -65,7 +64,7 @@
     <section style="margin-top: 40px">
         <p>如果您是第一次访问我们的网站，请先<strong>注册</strong></p>
         <div class="mockup-content">
-            <p>Pea horseradish azuki bean lettuce avocado asparagus okra.</p>
+            <p>hah hahahahahah hahah haha hahahah hahahah hahahahah haha.</p>
             <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
                 <button type="button"><font size="5">登 陆</font></button>
                 <div class="morph-content">
@@ -102,7 +101,7 @@
                     </div>
                 </div>
             </div><!-- morph-button -->
-            <p>Kohlrabi radish okra azuki bean corn fava bean mustard tigernut juccama green bean celtuce collard greens avocado quandong.</p>
+            <p>hahahaha hahaha haha hahah haha haha haha haha hahahah hahahaha hahahah hahah haha hahahah hahahah hahaha hahahah hahahaha.</p>
         </div><!-- /form-mockup -->
     </section>
     <div align="center"><a href="/index.jsp">返回首页</a></div>
@@ -186,7 +185,8 @@
 <script>
     var errori ='<%=request.getParameter("error")%>';
     if(errori=='yes'){
-        alert("登录失败,请检查你的用户名和密码!");
+        layer.msg("登录失败,请检查你的用户名和密码!");
+        // alert();
     }
 </script>
 </body>

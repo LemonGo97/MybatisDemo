@@ -37,7 +37,7 @@
                         <div>开始打印</div>
                     </li>
                 </a>
-                <a href="<%=path%>/front/order.jsp" target="jumpage">
+                <a href="/customerQueryOrder?customerId=22" target="jumpage">
                     <li>
                         <i class="am-icon-list am-icon-btn"></i>
                         <div>订单管理</div>
