@@ -122,6 +122,7 @@ public class CustomerDao {
     }
 
 
+
     /** 
      * @Description: 批量删除用户的方法
      * @Param: List<String> userIds
@@ -380,5 +381,60 @@ public class CustomerDao {
             }
         }
         return customersList;
+    }
+
+    /**
+     * @Description: 前台界面查询用户个人信息
+     * @Param:
+     * @return:
+     * @Author: ambition
+     * @Date: 2018/11/10
+     */
+    public List<Customer> customerInfoQuery(Integer userId,String delFlag){
+        DBAccess dbAccess = new DBAccess();
+        List<Customer> customerList = new ArrayList<Customer>();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            Customer customer=new Customer();
+            customer.setUserId(userId);
+            customer.setIsDel(delFlag);
+            customerList=sqlSession.selectList("Customer.queryCustomerList",customer);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+        return customerList;
+    }
+
+    public void editCustomerOthers(Integer userId, String username, String email, String weibo, String telephone,  String qq, String intro){
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            Customer customer=new Customer();
+            customer.setUserId(userId);
+            customer.setUsername(username);
+            customer.setEmail(email);
+            customer.setWeibo(weibo);
+            customer.setTelephone(telephone);
+            customer.setQq(qq);
+            customer.setIntro(intro);
+            sqlSession.update("Customer.editCustomerOther",customer);
+            sqlSession.commit();
+            LogTools.show("CustomerDao","用户修改事务成功提交");
+        } catch (Exception e) {
+            sqlSession.rollback();
+            LogTools.show("CustomerDao","用户修改事务失败，回滚操作");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
     }
 }

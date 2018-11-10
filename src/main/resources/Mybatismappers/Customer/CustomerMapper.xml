@@ -6,7 +6,7 @@
     <!--其中，start是页码，pageSize是条数-->
     <!--分页select user_id,username,password,createdate,telephone from tbl_customer limit (start-1)*pageSize,pageSize-->
     <select id="queryCustomerList" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
-        SELECT user_id,username,password,createdate,telephone,customer_state, address1,address2,address3 from( tbl_customer a LEFT JOIN tbl_cu_address b ON a.user_id=b.customer_id)LEFT JOIN tbl_cu_state c  ON a.user_id=c.customer_id  where delete_status = #{isDel}
+        SELECT user_id,username,password,createdate,telephone,customer_state, email,weibo,qq,intro,address1,address2,address3 from( tbl_customer a LEFT JOIN tbl_cu_address b ON a.user_id=b.customer_id)LEFT JOIN tbl_cu_state c  ON a.user_id=c.customer_id  where delete_status = #{isDel}
         <if test="username!=null &amp;&amp; !&quot;&quot;.equals(username.trim())">
             and username like '%' #{username} '%'
         </if>
@@ -15,8 +15,11 @@
         </if>
         <if test="startdate!=null &amp;&amp; !&quot;&quot;.equals(startdate.trim())">
             <if test="enddate!=null  &amp;&amp; !&quot;&quot;.equals(enddate.trim())">
-                and createdate between #{startdate} and #{enddate}
+            and createdate between #{startdate} and #{enddate}
             </if>
+        </if>
+        <if test="userId!=null">
+            and user_id = #{userId}
         </if>
         <if test="pages!=null &amp;&amp; limits!=null ">
                 limit #{pages} , #{limits}
@@ -30,6 +33,10 @@
         <result column="password" jdbcType="VARCHAR" javaType="String" property="password"/>
         <result column="createdate" jdbcType="DATE" javaType="java.sql.Date" property="createdate"/>
         <result column="telephone" jdbcType="VARCHAR" javaType="String" property="telephone"/>
+        <result column="email" jdbcType="VARCHAR" javaType="String" property="email"/>
+        <result column="weibo" jdbcType="VARCHAR" javaType="String" property="weibo"/>
+        <result column="qq" jdbcType="VARCHAR" javaType="String" property="qq"/>
+        <result column="intro" jdbcType="VARCHAR" javaType="String" property="intro"/>
         <collection property="customerAddressList" resultMap="CustomerAddress.customerAddressList"/>
         <collection property="customerStates" resultMap="CustomerStates.customerStatesList"/>
     </resultMap>
@@ -81,6 +88,9 @@
       update tbl_customer set telephone = #{telephone} , password=#{password},username=#{username} where user_id = #{userId}
     </update>
 
+    <update id="editCustomerOther" parameterType="com.ambition.entity.Customer.Customer">
+        update tbl_customer set  email=#{email}, weibo=#{weibo}, qq=#{qq}, intro = #{intro} ,username=#{username} where user_id = #{userId}
+    </update>
 
     <!--用户注册开始-->
     <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->

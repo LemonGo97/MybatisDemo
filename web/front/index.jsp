@@ -43,7 +43,7 @@
                         <div>订单管理</div>
                     </li>
                 </a>
-                <a href="<%=path%>/front/personal.jsp" target="jumpage">
+                <a href="<%=path%>/customerInfoQuery?userId=22&isDel=0" target="jumpage">
                     <li>
                         <i class="am-icon-child am-icon-btn"></i>
                         <div>个人设置</div>

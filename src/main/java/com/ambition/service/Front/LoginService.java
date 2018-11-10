@@ -39,4 +39,14 @@ public class LoginService {
         }
 
     }
+    public List<Customer> customerInfoQuery(String userId,String delFlag ) {
+        CustomerDao customerDao = new CustomerDao();
+        List<Customer> customers = customerDao.customerInfoQuery(Integer.valueOf(userId),delFlag);
+        return customers;
+
+    }
+    public void customerInfoEdit(String userId,String username,String email,String weibo,String telephone,String qq,String intro){
+        CustomerDao customerDao = new CustomerDao();
+        customerDao.editCustomerOthers(Integer.valueOf(userId),username,email,weibo,telephone,qq,intro);
+    }
 }

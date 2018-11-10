@@ -25,6 +25,10 @@ public class Customer {
     private Date createdate;
     private String telephone;
     private Integer delete_status;
+    private String email;
+    private String weibo;
+    private String qq;
+    private String intro;
 
     //以下是子表的检索
 
