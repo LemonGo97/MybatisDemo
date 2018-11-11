@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,13 +30,17 @@ public class LoginServlet extends HttpServlet {
         LoginService loginService=new LoginService();
         List<Customer> customers=loginService.CustomerLogin(telephone,password,isDel);
 
+        Integer userId=customers.get(0).getUserId();
+        String username=customers.get(0).getUsername();
 
         if (customers!=null&&customers.size()!=0) {
-
-            response.sendRedirect("/front/index.jsp");
-           //request.getRequestDispatcher("/front/index.jsp").forward(request, response);
             //登陆成功
             LogTools.DEBUG("LoginServlet","登陆成功");
+            HttpSession session=request.getSession();
+            //把获取到的用户信息保存起来
+            session.setAttribute("userId",userId);
+            session.setAttribute("username",username);
+            response.sendRedirect("/front/in/index.jsp");
         } else {
 //            response.sendRedirect("/front/login.jsp");
             response.sendRedirect("/front/login.jsp?error=yes");

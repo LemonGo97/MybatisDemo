@@ -43,7 +43,7 @@
 					</dl>
 				</li>
 				<li class="layui-nav-item to-index">
-					<a href="<%=path%>/front/login.jsp">前台首页</a>
+					<a href="<%=path%>/front/in/index.jsp">前台首页</a>
 				</li>
 			</ul>
 

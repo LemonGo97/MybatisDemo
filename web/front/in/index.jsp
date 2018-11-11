@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%String path = request.getContextPath();%>
+<%
+    String userId= String.valueOf(session.getAttribute("userId"));
+    String username= String.valueOf(session.getAttribute("username"));
+%>
 <html>
 <head>
     <title></title>
@@ -31,19 +35,19 @@
                         <div>个人首页</div>
                     </li>
                 </a>
-                <a href="<%=path%>/front/begin.jsp" target="jumpage">
+                <a href="<%=path%>/front/in/begin.jsp" target="jumpage">
                     <li>
                         <i class="am-icon-print am-icon-btn"></i>
                         <div>开始打印</div>
                     </li>
                 </a>
-                <a href="/customerQueryOrder?customerId=22" target="jumpage">
+                <a href="/customerQueryOrder?customerId=<%=userId%>" target="jumpage">
                     <li>
                         <i class="am-icon-list am-icon-btn"></i>
                         <div>订单管理</div>
                     </li>
                 </a>
-                <a href="<%=path%>/customerInfoQuery?userId=22&isDel=0" target="jumpage">
+                <a href="<%=path%>/customerInfoQuery?userId=<%=userId%>&isDel=0" target="jumpage">
                     <li>
                         <i class="am-icon-child am-icon-btn"></i>
                         <div>个人设置</div>
@@ -66,8 +70,8 @@
             <ul>
                 <li id="face"><img src="<%=path%>/front/images/wos.jpg"/></li>
                 <li id="nickname">
-                    <div id="nickname_username">姜威</div>
-                    <div id="nickname_role">高级管理员</div>
+                    <div id="nickname_username"><%=username%></div>
+                    <div id="nickname_role">用户</div>
                 </li>
                 <li class="lishow lishow_line">
                     <i class="am-icon-user-secret am-icon-md"></i>
@@ -80,7 +84,7 @@
                 </li>
             </ul>
         </div>
-        <a href="<%=path%>/front/login.jsp">
+        <a href="/customerlogout.do">
             <div id="loginout" class="am-animation-slide-right am-u-lg-2">
                 LOGOUT
             </div>

@@ -29,6 +29,6 @@ public class InfoServlet extends HttpServlet {
         LoginService loginService=new LoginService();
         List<Customer> customers=loginService.customerInfoQuery(userId,delFlag);
         request.setAttribute("customerInfo",customers);
-        request.getRequestDispatcher("/front/personal.jsp").forward(request,response);
+        request.getRequestDispatcher("/front/in/personal.jsp").forward(request,response);
     }
 }

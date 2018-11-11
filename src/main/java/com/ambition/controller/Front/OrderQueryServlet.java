@@ -63,7 +63,7 @@ public class OrderQueryServlet extends HttpServlet {
 
 
         req.setAttribute("orders",orders);
-        req.getRequestDispatcher("/front/order.jsp").forward(req,resp);
+        req.getRequestDispatcher("/front/in/order.jsp").forward(req,resp);
         //调用Service层用户查询方法，在Service层格式化从数据库中取出的JSON数据之后，直接写出到servlet页面<jsonCustomer>
 //        ListService listService=new ListService();
     }

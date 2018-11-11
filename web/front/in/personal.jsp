@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%String path = request.getContextPath();%>
+<%String userId= String.valueOf(session.getAttribute("userId"));%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -57,8 +58,8 @@
             </div>
 
             <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-                <form class="am-form am-form-horizontal" method="post" action="/customerInfoEdit">
-                    <input name="userId" value="${cuInfo.userId}" hidden/>
+                <form class="am-form am-form-horizontal">
+                    <input id="user-Id" name="userId" value="${cuInfo.userId}" hidden/>
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">姓名 / Name</label>
                         <div class="am-u-sm-9">
@@ -104,7 +105,7 @@
 
                     <div class="am-form-group">
                         <div class="am-u-sm-9 am-u-sm-push-3">
-                            <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+                            <button type="button" class="am-btn am-btn-primary" onclick="update() ">保存修改</button>
                         </div>
                     </div>
                 </form>
@@ -121,5 +122,23 @@
 <script src="<%=path%>/front/assets/js/amazeui.min.js"></script>
 
 <script src="<%=path%>/front/assets/js/app.js"></script>
+
+<script>
+    function update() {
+        var dataByinfo="username="+$("#user-name").val()+"&"+"email="+$("#user-email").val()+"&"+"weibo="+$("#user-weibo").val()+"&"+"telephone="+$("#user-phone").val()+"&"+"qq="+$("#user-QQ").val()+"&"+"intro="+$("#user-intro").val()+"&"+"userId="+$("#user-Id").val()
+        $.ajax({
+            type: "POST",//提交方式
+            url: "/customerInfoEdit",//提交的地址
+            data: dataByinfo,//携带的数据参数
+            datatype:"text",//数据类型
+            success: function(msg){//成功之后返回的信息 msg就是返回的内容
+                $("#usernameMsg").html(msg);
+            },
+            error:function(){//失败后调用的函数
+
+            }
+        });
+    }
+</script>
 </body>
 </html>

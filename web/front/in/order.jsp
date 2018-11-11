@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%String path = request.getContextPath();%>
-
+<%String userId= String.valueOf(session.getAttribute("userId"));%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -57,7 +57,7 @@
         <div class="am-g">
             <div class="am-u-sm-12">
                 <form class="am-form" method="get" action="/customerQueryOrder">
-                    <input hidden name="customerId" value="22">
+                    <input hidden name="customerId" value="<%=userId%>">
                     <%--在这里获取session中的用户ID并放到这里--%>
                     <table class="am-table am-table-striped am-table-hover table-main">
                         <thead>
@@ -131,11 +131,11 @@
 <script src="<%=path%>/front/assets/js/app.js"></script>
 <script>
     // $("#delete").on('click',
-        function del(cuId) {
+        function del(ordId) {
         $('#my-confirm').modal({
             relatedTarget: this,
-            onConfirm: function(options) {
-                var orderId = cuId;
+            onConfirm: function() {
+                var orderId = ordId;
                 $.ajax({
                     type: "GET",//提交方式
                     url: "/delOrderOne",//提交的地址
