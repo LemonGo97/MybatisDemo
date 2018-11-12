@@ -21,7 +21,9 @@
     <link rel="apple-touch-icon-precomposed" href="<%=path%>/front/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="订单创建" />
     <link rel="stylesheet" href="<%=path%>/front/assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="<%=path%>/front/assets/css/admin.css">
+    <link rel="stylesheet" href="<%=path%>/front/assets/css/admin.css"/>
+    <link rel="stylesheet" href="<%=path%>/layui/css/layui.css"/>
+
 </head>
 <body>
 <!-- content start -->
@@ -38,9 +40,7 @@
 
         <div class="am-tabs am-margin" data-am-tabs>
             <ul class="am-tabs-nav am-nav am-nav-tabs">
-                <li class="am-active"><a href="#tab1">基本信息</a></li>
-                <li><a href="#tab2">详细描述</a></li>
-                <li><a href="#tab3">SEO 选项</a></li>
+                <li class="am-active"><a href="#tab1">订单基本信息</a></li>
             </ul>
 
             <div class="am-tabs-bd">
@@ -98,123 +98,22 @@
 
                     <div class="am-g am-margin-top">
                         <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                            发布日期
+                            文件选择
                         </div>
                         <div class="am-u-sm-8 am-u-md-10">
-                            <form action="" class="am-form am-form-inline">
-                                <div class="am-form-group am-form-icon">
-                                    <i class="am-icon-calendar"></i>
-                                    <input type="date" class="am-form-field am-input-sm" placeholder="日期">
-                                </div>
-                            </form>
+                            <div name="file" class="layui-upload-drag" id="fileupload">
+                                <i class="layui-icon"></i>
+                                <p >点击上传，或将文件拖拽到此处</p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="am-g am-margin-top">
-                        <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                            发布时间
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-10">
-                            <form action="" class="am-form am-form-inline">
-                                <div class="am-form-group am-form-icon">
-                                    <i class="am-icon-calendar"></i>
-                                    <input type="datetime-local" class="am-form-field am-input-sm" placeholder="时间">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="am-tab-panel am-fade" id="tab2">
-                    <form class="am-form">
-                        <div class="am-g am-margin-top">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                文章标题
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                            <div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
-                        </div>
-
-                        <div class="am-g am-margin-top">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                文章作者
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                        </div>
-
-                        <div class="am-g am-margin-top">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                信息来源
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                            <div class="am-hide-sm-only am-u-md-6">选填</div>
-                        </div>
-
-                        <div class="am-g am-margin-top">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                内容摘要
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
-                        </div>
-
-                        <div class="am-g am-margin-top-sm">
-                            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-                                内容描述
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-10">
-                                <textarea rows="10" placeholder="请使用富文本编辑插件"></textarea>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="am-tab-panel am-fade" id="tab3">
-                    <form class="am-form">
-                        <div class="am-g am-margin-top-sm">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                SEO 标题
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4 am-u-end">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                        </div>
-
-                        <div class="am-g am-margin-top-sm">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                SEO 关键字
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4 am-u-end">
-                                <input type="text" class="am-input-sm">
-                            </div>
-                        </div>
-
-                        <div class="am-g am-margin-top-sm">
-                            <div class="am-u-sm-4 am-u-md-2 am-text-right">
-                                SEO 描述
-                            </div>
-                            <div class="am-u-sm-8 am-u-md-4 am-u-end">
-                                <textarea rows="4"></textarea>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
             </div>
         </div>
 
         <div class="am-margin">
-            <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+            <button type="button" id="okOrder" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
             <button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
         </div>
     </div>
@@ -226,6 +125,41 @@
 <!--<![endif]-->
 <script src="<%=path%>/front/assets/js/amazeui.min.js"></script>
 <script src="<%=path%>/front/assets/js/app.js"></script>
+<script src="<%=path%>/layui/layui.all.js"></script>
 
+<script>
+    layui.use('upload',function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+
+        upload.render({
+            elem: '#fileupload'
+            ,url: '<%=path%>/FileUpload'
+            ,accept: 'file'
+            ,auto: false
+            ,exts: 'doc|docx|pdf|png|jpg|xls|txt'
+            ,bindAction: '#okOrder'
+            ,field: 'filename'
+            ,size: '51200'
+            ,data:{
+                // id: function(){
+                //     return $('#id').val();
+                // }
+            }
+            ,done: function(res){
+                if(res.code != 0){
+                    return layer.msg("上传失败,稍后重试" +
+                        "");
+                }else {
+                    return layer.msg("订单提交成功")
+                }
+
+            }
+            ,error: function () {
+                layer.msg("上传失败,稍后重试");
+            }
+        });
+    })
+</script>
 </body>
 </html>
