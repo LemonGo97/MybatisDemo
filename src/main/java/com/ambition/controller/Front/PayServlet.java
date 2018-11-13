@@ -36,7 +36,18 @@ public class PayServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.write("success");
             LogTools.INFO("支付接口没申请下来，假装看不见，直接跳转到订单管理页面");
-        }else{
+        }else if(operate.equals("cancels")){
+            //申请取消订单
+            orderService.changeOrderState(orderId,4);
+            PrintWriter out = response.getWriter();
+            out.write("success");
+        }else if(operate.equals("shouhuo")){
+            //申请收货
+            orderService.changeOrderState(orderId,3);
+            PrintWriter out = response.getWriter();
+            out.write("success");
+        }
+        else{
             //支付失败跳转
             //数据库不更新状态
             LogTools.INFO("没支付成功也会直接跳转到订单管理页面");

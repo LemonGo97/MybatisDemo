@@ -85,6 +85,7 @@
                                     <c:if test="${order.orderState==1}">未接单</c:if>
                                     <c:if test="${order.orderState==2}">未收货</c:if>
                                     <c:if test="${order.orderState==3}">成交</c:if>
+                                    <c:if test="${order.orderState==4}">已取消</c:if>
                                 </td>
                                 <td class="am-hide-sm-only">${order.createDate}</td>
                                 <td class="am-hide-sm-only">${order.overDate}</td>
@@ -94,29 +95,35 @@
                                         <div class="am-btn-group am-btn-group-xs" style="float: none">
 
                                             <c:if test="${order.orderState==0}">
-                                                <button id="pay" type="button" onclick=""
+                                                <button id="pay" type="button" onclick=" pays(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs  am-hide-sm-only">
                                                     <span class="am-icon-credit-card"></span> 付款
                                                 </button>
-                                                <button id="cancel" type="button" onclick=""
+                                                <button id="cancel" type="button" onclick="cancels(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
                                                         style="margin-left: 5px">
                                                     <span class="am-icon-trash-o"></span> 取消
                                                 </button>
                                             </c:if>
                                             <c:if test="${order.orderState==1}">
-                                                <button id="receipt" type="button" onclick=""
+                                                <button id="receipt" type="button" onclick="revices(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
                                                     <span class="am-icon-angellist"></span> 收货
                                                 </button>
                                             </c:if>
                                             <c:if test="${order.orderState==2}">
-                                                <button id="receipt" type="button" onclick=""
+                                                <button id="receipt" type="button" onclick="revices(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
                                                     <span class="am-icon-angellist"></span> 收货
                                                 </button>
                                             </c:if>
                                             <c:if test="${order.orderState==3}">
+                                                <button id="delete" type="button" onclick="del(${order.orderId})"
+                                                        class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                    <span class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${order.orderState==4}">
                                                 <button id="delete" type="button" onclick="del(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                                     <span class="am-icon-trash-o"></span> 删除
@@ -140,8 +147,8 @@
 
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd">删除确认</div>
-        <div class="am-modal-bd">
+        <div class="am-modal-hd" id="msgtitle">删除确认</div>
+        <div class="am-modal-bd" id="msgcontent">
             你，确定要删除这条记录吗？
         </div>
         <div class="am-modal-footer">
@@ -159,6 +166,8 @@
 <script>
     // $("#delete").on('click',
     function del(ordId) {
+        $("#msgtitle").html("删除确认");
+        $("#msgcontent").html(" 你，确定要删除这条记录吗？");
         $('#my-confirm').modal({
             relatedTarget: this,
             onConfirm: function () {
@@ -179,12 +188,84 @@
             },
             // closeOnConfirm: false,
             onCancel: function () {
-
+                alert("哈哈哈哈哈哈哈啊，你怎么取消了？？")
             }
         });
     }
 
-    // );
+    function cancels(ordId) {
+        $("#msgtitle").html("取消订单");
+        $("#msgcontent").html("你，确定要取消这个订单吗？");
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function () {
+                var orderId = ordId;
+                var datas = "orderId=" + orderId + "&operate=" + "cancels";
+                $.ajax({
+                    type: "GET",//提交方式
+                    url: "/payServlet",//提交的地址
+                    data: datas,//携带的数据参数
+                    datatype: "text",//数据类型
+                    success: function (msg) {//成功之后返回的信息 msg就是返回的内容
+                        if (msg == "success") {
+                            alert("订单取消成功");
+                            window.location = "/customerQueryOrder?customerId=<%=userId%>";
+                        } else {
+                            alert("订单取消失败");
+                            alert(msg);
+                        }
+                    },
+                    error: function () {//失败后调用的函数
+                        alert("订单取消失败");
+                    }
+
+                });
+            },
+            // closeOnConfirm: false,
+            onCancel: function () {
+                alert("哈哈哈哈哈哈哈啊，你怎么取消了？？")
+            }
+        });
+    }
+
+    function pays(ordId) {
+        window.location = "/payServlet?orderId=" + ordId;
+    }
+
+    function revices(ordId) {
+        $("#msgtitle").html("收货确认");
+        $("#msgcontent").html("您已经收到您的订单了吗？");
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function () {
+                var orderId = ordId;
+                var datas = "orderId=" + orderId + "&operate=" + "shouhuo";
+                $.ajax({
+                    type: "GET",//提交方式
+                    url: "/payServlet",//提交的地址
+                    data: datas,//携带的数据参数
+                    datatype: "text",//数据类型
+                    success: function (msg) {//成功之后返回的信息 msg就是返回的内容
+                        if (msg == "success") {
+                            alert("收货成功");
+                            window.location = "/customerQueryOrder?customerId=<%=userId%>";
+                        } else {
+                            alert("收货失败");
+                            alert(msg);
+                        }
+                    },
+                    error: function () {//失败后调用的函数
+                        alert("收货失败");
+                    }
+
+                });
+            },
+            // closeOnConfirm: false,
+            onCancel: function () {
+                alert("哈哈哈哈哈哈哈啊，你怎么取消了？？")
+            }
+        });
+    }
 
 </script>
 </body>
