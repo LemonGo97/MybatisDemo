@@ -32,5 +32,17 @@ public class LogTools {
         Logger logger = LogManager.getLogger(tag);
         logger.debug(msg);
     }
+    public static void DEBUG(Object msg){
+        Logger logger = LogManager.getLogger("DEFAULT");
+        logger.debug(msg);
+    }
+    public static void INFO(Object msg){
+        Logger logger = LogManager.getLogger("DEFAULT");
+        logger.info(msg);
+    }
+    public static void ERROR(Object msg){
+        Logger logger = LogManager.getLogger("DEFAULT");
+        logger.error(msg);
+    }
 
 }

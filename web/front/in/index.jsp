@@ -25,7 +25,7 @@
 
 <div id="main">
 
-    <div id="nav" class="am-animation-slide-left">
+    <div id="nav" class="am-animation-slide-left" style="height: 688.64px">
         <div id="nav-logo"><img src="<%=path%>/front/images/ico.png"/></div>
         <div id="navul">
             <ul>
@@ -35,7 +35,7 @@
                         <div>个人首页</div>
                     </li>
                 </a>
-                <a href="<%=path%>/front/in/begin.jsp" target="jumpage">
+                <a href="/queryAddress?customerId=<%=userId%>" target="jumpage">
                     <li>
                         <i class="am-icon-print am-icon-btn"></i>
                         <div>开始打印</div>
@@ -94,7 +94,7 @@
     <div id="plan" class="am-animation-slide-right">
         <div id="plancontent">
             <iframe name="jumpage" src='<%=path%>/after/pages/welcome.jsp' frameborder="0" scrolling="yes"
-                    style="width: 100%;height: 100%" class="weIframe"></iframe>
+                    style="width: 100%;height: 100%;margin-bottom: 50px" class="weIframe"></iframe>
         </div>
     </div>
 
@@ -104,7 +104,7 @@
         var pagepadding = pagewidth * 0.02
         $('body').css('padding', pagepadding + 'px');
 
-        $('#nav').css('height', pageheight - pagepadding * 2 + 'px');
+        $('#nav').css('height', pageheight - pagepadding * 2 -171 + 'px');
         $('#nav').css('width', pagewidth * 0.08 + 'px');
         $('#nav').css('margin-right', pagepadding + 'px');
         $('#navul').css('width', pagewidth * 0.08 + 20 + 'px');
@@ -118,11 +118,14 @@
 
         $('#plan').css('width', pagewidth * 0.86 + 'px');
         if (window.screen.height == 768) {
-            $('#plan').css('height', pageheight - 52 - pagepadding * 4 + 'px');
+            $('#plan').css('height', pageheight - 52 - pagepadding * 4-189 + 'px');
+            alert(pageheight - 52 - pagepadding * 4 + 'px')
+            // 587.28px
         } else {
-            $('#plan').css('height', pageheight - 40 - pagepadding * 4 + 'px');
+            $('#plan').css('height', pageheight - 40 - pagepadding * 4-189 + 'px');
         }
         $('#plancontent').css('height', $('#plan').height() + 'px');
+        //560px
         $('#plan').css('margin-top', pagepadding + 'px');
         $(window).resize(function () {
             location.reload();

@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%String path = request.getContextPath();%>
-<%String userId= String.valueOf(session.getAttribute("userId"));%>
+<%String userId = String.valueOf(session.getAttribute("userId"));%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -77,7 +77,7 @@
                         <c:forEach items="${orders}" var="order" varStatus="status">
                             <tr>
                                 <td>${status.index + 1}</td>
-                                <td><a href="<%=path%>${order.orderFile}" ><%=path%>${order.orderFile}</a></td>
+                                <td><a href="<%=path%>${order.orderFile}">文件</a></td>
                                 <td>￥${order.money}</td>
                                 <td class="am-hide-sm-only">${order.shopListResult.shopName}</td>
                                 <td class="am-hide-sm-only">
@@ -92,9 +92,36 @@
                                 <td>
                                     <div class="am-btn-toolbar" style="float: none">
                                         <div class="am-btn-group am-btn-group-xs" style="float: none">
-                                            <button  id="delete" type="button"   onclick="del(${order.orderId})"  class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                                <span class="am-icon-trash-o"></span> 删除
-                                            </button>
+
+                                            <c:if test="${order.orderState==0}">
+                                                <button id="pay" type="button" onclick=""
+                                                        class="am-btn am-btn-default am-btn-xs  am-hide-sm-only">
+                                                    <span class="am-icon-credit-card"></span> 付款
+                                                </button>
+                                                <button id="cancel" type="button" onclick=""
+                                                        class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
+                                                        style="margin-left: 5px">
+                                                    <span class="am-icon-trash-o"></span> 取消
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${order.orderState==1}">
+                                                <button id="receipt" type="button" onclick=""
+                                                        class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+                                                    <span class="am-icon-angellist"></span> 收货
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${order.orderState==2}">
+                                                <button id="receipt" type="button" onclick=""
+                                                        class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+                                                    <span class="am-icon-angellist"></span> 收货
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${order.orderState==3}">
+                                                <button id="delete" type="button" onclick="del(${order.orderId})"
+                                                        class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                                    <span class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </td>
@@ -131,31 +158,32 @@
 <script src="<%=path%>/front/assets/js/app.js"></script>
 <script>
     // $("#delete").on('click',
-        function del(ordId) {
+    function del(ordId) {
         $('#my-confirm').modal({
             relatedTarget: this,
-            onConfirm: function() {
+            onConfirm: function () {
                 var orderId = ordId;
                 $.ajax({
                     type: "GET",//提交方式
                     url: "/delOrderOne",//提交的地址
-                    data: "orderId="+orderId,//携带的数据参数
-                    datatype:"text",//数据类型
-                    success: function(msg){//成功之后返回的信息 msg就是返回的内容
+                    data: "orderId=" + orderId,//携带的数据参数
+                    datatype: "text",//数据类型
+                    success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                         window.location.reload();
                         alert("删除成功");
                     },
-                    error:function(){//失败后调用的函数
+                    error: function () {//失败后调用的函数
                         alert("删除失败");
                     }
                 });
             },
             // closeOnConfirm: false,
-            onCancel: function() {
+            onCancel: function () {
 
             }
         });
     }
+
     // );
 
 </script>

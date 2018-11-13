@@ -27,6 +27,7 @@ public class Order {
     private Date overDate;
     private Date createDate;
     private String address;
+    private String ways;
 
     private Shop shopListResult;
 

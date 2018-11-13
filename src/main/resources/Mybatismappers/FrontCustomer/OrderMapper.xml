@@ -25,4 +25,18 @@
     <update id="OrderDelOne" parameterType="Object">
         update tbl_orders set delete_status = 1 where order_id =  #{_parameter}
     </update>
+
+    <insert id="addOrder" useGeneratedKeys="true" keyProperty="orderId" keyColumn="order_id" parameterType="com.ambition.entity.Order.Order">
+        insert into tbl_orders (order_file, money, shop_id, customer_id, order_state, overdate, createdate, address,ways, delete_status)
+        values (#{orderFile},#{money},#{shopId},#{customerId},#{orderState},#{overDate},#{createDate},#{address},#{ways},0 )
+    </insert>
+
+    <select id="queryOrderMoney" parameterType="Object" resultType="double" >
+        SELECT money from tbl_orders where order_id=  #{_parameter}
+    </select>
+
+    <update id="changeOrderState" parameterType="com.ambition.entity.Order.Order">
+        update tbl_orders set order_state = #{orderState} where order_id =  #{orderId}
+    </update>
+
 </mapper>

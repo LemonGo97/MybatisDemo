@@ -14,4 +14,8 @@
     <update id="editCustomerAddress" parameterType="com.ambition.entity.Customer.CustomerAddress">
       update tbl_cu_address set address1 = #{address1} , address2=#{address2},address3=#{address3} where customer_id = #{customerId}
     </update>
+
+    <select id="frontQueryAddress" parameterType="Object" resultMap="customerAddressList">
+        select customer_id,address1,address2,address3 from tbl_cu_address where customer_id=#{_parameter}
+    </select>
 </mapper>
