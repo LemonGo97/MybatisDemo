@@ -28,7 +28,6 @@ public class QueryCustomerAddressServlet extends HttpServlet {
 
         List<Shop> shopList=orderService.queryShopList();
 
-
         request.setAttribute("addresses",addressList);
         request.setAttribute("shopList",shopList);
         request.getRequestDispatcher("/front/in/begin.jsp").forward(request,response);

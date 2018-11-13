@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.ambition.entity.Customer.CustomerAddress" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Ambition
   Date: 2018/11/9
@@ -12,6 +13,7 @@
     String userId = String.valueOf(session.getAttribute("userId"));
     String username = String.valueOf(session.getAttribute("username"));
 %>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -42,7 +44,7 @@
         </div>
 
         <hr>
-
+        <input id="usid" value="<%=userId%>" hidden/><input id="usname" value="<%=username%>" hidden/>
         <div class="am-tabs am-margin" data-am-tabs="{noSwipe: 1}">
             <ul class="am-tabs-nav am-nav am-nav-tabs">
                 <li class="am-active"><a href="#tab1">订单基本信息</a></li>
@@ -59,9 +61,10 @@
                                     <option value="${address.address1}">${address.address1}</option>
                                     <option value="${address.address2}">${address.address2}</option>
                                     <option value="${address.address3}">${address.address3}</option>
+                                    <input id="addr1" value="${address.address1}" hidden/><input id="addr2" value="${address.address2}" hidden/><input value="${address.address3}" id="addr3" hidden/>
                                 </c:forEach>
                             </select>
-                            <a href="begin.jsp" style="margin-left: 10px"><font color="red" size="2">地址管理</font></a>
+                            <a onclick="addressManager()" style="margin-left: 10px"><font color="red" size="2">地址管理</font></a>
                         </div>
                     </div>
 
@@ -180,7 +183,42 @@
                 layer.closeAll('loading'); //关闭loading
             }
         });
+
+
     })
+</script>
+<script>
+    function addressManager() {
+        layui.use(['jquery',  'layer'], function () {
+            var $ = layui.jquery
+                , layer = layui.layer;
+            layer.open({
+                type: 2,
+                title: "修改",
+                area: ['750px', '558px'],
+                fixed: false, //不固定
+                maxmin: true,
+                content: '<%=path%>/Customer/child/editAddress.jsp',
+                success: function (layero, index) {
+                    var body = layer.getChildFrame('body', index);//建立父子联系
+                    var inputList = body.find('input');//获取所有input元素的数组
+                    var addr1=$("#addr1").val();
+                    var addr2=$("#addr2").val();
+                    var addr3=$("#addr3").val();
+                    var usid=$("#usid").val();
+                    var usname=$("#usname").val();
+                    $(inputList[0]).val(usid);//给第一个input标签赋值为当前行的username
+                    $(inputList[1]).val(usname);
+                    $(inputList[2]).val(addr1);
+                    $(inputList[3]).val(addr2);
+                    $(inputList[4]).val(addr3);
+                },
+                end: function () {
+                    location.reload();
+                }
+            });
+        })
+    }
 </script>
 </body>
 </html>
