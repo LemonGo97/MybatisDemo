@@ -37,7 +37,7 @@ public class OrderQueryServlet extends HttpServlet {
         LogTools.DEBUG("status==========>",status);
 
         OrderService orderService=new OrderService();
-        if (status!=null||!status.equals("9")){
+        if (status!=null&&!status.equals("9")){
             orders = orderService.queryOrderList(null,status);
             LogTools.DEBUG("orders.size()==========>",orders.size());
             req.setAttribute("orders",orders);
