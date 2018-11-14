@@ -24,6 +24,7 @@ public class CustomerLoginFilter implements Filter {
         resp.setCharacterEncoding("UTF-8");
 
         HttpServletRequest request=(HttpServletRequest) req;
+        LogTools.DEBUG("页面请求==========>",request.getServletPath());
         if (request.getServletPath().indexOf("/front/in/")!=-1){
             HttpSession session=request.getSession();
             if (session.getAttribute("userId")!=null){

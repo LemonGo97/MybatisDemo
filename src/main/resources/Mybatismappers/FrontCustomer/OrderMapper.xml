@@ -3,10 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FrontCustomer">
     <select id="queryOrderList" parameterType="com.ambition.entity.Order.Order" resultMap="orderListResult">
-        SELECT order_id,order_file,money,a.shop_id,b.shopname,a.customer_id,order_state,
+        SELECT order_id,order_file,money,a.shop_id,b.shopname,a.customer_id,a.order_state,
                overdate,a.createdate,a.address,a.ways from tbl_orders a LEFT JOIN tbl_shop b  on a.shop_id=b.shop_id where a.delete_status = 0
         <if test="customerId!=null">
             and a.customer_id = #{customerId}
+        </if>
+        <if test="orderState!=null">
+            and a.order_state = #{orderState}
         </if>
     </select>
    <resultMap id="orderListResult" type="com.ambition.entity.Order.Order">

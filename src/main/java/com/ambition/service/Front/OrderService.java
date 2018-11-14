@@ -22,9 +22,16 @@ import java.util.List;
  **/
 
 public class OrderService {
-    public List<Order> queryOrderList(String customerId) {
+    public List<Order> queryOrderList(String customerId,String status) {
         OrderDao orderDao = new OrderDao();
-        List<Order> orders = orderDao.queryOrderList(Integer.valueOf(customerId));
+        List<Order> orders=null;
+        if (customerId != null) {
+            orders = orderDao.queryOrderList(Integer.valueOf(customerId),null);
+        } else if(status!=null){
+            orders = orderDao.queryOrderList(null,Integer.valueOf(status));
+        } else {
+            orders = orderDao.queryOrderList(null,null);
+        }
         return orders;
     }
 
@@ -66,7 +73,7 @@ public class OrderService {
     public void changeOrderState(String orderId, Integer orderState, Date overDate) {
 
         OrderDao orderDao = new OrderDao();
-        orderDao.changeOrderState(Integer.valueOf(orderId), orderState,overDate);
+        orderDao.changeOrderState(Integer.valueOf(orderId), orderState, overDate);
 
     }
 }

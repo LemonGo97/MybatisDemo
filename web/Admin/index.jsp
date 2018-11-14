@@ -113,7 +113,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a _href="<%=path%>/after/pages/order/list.jsp">
+								<a _href="/adminQueryOrder"  target="jumpage">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>订单列表</cite>
 								</a>

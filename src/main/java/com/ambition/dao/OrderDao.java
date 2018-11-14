@@ -24,15 +24,20 @@ import java.util.List;
  **/
 
 public class OrderDao {
-    public List<Order> queryOrderList(Integer customerId) {
+    public List<Order> queryOrderList(Integer customerId, Integer status) {
         DBAccess dbAccess = new DBAccess();
         List<Order> ordersList = new ArrayList<Order>();
         SqlSession sqlSession = null;
         try {
             sqlSession = dbAccess.getSqlSession();
             Order order = new Order();
+            if (status != null) {
+                order.setOrderState(status);
+                ordersList = sqlSession.selectList("FrontCustomer.queryOrderList", order);
+            }
             order.setCustomerId(customerId);
             ordersList = sqlSession.selectList("FrontCustomer.queryOrderList", order);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
