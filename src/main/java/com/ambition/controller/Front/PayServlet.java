@@ -32,18 +32,19 @@ public class PayServlet extends HttpServlet {
         }else if (operate.equals("over")){
             //支付完成跳转
             //数据库更新状态
-            orderService.changeOrderState(orderId,1);
+            orderService.changeOrderState(orderId,1,null);
             PrintWriter out = response.getWriter();
             out.write("success");
             LogTools.INFO("支付接口没申请下来，假装看不见，直接跳转到订单管理页面");
         }else if(operate.equals("cancels")){
             //申请取消订单
-            orderService.changeOrderState(orderId,4);
+            orderService.changeOrderState(orderId,4,new java.sql.Date(System.currentTimeMillis()));
             PrintWriter out = response.getWriter();
             out.write("success");
         }else if(operate.equals("shouhuo")){
             //申请收货
-            orderService.changeOrderState(orderId,3);
+//            LogTools.DEBUG("日期：",new java.sql.Date(System.currentTimeMillis()));
+            orderService.changeOrderState(orderId,3,new java.sql.Date(System.currentTimeMillis()));
             PrintWriter out = response.getWriter();
             out.write("success");
         }

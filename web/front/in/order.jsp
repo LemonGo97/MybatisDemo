@@ -70,6 +70,7 @@
                             <th class="table-createDate am-hide-sm-only">创建时间</th>
                             <th class="table-complateDate am-hide-sm-only">完成时间</th>
                             <th class="table-complateDate am-hide-sm-only">地址</th>
+                            <th class="table-complateDate am-hide-sm-only">配送方式</th>
                             <th class="table-set">操作</th>
                         </tr>
                         </thead>
@@ -90,6 +91,7 @@
                                 <td class="am-hide-sm-only">${order.createDate}</td>
                                 <td class="am-hide-sm-only">${order.overDate}</td>
                                 <td class="am-hide-sm-only">${order.address}</td>
+                                <td class="am-hide-sm-only">${order.ways}</td>
                                 <td>
                                     <div class="am-btn-toolbar" style="float: none">
                                         <div class="am-btn-group am-btn-group-xs" style="float: none">

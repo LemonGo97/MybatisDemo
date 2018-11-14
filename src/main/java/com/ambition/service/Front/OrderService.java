@@ -11,7 +11,7 @@ import com.ambition.entity.Customer.CustomerAddress;
 import com.ambition.entity.Order.Order;
 import com.ambition.entity.Shop.Shop;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -63,10 +63,10 @@ public class OrderService {
         return orderDao.queryOrderMoney(Integer.valueOf(customerId));
     }
 
-    public void changeOrderState(String orderId, Integer orderState) {
+    public void changeOrderState(String orderId, Integer orderState, Date overDate) {
 
         OrderDao orderDao = new OrderDao();
-        orderDao.changeOrderState(Integer.valueOf(orderId), orderState);
+        orderDao.changeOrderState(Integer.valueOf(orderId), orderState,overDate);
 
     }
 }

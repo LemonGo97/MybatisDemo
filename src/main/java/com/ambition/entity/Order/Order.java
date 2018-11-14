@@ -8,7 +8,7 @@ package com.ambition.entity.Order;
 import com.ambition.entity.Shop.Shop;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * @program: MybatisDemo

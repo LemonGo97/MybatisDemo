@@ -4,7 +4,7 @@
 <mapper namespace="FrontCustomer">
     <select id="queryOrderList" parameterType="com.ambition.entity.Order.Order" resultMap="orderListResult">
         SELECT order_id,order_file,money,a.shop_id,b.shopname,a.customer_id,order_state,
-               overdate,a.createdate,a.address from tbl_orders a LEFT JOIN tbl_shop b  on a.shop_id=b.shop_id where a.delete_status = 0
+               overdate,a.createdate,a.address,a.ways from tbl_orders a LEFT JOIN tbl_shop b  on a.shop_id=b.shop_id where a.delete_status = 0
         <if test="customerId!=null">
             and a.customer_id = #{customerId}
         </if>
@@ -19,6 +19,7 @@
         <result column="overdate" jdbcType="DATE" javaType="java.sql.Date" property="overDate"/>
         <result column="createdate" jdbcType="DATE" javaType="java.sql.Date" property="createDate"/>
         <result column="address" jdbcType="VARCHAR" javaType="String" property="address"/>
+        <result column="ways" jdbcType="VARCHAR" javaType="String" property="ways"/>
         <collection property="shopListResult" resultMap="Shop.shopListResult"/>
     </resultMap>
 
@@ -36,7 +37,11 @@
     </select>
 
     <update id="changeOrderState" parameterType="com.ambition.entity.Order.Order">
-        update tbl_orders set order_state = #{orderState} where order_id =  #{orderId}
+        update tbl_orders set order_state = #{orderState}
+        <if test="overDate!=null">
+           , overdate=#{overDate}
+        </if>
+        where order_id =  #{orderId}
     </update>
 
 </mapper>
