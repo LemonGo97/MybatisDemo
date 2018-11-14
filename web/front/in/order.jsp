@@ -110,6 +110,11 @@
                                                         class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
                                                     <span class="am-icon-angellist"></span> 收货
                                                 </button>
+                                                <button id="cancel" type="button" onclick="cancels(${order.orderId})"
+                                                        class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
+                                                        style="margin-left: 5px">
+                                                    <span class="am-icon-trash-o"></span> 取消
+                                                </button>
                                             </c:if>
                                             <c:if test="${order.orderState==2}">
                                                 <button id="receipt" type="button" onclick="revices(${order.orderId})"

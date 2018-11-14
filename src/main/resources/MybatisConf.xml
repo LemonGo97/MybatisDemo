@@ -18,5 +18,6 @@
         <mapper resource="Mybatismappers/Customer/CustomerStatesMapper.xml"/>
         <mapper resource="Mybatismappers/Shop/ShopMapper.xml"/>
         <mapper resource="Mybatismappers/FrontCustomer/OrderMapper.xml"/>
+        <mapper resource="Mybatismappers/Admin/AdminMapper.xml"/>
     </mappers>
 </configuration>

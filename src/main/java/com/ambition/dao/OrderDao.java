@@ -141,8 +141,6 @@ public class OrderDao {
             Order order=new Order();
             order.setOrderId(orderId);
             order.setOrderState(orderState);
-            LogTools.DEBUG("orderId",orderId);
-            LogTools.DEBUG("orderState",orderState);
             sqlSession=dbAccess.getSqlSession();
             sqlSession.update("FrontCustomer.changeOrderState",order);
             sqlSession.commit();

@@ -23,7 +23,6 @@ import java.util.List;
 
 public class OrderService {
     public List<Order> queryOrderList(String customerId) {
-
         OrderDao orderDao = new OrderDao();
         List<Order> orders = orderDao.queryOrderList(Integer.valueOf(customerId));
         return orders;

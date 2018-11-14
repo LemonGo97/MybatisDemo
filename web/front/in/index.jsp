@@ -3,6 +3,8 @@
 <%
     String userId= String.valueOf(session.getAttribute("userId"));
     String username= String.valueOf(session.getAttribute("username"));
+    String phone= String.valueOf(session.getAttribute("phone"));
+    String createdate= String.valueOf(session.getAttribute("createdate"));
 %>
 <html>
 <head>
@@ -16,6 +18,7 @@
             padding-top: 12px;
         }
     </style>
+    <link rel="stylesheet" href="<%=path%>/layui/css/layui.css"/>
 </head>
 
 
@@ -60,9 +63,10 @@
 
     <div class="am-g" id="topmenu">
 
-        <div id="search" class="am-u-lg-4 am-animation-slide-top">
-            <input type="text" id="keywords" placeholder="业务查找">
-            <i class="wos-icon-search-plus"></i>
+        <div id="search" class="am-u-lg-4 am-animation-slide-top" style="text-align: center;padding-top: 20px">
+            <%--<input type="text" id="keywords" placeholder="业务查找">--%>
+            <font size="5">欢迎光临云印享打印服务平台</font>
+
         </div>
 
 
@@ -73,15 +77,19 @@
                     <div id="nickname_username"><%=username%></div>
                     <div id="nickname_role">用户</div>
                 </li>
-                <li class="lishow lishow_line">
-                    <i class="am-icon-user-secret am-icon-md"></i>
-                </li>
-                <li class="lishow lishow_line">
-                    <i class="am-icon-bell-o am-icon-md"></i>
-                </li>
+
+                <%--<li class="lishow lishow_line">--%>
+                    <%--<i class="am-icon-user-secret am-icon-md"></i>--%>
+                <%--</li>--%>
+
+                <%--<li class="lishow lishow_line">--%>
+                    <%--<i class="am-icon-bell-o am-icon-md"></i>--%>
+                <%--</li>--%>
+                <a onclick="editCustomer()">
                 <li class="lishow">
                     <i class="am-icon-cogs am-icon-md"></i>
                 </li>
+                </a>
             </ul>
         </div>
         <a href="/customerlogout.do">
@@ -97,7 +105,10 @@
                     style="width: 100%;height: 100%;margin-bottom: 50px" class="weIframe"></iframe>
         </div>
     </div>
-
+    <input id="uname" value="<%=username%>" hidden>
+    <input id="unid" value="<%=userId%>" hidden>
+    <input id="tell" value="<%=phone%>" hidden>
+    <input id="credate" value="<%=createdate%>" hidden>
     <script language="javascript">
         var pageheight = $(window).height();
         var pagewidth = $(window).width();
@@ -132,6 +143,33 @@
         });
     </script>
 </div>
-
+<script src="<%=path%>/layui/layui.all.js"></script>
+<script>
+    function al() {
+        alert("111")
+    }
+    function editCustomer() {
+        layer.open({
+            type: 2,
+            title: "修改",
+            area: ['750px', '558px'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: '<%=path%>/Admin/Customer/child/editCustomer.jsp',
+            success: function(layero, index){
+                var body = layer.getChildFrame('body',index);//建立父子联系
+                var inputList = body.find('input');//获取所有input元素的数组
+                $(inputList[0]).val($("#unid").val());//给第一个input标签赋值为当前行的username
+                $(inputList[1]).val($("#uname").val());
+                // $(inputList[2]).val(obj.data.password);
+                $(inputList[3]).val($("#credate").val());
+                $(inputList[4]).val($("#tell").val());
+            },
+            end: function () {
+                location.reload();
+            }
+        });
+    }
+</script>
 </body>
 </html>

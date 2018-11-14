@@ -6,14 +6,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>管理员登录-WeAdmin Frame型后台管理系统-WeAdmin 1.0</title>
+	<title>管理员登录</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="./static/css/font.css">
-	<link rel="stylesheet" href="./static/css/weadmin.css">
+    <link rel="stylesheet" href="<%=path%>/after/static/css/font.css">
+	<link rel="stylesheet" href="<%=path%>/after/static/css/weadmin.css">
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
 
 </head>
@@ -39,7 +39,7 @@
     <script type="text/javascript">
         
         	layui.extend({
-				admin: '{/}./static/js/admin'
+				admin: '<%=path%>/layui/otherJs/js/admin'
 			});
             layui.use(['form','admin'], function(){
               var form = layui.form
@@ -51,11 +51,11 @@
               form.on('submit(login)', function(data){
                 // alert(888)
                 layer.msg(JSON.stringify(data.field),function(){
-                    location.href='sindex.jsp'
+                    location.href='/index.jsp'
                 });
                 return false;
               });
-            });   
+            });
     </script>  
     <!-- 底部结束 -->
 </body>

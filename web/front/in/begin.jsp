@@ -113,8 +113,8 @@
         </div>
 
         <div class="am-margin">
-            <button type="button" id="okOrder" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
-            <button type="reset" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+            <button type="button" id="okOrder" class="am-btn am-btn-primary am-btn-xs">提交</button>
+            <%--<button type="reset" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>--%>
         </div>
     </div>
 
@@ -198,7 +198,7 @@
                 area: ['750px', '558px'],
                 fixed: false, //不固定
                 maxmin: true,
-                content: '<%=path%>/Customer/child/editAddress.jsp',
+                content: '<%=path%>/Admin/Customer/child/editAddress.jsp',
                 success: function (layero, index) {
                     var body = layer.getChildFrame('body', index);//建立父子联系
                     var inputList = body.find('input');//获取所有input元素的数组

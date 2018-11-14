@@ -22,7 +22,7 @@
                 注意：本案例的Echarts图表库由cdn引入，需要在线才能正常使用，若要离线使用，请至Echarts官网下载。
             </blockquote>
         </div>
-        <script src="/static/js/echarts.min.js"></script>
+        <script src="/after/static/js/echarts.min.js"></script>
         <script src="//cdn.bootcss.com/echarts/4.0.2/extension/bmap.min.js"></script>
         <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例

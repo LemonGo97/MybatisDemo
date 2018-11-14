@@ -29,23 +29,25 @@ public class LoginServlet extends HttpServlet {
 
         LoginService loginService=new LoginService();
         List<Customer> customers=loginService.CustomerLogin(telephone,password,isDel);
-
-        Integer userId=customers.get(0).getUserId();
-        String username=customers.get(0).getUsername();
-
         if (customers!=null&&customers.size()!=0) {
             //登陆成功
-            LogTools.DEBUG("LoginServlet","登陆成功");
+            Integer userId=customers.get(0).getUserId();
+            String username=customers.get(0).getUsername();
+            String phone=customers.get(0).getTelephone();
+            String createdate= String.valueOf(customers.get(0).getCreatedate());
+            LogTools.INFO("用户登陆控制器返回的信息=====>","用户："+username+" 登陆成功");
             HttpSession session=request.getSession();
             //把获取到的用户信息保存起来
             session.setAttribute("userId",userId);
             session.setAttribute("username",username);
+            session.setAttribute("phone",phone);
+            session.setAttribute("createdate",createdate);
             response.sendRedirect("/front/in/index.jsp");
         } else {
 //            response.sendRedirect("/front/login.jsp");
             response.sendRedirect("/front/login.jsp?error=yes");
             //登陆失败
-            LogTools.DEBUG("LoginServlet","登陆失败");
+            LogTools.DEBUG("LoginServlet","用户登陆失败");
         }
     }
 

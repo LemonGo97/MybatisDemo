@@ -6,7 +6,6 @@ package com.ambition.controller.Front;
  */
 
 import com.ambition.service.Front.OrderService;
-import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -72,12 +71,9 @@ public class OrderSubServlet extends HttpServlet {
                     BrowersfilePath = makeFileName(fileName);
 
                     BrowersPath = (savePath+BrowersDirPath )+ File.separator + BrowersfilePath;
-                    LogTools.DEBUG("我看看哪里错了？？？========>",BrowersPath);
                     //把文件写到指定路径
                     BrowersfileSize= part.getSize()*1.5/1024/1024;
-                    LogTools.DEBUG("我看看哪里错了文件大小获取？？？========>",BrowersfileSize);
                     part.write(BrowersPath);
-                    LogTools.DEBUG("我看看哪里错了写入文件？？？========>");
                 }
             }
         }
@@ -90,9 +86,7 @@ public class OrderSubServlet extends HttpServlet {
         String ways = req.getParameter("Ways");//配送方式
         BrowersfilePath="/upload"+BrowersDirPath+BrowersfilePath;
         OrderService orderService=new OrderService();
-        LogTools.INFO(BrowersfilePath+BrowersfileSize+Shop+customerId+0+userAddress+ways);
         Integer orderId=orderService.addOrder(BrowersfilePath,BrowersfileSize,Shop,customerId,0,userAddress,ways);
-        LogTools.INFO(orderId);
         out.write(overJSON(true,"/payServlet?orderId="+orderId));
     }
 
@@ -146,13 +140,10 @@ public class OrderSubServlet extends HttpServlet {
         //File既可以代表文件也可以代表目录
         File file = new File(savePath+dir);
         //如果目录不存在
-        LogTools.DEBUG("文件夹创建1"+dir);
         if (!file.exists()) {
             //创建目录
-            LogTools.DEBUG("文件夹创建2");
             file.mkdirs();
         }
-        LogTools.DEBUG("文件夹创建3");
         return dir;
     }
 

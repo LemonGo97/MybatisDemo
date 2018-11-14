@@ -26,8 +26,10 @@
     <link rel="stylesheet" type="text/css" href="<%=path%>/front/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/front/css/component.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/front/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/css/layui.css" />
     <script src="<%=path%>/front/js/modernizr.custom.js"></script>
     <script src="<%=path%>/front/js/jquery-3.3.1.min.js"></script>
+
     <script type="text/javascript">
         $(function(){
             //动态绑定失去焦点事件
