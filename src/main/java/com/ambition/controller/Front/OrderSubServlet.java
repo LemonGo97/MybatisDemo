@@ -84,7 +84,7 @@ public class OrderSubServlet extends HttpServlet {
         String userAddress = req.getParameter("userAddress");
         String customerId = req.getParameter("customerId");
         String ways = req.getParameter("Ways");//配送方式
-        BrowersfilePath="/upload"+BrowersDirPath+BrowersfilePath;
+        BrowersfilePath="/upload"+BrowersDirPath+File.separator+BrowersfilePath;
         OrderService orderService=new OrderService();
         Integer orderId=orderService.addOrder(BrowersfilePath,BrowersfileSize,Shop,customerId,0,userAddress,ways);
         out.write(overJSON(true,"/payServlet?orderId="+orderId));

@@ -78,7 +78,7 @@
                         <c:forEach items="${orders}" var="order" varStatus="status">
                             <tr>
                                 <td>${status.index + 1}</td>
-                                <td><a href="<%=path%>${order.orderFile}">文件</a></td>
+                                <td><a href="<%=path%>${order.orderFile}" download>文件</a></td>
                                 <td>￥${order.money}</td>
                                 <td class="am-hide-sm-only">${order.shopListResult.shopName}</td>
                                 <td class="am-hide-sm-only">
