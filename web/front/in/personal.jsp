@@ -8,7 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%String path = request.getContextPath();%>
-<%String userId = String.valueOf(session.getAttribute("userId"));%>
+<%
+    String userId = String.valueOf(session.getAttribute("userId"));
+
+    String headimages= String.valueOf(session.getAttribute("headimages"));
+    System.out.println(headimages);
+    if (headimages!=null&&!headimages.equals("null")){
+        headimages=String.valueOf(session.getAttribute("headimages"));
+    }else{
+        headimages="/front/images/wos.jpg";
+    }
+    System.out.println(headimages);
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -46,8 +57,7 @@
                             <div class="am-g">
                                 <div class="am-u-md-4">
                                     <img  id="demo1" class="am-img-circle am-img-thumbnail"
-                                          src="<%=path%><c:if test="${cuInfo.headerimages==null}">/front/images/wos.jpg</c:if><c:if test="${cuInfo.headerimages!=null}">${cuInfo.headerimages}</c:if>"
-                                         alt=""/>
+                                          src="<%=path%><%=headimages%>"alt=""/>
                                 </div>
                                 <div class="am-u-md-8">
                                     <p>你可以使用本地上传头像来更换您的头像</p>
@@ -240,11 +250,12 @@
                 }
                 //上传成功
                 layer.closeAll('loading');
-                window.location = res.data.url
+                parent.location.reload();
             }
             ,error: function(){
                 //演示失败状态，并实现重传
                 var demoText = $('#demoText');
+                layer.closeAll('loading');
                 demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
                 demoText.find('.demo-reload').on('click', function(){
                     uploadInst.upload();

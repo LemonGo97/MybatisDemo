@@ -38,7 +38,7 @@
         <div id="nav-logo"><img src="<%=path%>/front/images/ico.png"/></div>
         <div id="navul">
             <ul>
-                <a href="<%=path%>/after/pages/welcome.jsp" target="jumpage">
+                <a href="<%=path%>/front/welcome.jsp" target="jumpage">
                     <li>
                         <i class="am-icon-home am-icon-btn"></i>
                         <div>个人首页</div>
@@ -107,7 +107,7 @@
 
     <div id="plan" class="am-animation-slide-right">
         <div id="plancontent">
-            <iframe name="jumpage" src='<%=path%>/after/pages/welcome.jsp' frameborder="0" scrolling="yes"
+            <iframe name="jumpage" src='<%=path%>/front/welcome.jsp' frameborder="0" scrolling="yes"
                     style="width: 100%;height: 100%;margin-bottom: 50px" class="weIframe"></iframe>
         </div>
     </div>

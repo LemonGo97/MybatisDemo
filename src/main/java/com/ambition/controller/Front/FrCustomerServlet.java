@@ -1,9 +1,7 @@
 package com.ambition.controller.Front;
 
 import com.ambition.entity.Customer.Customer;
-import com.ambition.service.Customer.ListService;
 import com.ambition.service.Front.LoginService;
-import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,24 +14,20 @@ import java.util.List;
 
 /**
  * @Author: ambition
- * @Date: 2018/11/10 15:11
+ * @Date: 2018/11/15 14:05
  * @Version 1.0
  */
-@WebServlet("/customerInfoQuery")
-public class InfoServlet extends HttpServlet {
+@WebServlet("/FrCustomer")
+public class FrCustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //设置编码格式
-        request.setCharacterEncoding("UTF-8");
-        String userId=request.getParameter("userId");
-        String delFlag=request.getParameter("isDel");
-        //调用Service层方法进行用户查询
-        LoginService loginService=new LoginService();
-        List<Customer> customers=loginService.customerInfoQuery(userId,delFlag);
-        String headimages=customers.get(0).getHeaderimages();
-        request.setAttribute("customerInfo",customers);
         HttpSession session=request.getSession();
+        request.setCharacterEncoding("UTF-8");       //调用Service层方法进行用户查询
+        LoginService loginService=new LoginService();
+        List<Customer> customers=loginService.customerInfoQuery(String.valueOf(session.getAttribute("userId")),"0");
+        String headimages=customers.get(0).getHeaderimages();
         session.setAttribute("headimages",headimages);
-        request.getRequestDispatcher("/front/in/personal.jsp").forward(request,response);
+        request.getRequestDispatcher("/front/in/index.jsp").forward(request,response);
     }
+
 }

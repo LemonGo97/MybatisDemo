@@ -195,7 +195,7 @@
             layer.open({
                 type: 2,
                 title: "修改",
-                area: ['750px', '558px'],
+                area: ['750px', '458px'],
                 fixed: false, //不固定
                 maxmin: true,
                 content: '<%=path%>/Admin/Customer/child/editAddress.jsp',

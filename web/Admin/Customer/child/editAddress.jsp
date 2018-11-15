@@ -38,17 +38,7 @@
 <body>
 <form class="layui-form" action="">
     <input id="userId" type="text" name="userId" hidden="hidden"/>
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>昵称&nbsp;&nbsp;&nbsp;<font size="3" color="#cc4d1a">必填</font></legend>
-    </fieldset>
-    <div class="layui-form-item">
-
-        <div class="layui-input-inline">
-            <input id="username" type="text" name="username" lay-verify="required|username" placeholder="请输入你的昵称"
-                   autocomplete="off"
-                   class="layui-input" disabled>
-        </div>
-    </div>
+    <input id="username" type="text" hidden="hidden" name="username" />
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>第一收货地址&nbsp;&nbsp;&nbsp;<font size="3" color="#cc4d1a">地址</font></legend>
     </fieldset>

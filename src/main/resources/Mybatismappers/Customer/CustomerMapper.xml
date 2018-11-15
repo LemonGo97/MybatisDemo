@@ -129,7 +129,7 @@
     <!--用户注册结束-->
 
     <select id="doLogin" parameterType="com.ambition.entity.Customer.Customer" resultMap="customerListResult">
-        SELECT user_id, username, telephone, createdate
+        SELECT user_id, username, telephone, createdate,headerimages
         from tbl_customer
         where delete_status = #{isDel}
           and telephone = #{telephone}

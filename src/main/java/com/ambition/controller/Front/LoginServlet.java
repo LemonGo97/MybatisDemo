@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
             String phone=customers.get(0).getTelephone();
             String createdate= String.valueOf(customers.get(0).getCreatedate());
             String headimages=customers.get(0).getHeaderimages();
+            System.out.println("headimages==========>"+headimages);
             LogTools.INFO("用户登陆控制器返回的信息=====>","用户："+username+" 登陆成功");
             HttpSession session=request.getSession();
             //把获取到的用户信息保存起来
@@ -44,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("phone",phone);
             session.setAttribute("createdate",createdate);
             session.setAttribute("headimages",headimages);
-            response.sendRedirect("/front/in/index.jsp");
+            response.sendRedirect("/FrCustomer");
         } else {
 //            response.sendRedirect("/front/login.jsp");
             response.sendRedirect("/front/login.jsp?error=yes");
