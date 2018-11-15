@@ -29,7 +29,7 @@ public class Customer {
     private String weibo;
     private String qq;
     private String intro;
-
+    private String headerimages;
     //以下是子表的检索
 
     private CustomerAddress customerAddressList;

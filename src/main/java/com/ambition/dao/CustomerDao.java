@@ -410,7 +410,7 @@ public class CustomerDao {
         return customerList;
     }
 
-    public void editCustomerOthers(Integer userId, String username, String email, String weibo, String telephone,  String qq, String intro){
+    public void editCustomerOthers(Integer userId, String username, String email, String weibo, String telephone,  String qq, String intro,String headerimages){
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -424,6 +424,7 @@ public class CustomerDao {
             customer.setTelephone(telephone);
             customer.setQq(qq);
             customer.setIntro(intro);
+            customer.setHeaderimages(headerimages);
             sqlSession.update("Customer.editCustomerOther",customer);
             sqlSession.commit();
             LogTools.show("CustomerDao","用户修改事务成功提交");

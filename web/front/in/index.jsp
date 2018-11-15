@@ -5,6 +5,12 @@
     String username= String.valueOf(session.getAttribute("username"));
     String phone= String.valueOf(session.getAttribute("phone"));
     String createdate= String.valueOf(session.getAttribute("createdate"));
+    String headimages= String.valueOf(session.getAttribute("headimages"));
+    if (headimages!=null&&!headimages.equals("null")){
+        headimages=String.valueOf(session.getAttribute("headimages"));
+    }else{
+        headimages="/front/images/wos.jpg";
+    }
 %>
 <html>
 <head>
@@ -72,7 +78,7 @@
 
         <div id="userinfo" class="am-u-lg-6 am-animation-slide-top">
             <ul>
-                <li id="face"><img src="<%=path%>/front/images/wos.jpg"/></li>
+                <li id="face"><img src="<%=path%><%=headimages%>"/></li>
                 <li id="nickname">
                     <div id="nickname_username"><%=username%></div>
                     <div id="nickname_role">用户</div>
@@ -145,9 +151,6 @@
 </div>
 <script src="<%=path%>/layui/layui.all.js"></script>
 <script>
-    function al() {
-        alert("111")
-    }
     function editCustomer() {
         layer.open({
             type: 2,

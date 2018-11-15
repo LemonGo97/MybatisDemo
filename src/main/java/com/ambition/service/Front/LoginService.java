@@ -45,8 +45,8 @@ public class LoginService {
         return customers;
 
     }
-    public void customerInfoEdit(String userId,String username,String email,String weibo,String telephone,String qq,String intro){
+    public void customerInfoEdit(String userId,String username,String email,String weibo,String telephone,String qq,String intro,String headerimages){
         CustomerDao customerDao = new CustomerDao();
-        customerDao.editCustomerOthers(Integer.valueOf(userId),username,email,weibo,telephone,qq,intro);
+        customerDao.editCustomerOthers(Integer.valueOf(userId),username,email,weibo,telephone,qq,intro,headerimages);
     }
 }
