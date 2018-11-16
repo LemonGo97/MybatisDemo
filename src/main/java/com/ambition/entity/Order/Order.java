@@ -28,6 +28,7 @@ public class Order {
     private Date createDate;
     private String address;
     private String ways;
+    private Integer limits;
 
     private Shop shopListResult;
 

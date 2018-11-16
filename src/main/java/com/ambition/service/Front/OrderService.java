@@ -10,6 +10,7 @@ import com.ambition.dao.ShopDao;
 import com.ambition.entity.Customer.CustomerAddress;
 import com.ambition.entity.Order.Order;
 import com.ambition.entity.Shop.Shop;
+import com.ambition.util.LogTools;
 
 import java.sql.Date;
 import java.util.List;
@@ -22,16 +23,26 @@ import java.util.List;
  **/
 
 public class OrderService {
-    public List<Order> queryOrderList(String customerId,String status) {
+    public List<Order> queryOrderList(String shopId,String customerId,String status,String limit) {
         OrderDao orderDao = new OrderDao();
-        List<Order> orders=null;
-        if (customerId != null) {
-            orders = orderDao.queryOrderList(Integer.valueOf(customerId),null);
-        } else if(status!=null){
-            orders = orderDao.queryOrderList(null,Integer.valueOf(status));
-        } else {
-            orders = orderDao.queryOrderList(null,null);
+        Integer shopIds=null;
+        Integer limits=null;
+        Integer customerIds=null;
+        Integer statuses=null;
+        if (shopId!=null&&!" ".equals(shopId)){
+            shopIds=Integer.valueOf(shopId);
         }
+        if (limit!=null&&!" ".equals(limit)){
+            limits=Integer.valueOf(limit);
+        }
+        if (customerId!=null&&!" ".equals(customerId)){
+            customerIds=Integer.valueOf(customerId);
+        }
+        if (status!=null&&!" ".equals(status)){
+            statuses=Integer.valueOf(status);
+        }
+
+        List<Order> orders = orderDao.queryOrderList(shopIds,customerIds,statuses,limits);
         return orders;
     }
 

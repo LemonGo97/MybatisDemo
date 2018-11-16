@@ -7,6 +7,7 @@ package com.ambition.controller.Front;
 
 import com.ambition.entity.Order.Order;
 import com.ambition.service.Front.OrderService;
+import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author: ambition
  * @create: 2018-11-09 19:29
  **/
-@WebServlet(name = "OrderQueryServlet",urlPatterns = "/customerQueryOrder")
+@WebServlet("/customerQueryOrder")
 public class OrderQueryServlet extends HttpServlet {
 
     @Override
@@ -33,8 +34,7 @@ public class OrderQueryServlet extends HttpServlet {
 
         String customerId=req.getParameter("customerId");
         OrderService orderService=new OrderService();
-        List<Order> orders = orderService.queryOrderList(customerId,null);
-
+        List<Order> orders = orderService.queryOrderList(null,customerId,null,null);
         req.setAttribute("orders",orders);
         req.getRequestDispatcher("/front/in/order.jsp").forward(req,resp);
         //调用Service层用户查询方法，在Service层格式化从数据库中取出的JSON数据之后，直接写出到servlet页面<jsonCustomer>

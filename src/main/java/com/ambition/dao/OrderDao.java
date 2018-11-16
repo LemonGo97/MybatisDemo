@@ -24,7 +24,7 @@ import java.util.List;
  **/
 
 public class OrderDao {
-    public List<Order> queryOrderList(Integer customerId, Integer status) {
+    public List<Order> queryOrderList(Integer shopId, Integer customerId, Integer status, Integer limits) {
         DBAccess dbAccess = new DBAccess();
         List<Order> ordersList = new ArrayList<Order>();
         SqlSession sqlSession = null;
@@ -33,9 +33,16 @@ public class OrderDao {
             Order order = new Order();
             if (status != null) {
                 order.setOrderState(status);
-                ordersList = sqlSession.selectList("FrontCustomer.queryOrderList", order);
             }
-            order.setCustomerId(customerId);
+            if (shopId != null) {
+                order.setShopId(shopId);
+            }
+            if (customerId != null) {
+                order.setCustomerId(customerId);
+            }
+            if (limits != null) {
+                order.setLimits(limits);
+            }
             ordersList = sqlSession.selectList("FrontCustomer.queryOrderList", order);
 
         } catch (Exception e) {

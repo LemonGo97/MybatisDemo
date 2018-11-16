@@ -8,8 +8,14 @@
         <if test="customerId!=null">
             and a.customer_id = #{customerId}
         </if>
+        <if test="shopId!=null">
+            and a.shop_id = #{shopId}
+        </if>
         <if test="orderState!=null">
             and a.order_state = #{orderState}
+        </if>
+        <if test="limits!=null">
+            limit #{limits}
         </if>
     </select>
    <resultMap id="orderListResult" type="com.ambition.entity.Order.Order">

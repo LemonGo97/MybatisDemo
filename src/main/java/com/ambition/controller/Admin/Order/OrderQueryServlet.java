@@ -38,12 +38,12 @@ public class OrderQueryServlet extends HttpServlet {
 
         OrderService orderService=new OrderService();
         if (status!=null&&!status.equals("9")){
-            orders = orderService.queryOrderList(null,status);
+            orders = orderService.queryOrderList(null,null,status,null);
             LogTools.DEBUG("orders.size()==========>",orders.size());
             req.setAttribute("orders",orders);
             req.getRequestDispatcher("/Admin/Order/OrderList.jsp").forward(req,resp);
         }else{
-            orders = orderService.queryOrderList(null,null);
+            orders = orderService.queryOrderList(null,null,null,null);
             req.setAttribute("orders",orders);
             req.getRequestDispatcher("/Admin/Order/OrderList.jsp").forward(req,resp);
         }
