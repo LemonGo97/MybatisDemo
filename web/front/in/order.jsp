@@ -36,7 +36,7 @@
 <div class="admin-content" style="overflow: auto">
     <div class="admin-content-body">
         <div class="am-cf am-padding am-padding-bottom-0">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">历史订单</strong> /
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单记录</strong> /
                 <small>Order</small>
             </div>
         </div>
@@ -87,6 +87,7 @@
                                     <c:if test="${order.orderState==2}">未收货</c:if>
                                     <c:if test="${order.orderState==3}">成交</c:if>
                                     <c:if test="${order.orderState==4}">已取消</c:if>
+                                    <c:if test="${order.orderState==5}">派单中</c:if>
                                 </td>
                                 <td class="am-hide-sm-only">${order.createDate}</td>
                                 <td class="am-hide-sm-only">${order.overDate}</td>
@@ -108,10 +109,6 @@
                                                 </button>
                                             </c:if>
                                             <c:if test="${order.orderState==1}">
-                                                <button id="receipt" type="button" onclick="revices(${order.orderId})"
-                                                        class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
-                                                    <span class="am-icon-angellist"></span> 收货
-                                                </button>
                                                 <button id="cancel" type="button" onclick="cancels(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
                                                         style="margin-left: 5px">
@@ -134,6 +131,12 @@
                                                 <button id="delete" type="button" onclick="del(${order.orderId})"
                                                         class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                                     <span class="am-icon-trash-o"></span> 删除
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${order.orderState==5}">
+                                                <button id="receipt" type="button" onclick="revices(${order.orderId})"
+                                                        class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+                                                    <span class="am-icon-angellist"></span> 收货
                                                 </button>
                                             </c:if>
                                         </div>

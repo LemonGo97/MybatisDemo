@@ -89,6 +89,7 @@
                     <c:if test="${order.orderState==2}">未收货</c:if>
                     <c:if test="${order.orderState==3}">成交</c:if>
                     <c:if test="${order.orderState==4}">已取消</c:if>
+                    <c:if test="${order.orderState==5}">派单中</c:if>
                 </td>
                 <td class="am-hide-sm-only">${order.createDate}</td>
                 <td class="am-hide-sm-only"><c:if test="${order.overDate!=null}">${order.overDate}</c:if><c:if
