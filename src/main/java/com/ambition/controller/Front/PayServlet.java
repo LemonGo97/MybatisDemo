@@ -47,7 +47,20 @@ public class PayServlet extends HttpServlet {
             orderService.changeOrderState(orderId,3,new java.sql.Date(System.currentTimeMillis()));
             PrintWriter out = response.getWriter();
             out.write("success");
+        }else if(operate.equals("jiedan")){
+            //商家接单
+//            LogTools.DEBUG("日期：",new java.sql.Date(System.currentTimeMillis()));
+            orderService.changeOrderState(orderId,2,null);
+            PrintWriter out = response.getWriter();
+            out.write("success");
+        }else if(operate.equals("paidan")){
+            //商家接单
+//            LogTools.DEBUG("日期：",new java.sql.Date(System.currentTimeMillis()));
+            orderService.changeOrderState(orderId,5,null);
+            PrintWriter out = response.getWriter();
+            out.write("success");
         }
+
         else{
             //支付失败跳转
             //数据库不更新状态

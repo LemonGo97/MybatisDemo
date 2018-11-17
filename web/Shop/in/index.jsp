@@ -77,9 +77,9 @@
             <!-- End User -->
 
             <ul class="am-list admin-sidebar-list">
-                <li><a href="/shopMainServlet?shopId=<%=shopId%>&limit=5" target="jumpage"><span class="am-icon-home"  style="margin-right: 10px"></span> 首页</a></li>
+                <li><a href="/shopMainServlet?shopId=<%=shopId%>&limit=10" target="jumpage"><span class="am-icon-home"  style="margin-right: 10px"></span> 首页</a></li>
                 <li class="admin-parent">
-                    <a href="<%=path%>/Shop/in/Order.jsp" target="jumpage"><span class="am-icon-calendar-check-o"  style="margin-right: 10px"></span>
+                    <a href="/ShopOrderServlet?shopId=<%=shopId%>" target="jumpage"><span class="am-icon-calendar-check-o"  style="margin-right: 10px"></span>
                         订单管理 <span
                                 class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 </li>

@@ -86,19 +86,24 @@
                         </thead>
                         <tbody>
                         <c:forEach items="${orderList}" var="order" varStatus="status">
-                        <tr>
-                            <td>${order.orderId}</td>
-                            <td>${order.createDate}</td>
-                            <td>${order.overDate}</td>
-                            <td>
-                            <c:if test="${order.orderState==0}"><span class="label label-primary">未付款</span></c:if>
-                            <c:if test="${order.orderState==1}"><span class="label label-warning">未接单</span></c:if>
-                            <c:if test="${order.orderState==2}"><span class="label label-pink">未收货</span></c:if>
-                            <c:if test="${order.orderState==3}"><span class="label label-success">成交</span></c:if>
-                            <c:if test="${order.orderState==4}"><span class="label label-danger">已取消</span></c:if>
-                            </td>
-                            <td>${order.ways}</td>
-                        </tr>
+                            <tr>
+                                <td>${order.orderId}</td>
+                                <td>${order.createDate}</td>
+                                <td>${order.overDate}</td>
+                                <td>
+                                    <c:if test="${order.orderState==0}"><span
+                                            class="label label-primary">未付款</span></c:if>
+                                    <c:if test="${order.orderState==1}"><span
+                                            class="label label-warning">未接单</span></c:if>
+                                    <c:if test="${order.orderState==2}"><span class="label label-pink">未收货</span></c:if>
+                                    <c:if test="${order.orderState==3}"><span
+                                            class="label label-success">成交</span></c:if>
+                                    <c:if test="${order.orderState==4}"><span
+                                            class="label label-danger">已取消</span></c:if>
+                                    <c:if test="${order.orderState==5}"><span class="label label-pink">派单中</span></c:if>
+                                </td>
+                                <td>${order.ways}</td>
+                            </tr>
                         </c:forEach>
 
                         </tbody>

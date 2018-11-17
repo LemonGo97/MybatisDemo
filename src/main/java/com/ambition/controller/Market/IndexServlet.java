@@ -4,12 +4,14 @@ import com.ambition.entity.Customer.Customer;
 import com.ambition.entity.Shop.Shop;
 import com.ambition.service.Front.LoginService;
 import com.ambition.service.Shop.ListService;
+import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,6 +30,8 @@ public class IndexServlet extends HttpServlet {
 //        String headimages=customers.get(0).getHeaderimages();
 
         request.setAttribute("shopList",shopList);
+        HttpSession session=request.getSession();
+        session.setAttribute("shopId",shopList.get(0).getShopId());
         request.getRequestDispatcher("/Shop/in/index.jsp").forward(request,response);
     }
 }

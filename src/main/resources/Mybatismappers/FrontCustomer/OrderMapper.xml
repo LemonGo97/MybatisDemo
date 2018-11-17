@@ -8,15 +8,18 @@
         <if test="customerId!=null">
             and a.customer_id = #{customerId}
         </if>
-        <if test="shopId!=null">
-            and a.shop_id = #{shopId}
-        </if>
+
         <if test="orderState!=null">
             and a.order_state = #{orderState}
         </if>
-        <if test="limits!=null">
-            limit #{limits}
+
+        <if test="shopId!=null">
+            and a.shop_id = #{shopId} order by order_id DESC
+            <if test="limits!=null">
+                limit #{limits}
+            </if>
         </if>
+
     </select>
    <resultMap id="orderListResult" type="com.ambition.entity.Order.Order">
         <id column="order_id" jdbcType="INTEGER" property="orderId"/>

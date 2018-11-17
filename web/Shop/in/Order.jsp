@@ -1,6 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
+    Integer shopId= (Integer) session.getAttribute("shopId");
 %>
 <html>
 <head>
@@ -15,6 +18,11 @@
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/admin.css"/>
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/page/typography.css"/>
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/page/form.css"/>
+    <style type="text/css">
+        th, td, tr {
+            text-align: center;
+        }
+    </style>
 </head>
 <body style="overflow: auto;">
 <div class="content">
@@ -41,50 +49,62 @@
                         <thead>
                         <tr>
                             <th class="table-check"><input type="checkbox"/></th>
-                            <th class="table-id">ID</th>
-                            <th class="table-title">标题</th>
-                            <th class="table-type">类别</th>
-                            <th class="table-author am-hide-sm-only">作者</th>
-                            <th class="table-date am-hide-sm-only">修改日期</th>
+                            <th class="table-orderId">ID</th>
+                            <th class="table-money">订单金额</th>
+                            <th class="table-OrderState am-hide-sm-only">订单状态</th>
+                            <th class="table-createDate am-hide-sm-only">创建时间</th>
+                            <th class="table-complateDate am-hide-sm-only">完成时间</th>
+                            <th class="table-complateDate am-hide-sm-only">地址</th>
+                            <th class="table-complateDate am-hide-sm-only">配送方式</th>
                             <th class="table-set">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><input type="checkbox"/></td>
-                            <td>1</td>
-                            <td><a href="#">Business management</a></td>
-                            <td>default</td>
-                            <td class="am-hide-sm-only">测试1号</td>
-                            <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                            <td>
-                                <div class="am-btn-toolbar">
-                                    <div class="am-btn-group am-btn-group-xs">
-                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span
-                                                class="am-icon-pencil-square-o"></span> 接单
-                                        </button>
-                                        <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span
-                                                class="am-icon-copy"></span> 发货
-                                        </button>
+                        <c:forEach items="${orderList}" var="order" varStatus="status">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td>${status.index + 1}</td>
+                                <td>￥${order.money}</td>
+                                <td class="am-hide-sm-only">
+                                    <c:if test="${order.orderState==0}">等待付款</c:if>
+                                    <c:if test="${order.orderState==1}">未接单</c:if>
+                                    <c:if test="${order.orderState==2}">未收货</c:if>
+                                    <c:if test="${order.orderState==3}">成交</c:if>
+                                    <c:if test="${order.orderState==4}">已取消</c:if>
+                                    <c:if test="${order.orderState==5}">派单中</c:if>
+                                </td>
+                                <td class="am-hide-sm-only">${order.createDate}</td>
+                                <td class="am-hide-sm-only">${order.overDate}</td>
+                                <td class="am-hide-sm-only">${order.address}</td>
+                                <td class="am-hide-sm-only">${order.ways}</td>
+                                <td>
+                                    <div class="am-btn-toolbar" style="float: none">
+                                        <div class="am-btn-group am-btn-group-xs" style="float: none">
+                                            <c:if test="${order.orderState==1}">
+                                                <a id="recive" class="am-btn am-btn-default am-btn-xs am-hide-sm-only"  type="button" onclick="recived(${order.orderId})" download>
+                                                    <span class="am-icon-angellist"></span> 接单
+                                                </a>
+
+                                            </c:if>
+                                            <c:if test="${order.orderState==2}">
+                                                <a class="am-btn am-btn-default am-btn-xs am-hide-sm-only" href="${order.orderFile}" type="button"  download>
+                                                    <span class="am-icon-angellist"></span> 下载
+                                                </a>
+                                                <a id="receipt" type="button" onclick="sfSend(${order.orderId})"
+                                                        class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+                                                    <input value="${order.address}" id="cuIdress" hidden>
+                                                    <span class="am-icon-angellist"></span> 派单
+                                                </a>
+                                            </c:if>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                     <div class="am-cf">
-                        共 15 条记录
-                        <%--<div class="am-fr">--%>
-                            <%--<ul class="am-pagination">--%>
-                                <%--<li class="am-disabled"><a href="#">«</a></li>--%>
-                                <%--<li class="am-active"><a href="#">1</a></li>--%>
-                                <%--<li><a href="#">2</a></li>--%>
-                                <%--<li><a href="#">3</a></li>--%>
-                                <%--<li><a href="#">4</a></li>--%>
-                                <%--<li><a href="#">5</a></li>--%>
-                                <%--<li><a href="#">»</a></li>--%>
-                            <%--</ul>--%>
-                        <%--</div>--%>
+                        共 ${fn:length(orderList)}条记录
                     </div>
                     <hr/>
                 </form>
@@ -97,11 +117,93 @@
 
 
 </div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd" id="msgtitle">删除确认</div>
+        <div class="am-modal-bd" id="msgcontent">
+            你，确定要删除这条记录吗？
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        </div>
+    </div>
+</div>
 
 <!-- navbar -->
 
 <script type="text/javascript" src="<%=path%>/Shop/assets/js/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="<%=path%>/Shop/assets/js/amazeui.min.js"></script>
+<script>
+    function recived(ordId) {
+        $("#msgtitle").html("接单确认");
+        $("#msgcontent").html("接单？？？");
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function () {
+                var orderId = ordId;
+                var datas = "orderId=" + orderId + "&operate=" + "jiedan";
+                $.ajax({
+                    type: "GET",//提交方式
+                    url: "/payServlet",//提交的地址
+                    data: datas,//携带的数据参数
+                    datatype: "text",//数据类型
+                    success: function (msg) {//成功之后返回的信息 msg就是返回的内容
+                        if (msg == "success") {
+                            alert("接单成功");
+                            window.location = "/ShopOrderServlet?shopId=<%=shopId%>";
+                        } else {
+                            alert("接单失败");
+                            alert(msg);
+                        }
+                    },
+                    error: function () {//失败后调用的函数
+                        alert("接单失败");
+                    }
+
+                });
+            },
+            // closeOnConfirm: false,
+            onCancel: function () {
+                alert("取消接单")
+            }
+        });
+    }
+    function sfSend(ordId) {
+        $("#msgtitle").html("派单确认");
+        $("#msgcontent").html("是否开始配送这个订单？");
+        $('#my-confirm').modal({
+            relatedTarget: this,
+            onConfirm: function () {
+                var orderId = ordId;
+                var datas = "orderId=" + orderId + "&operate=" + "paidan";
+                $.ajax({
+                    type: "GET",//提交方式
+                    url: "/payServlet",//提交的地址
+                    data: datas,//携带的数据参数
+                    datatype: "text",//数据类型
+                    success: function (msg) {//成功之后返回的信息 msg就是返回的内容
+                        if (msg == "success") {
+                            alert("派单成功");
+                            window.location = "/ShopOrderServlet?shopId=<%=shopId%>";
+                        } else {
+                            alert("派单失败");
+                            alert(msg);
+                        }
+                    },
+                    error: function () {//失败后调用的函数
+                        alert("派单失败");
+                    }
+
+                });
+            },
+            // closeOnConfirm: false,
+            onCancel: function () {
+                alert("取消派单")
+            }
+        });
+    }
+</script>
 </body>
 
 </html>
