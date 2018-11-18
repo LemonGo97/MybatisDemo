@@ -6,7 +6,8 @@
     <!--其中，start是页码，pageSize是条数-->
     <!--分页select user_id,username,password,createdate,telephone from tbl_customer limit (start-1)*pageSize,pageSize-->
     <select id="queryShopList" parameterType="com.ambition.entity.Shop.Shop" resultMap="shopListResult">
-        SELECT shop_id,shopname,password,shopaddress,createdate,shopstate,telephone,businessman,delete_status from tbl_shop where delete_status = #{deleteStatus}
+        SELECT shop_id,shopname,password,shopaddress,createdate,shopstate,telephone,businessman,shopinfo,delete_status from
+        tbl_shop where delete_status = #{deleteStatus}
         <if test="shopName!=null &amp;&amp; !&quot;&quot;.equals(shopName.trim())">
             and shopname like '%' #{shopName} '%'
         </if>
@@ -19,7 +20,7 @@
             </if>
         </if>
         <if test="pages!=null &amp;&amp; limits!=null ">
-                limit #{pages} , #{limits}
+            limit #{pages} , #{limits}
         </if>
     </select>
     <!--其中，id标签表示数据库中主键，column表示数据库中字段名称，property表示实体类中的字段名称-->
@@ -33,6 +34,7 @@
         <result column="shopstate" jdbcType="INTEGER" javaType="Integer" property="shopState"/>
         <result column="telephone" jdbcType="VARCHAR" javaType="String" property="telephone"/>
         <result column="businessman" jdbcType="VARCHAR" javaType="String" property="businessMan"/>
+        <result column="shopinfo" jdbcType="VARCHAR" javaType="String" property="shopInfo"/>
         <result column="delete_status" jdbcType="INTEGER" javaType="Integer" property="deleteStatus"/>
     </resultMap>
 
@@ -52,7 +54,9 @@
 
     <!--实现单个假删除，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
     <update id="deleteOne" parameterType="Object">
-      update tbl_shop set delete_status = 1 where shop_id = #{_parameter}
+        update tbl_shop
+        set delete_status = 1
+        where shop_id = #{_parameter}
     </update>
 
     <!--实现批量假删除，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
@@ -66,7 +70,9 @@
 
     <!--实现单个用户恢复，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
     <update id="recOne" parameterType="Object">
-      update tbl_shop set delete_status = 0 where shop_id = #{_parameter}
+        update tbl_shop
+        set delete_status = 0
+        where shop_id = #{_parameter}
     </update>
 
     <!--实现批量用户恢复，其中parameterType为传入值的类型，foreach标签用来遍历List集合，collection表示需要遍历list集合，separator表示集合中的前后元素的分隔符-->
@@ -81,22 +87,45 @@
 
     <!--实现商铺审核状态的修改-->
     <update id="editshopState" parameterType="com.ambition.entity.Shop.Shop">
-        update tbl_shop set shopstate = #{shopState} where shop_id = #{shopId}
+        update tbl_shop
+        set shopstate = #{shopState}
+        where shop_id = #{shopId}
     </update>
 
 
     <!--实现用户信息修改-->
     <update id="editShop" parameterType="com.ambition.entity.Shop.Shop">
-      update tbl_shop set telephone = #{telephone} , password=#{passWord},shopname=#{shopName},shopaddress=#{shopAddress},businessman=#{businessMan} where shop_id = #{shopId}
+        update tbl_shop set telephone = #{telephone}
+        <if test="passWord!=null">
+            , password=#{passWord}
+        </if>
+        <if test="shopInfo!=null">
+            , shopinfo=#{shopInfo}
+        </if>
+        ,shopname=#{shopName},shopaddress=#{shopAddress},businessman=#{businessMan} where shop_id = #{shopId}
     </update>
 
 
     <!--用户注册开始-->
     <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->
     <insert id="addShop" parameterType="com.ambition.entity.Shop.Shop">
-		insert into tbl_shop (shopname, password,shopaddress, createdate, shopstate,telephone,businessman,delete_status)
-		 values (#{shopName},#{passWord},#{shopAddress},#{createDate},#{shopState},#{telephone},#{businessMan},#{deleteStatus} )
-	</insert>
+        insert into tbl_shop (shopname,
+                              password,
+                              shopaddress,
+                              createdate,
+                              shopstate,
+                              telephone,
+                              businessman,
+                              delete_status)
+        values (#{shopName},
+                #{passWord},
+                #{shopAddress},
+                #{createDate},
+                #{shopState},
+                #{telephone},
+                #{businessMan},
+                #{deleteStatus})
+    </insert>
 
 
 </mapper>

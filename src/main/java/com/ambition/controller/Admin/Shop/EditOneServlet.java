@@ -41,7 +41,7 @@ public class EditOneServlet extends HttpServlet {
 
         //调用维护服务的添加方法
         MaintainService maintainService=new MaintainService();
-        maintainService.editShop(shopname,password,shopaddress,telephone,businessman,shopId);
+        maintainService.editShop(shopname,password,shopaddress,telephone,businessman,shopId,null);
     }
 
     @Override

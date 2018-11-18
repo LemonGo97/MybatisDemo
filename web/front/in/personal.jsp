@@ -172,30 +172,6 @@
 <script src="<%=path%>/front/assets/js/app.js"></script>
 
 <script>
-    // function update() {
-    //     var dataByinfo = "username="
-    //         + $("#user-name").val() + "&"
-    //         + "email=" + $("#user-email").val()
-    //         + "&" + "weibo=" + $("#user-weibo").val()
-    //         + "&" + "telephone=" + $("#user-phone").val()
-    //         + "&" + "qq=" + $("#user-QQ").val() + "&"
-    //         + "intro=" + $("#user-intro").val() + "&"
-    //         + "userId=" + $("#user-Id").val()
-    //     $.ajax({
-    //         type: "POST",//提交方式
-    //         url: "/customerInfoEdit",//提交的地址
-    //         data: dataByinfo,//携带的数据参数
-    //         datatype: "text",//数据类型
-    //         success: function (msg) {//成功之后返回的信息 msg就是返回的内容
-    //             $("#usernameMsg").html(msg);
-    //         },
-    //         error: function () {//失败后调用的函数
-    //
-    //         }
-    //     });
-    // }
-</script>
-<script>
     layui.use(['jquery', 'upload'], function () {
         var $ = layui.jquery
             , upload = layui.upload;

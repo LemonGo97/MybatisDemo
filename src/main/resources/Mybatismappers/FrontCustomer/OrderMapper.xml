@@ -14,9 +14,9 @@
         </if>
 
         <if test="shopId!=null">
-            and a.shop_id = #{shopId} order by order_id DESC
+            and a.shop_id = #{shopId}
             <if test="limits!=null">
-                limit #{limits}
+                order by order_id DESC limit #{limits}
             </if>
         </if>
 

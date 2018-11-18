@@ -21,6 +21,7 @@ public class Shop {
     private Integer shopState;//店铺审核状态
     private String telephone;//店铺联系电话
     private String businessMan;//店铺负责人
+    private String shopInfo;//店铺简介
 
     private Integer deleteStatus;//小黑屋状态
 

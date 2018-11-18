@@ -77,14 +77,14 @@
             <!-- End User -->
 
             <ul class="am-list admin-sidebar-list">
-                <li><a href="/shopMainServlet?shopId=<%=shopId%>&limit=10" target="jumpage"><span class="am-icon-home"  style="margin-right: 10px"></span> 首页</a></li>
+                <li><a href="/shopMainServlet?shopId=<%=shopId%>&limit=6" target="jumpage"><span class="am-icon-home"  style="margin-right: 10px"></span> 首页</a></li>
                 <li class="admin-parent">
                     <a href="/ShopOrderServlet?shopId=<%=shopId%>" target="jumpage"><span class="am-icon-calendar-check-o"  style="margin-right: 10px"></span>
                         订单管理 <span
                                 class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 </li>
                 <li class="admin-parent">
-                    <a href="<%=path%>/Shop/in/main.jsp" target="jumpage"><i class="am-icon-cogs"
+                    <a href="/shopInfo?edit=nope&shopTel=<%=shopList.get(0).getTelephone()%>" target="jumpage"><i class="am-icon-cogs"
                                                                                       aria-hidden="true" style="margin-right: 10px"></i> 店铺维护 <span
                             class="am-icon-angle-right am-fr am-margin-right"></span></a>
 
@@ -94,6 +94,7 @@
                         <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 </li>
                 <li class="admin-parent" style="border-bottom-width: 0px; padding: 50px 45px 0px 45px;scroll: no">
+                    <p>负责人：<%=shopList.get(0).getBusinessMan()%></p>
                     <p>联系方式：<%=shopList.get(0).getTelephone()%></p>
                     <p>地址：<%=shopList.get(0).getShopAddress()%></p>
                 </li>
@@ -104,10 +105,9 @@
 
     <div class="content-page">
         <!-- Start content -->
-        <iframe name="jumpage" src='/shopMainServlet?shopId=<%=shopList.get(0).getShopId()%>' frameborder="0" scrolling="yes"
+        <iframe name="jumpage" src='/shopMainServlet?shopId=<%=shopId%>&limit=6' frameborder="0" scrolling="yes"
                 style="width: 100%;height: 100%" class="weIframe"></iframe>
     </div>
-
 </div>
 </div>
 

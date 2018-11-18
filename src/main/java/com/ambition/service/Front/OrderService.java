@@ -41,7 +41,7 @@ public class OrderService {
         if (status!=null&&!" ".equals(status)){
             statuses=Integer.valueOf(status);
         }
-
+        LogTools.DEBUG(limit);
         List<Order> orders = orderDao.queryOrderList(shopIds,customerIds,statuses,limits);
         return orders;
     }

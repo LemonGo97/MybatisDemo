@@ -313,7 +313,7 @@ public class ShopDao {
     }
 
 
-    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,Integer shopId){
+    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,Integer shopId,String shopinfo){
         DBAccess dbAccess = new DBAccess();
         SqlSession sqlSession = null;
         try {
@@ -321,10 +321,16 @@ public class ShopDao {
             //通过sqlSession执行Sql语句
             Shop shop=new Shop();
             shop.setShopName(shopname);
-            shop.setPassWord(password);
+            if (password!=null&&!password.equals("")){
+                shop.setPassWord(password);
+            }
             shop.setTelephone(telephone);
             shop.setShopAddress(shopaddress);
             shop.setBusinessMan(businessman);
+
+            if (shopinfo!=null&&!shopinfo.equals("")){
+                shop.setShopInfo(shopinfo);
+            }
             shop.setShopId(shopId);
             sqlSession.update("Shop.editShop",shop);
             sqlSession.commit();

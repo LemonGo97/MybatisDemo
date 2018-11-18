@@ -84,7 +84,7 @@ public class MaintainService {
         shopDao.addShopothers(shopId);
         LogTools.show("MaintainService", "添加单条操作成功");
     }
-    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,String shopId){
+    public void editShop(String shopname,String password, String shopaddress,String telephone,String businessman,String shopId,String shopinfo){
         ShopDao shopDao=new ShopDao();
         //调用工具类的DES加密方法，对用户密码进行加密
         try {
@@ -92,7 +92,7 @@ public class MaintainService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        shopDao.editShop(shopname, password,  shopaddress, telephone, businessman, Integer.valueOf(shopId) );
+        shopDao.editShop(shopname, password,  shopaddress, telephone, businessman, Integer.valueOf(shopId) ,shopinfo);
 
     }
 
