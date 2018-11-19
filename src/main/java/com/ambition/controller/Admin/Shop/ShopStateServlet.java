@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Version 1.0
  */
 
-@WebServlet(name = "ShopStateServlet",urlPatterns = "/shopState")
+@WebServlet("/shopState.ro")
 public class ShopStateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        if(request.getParameter("shopState") != null){

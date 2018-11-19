@@ -6,13 +6,20 @@
     <!--其中，start是页码，pageSize是条数-->
     <!--分页select user_id,username,password,createdate,telephone from tbl_customer limit (start-1)*pageSize,pageSize-->
     <select id="queryShopList" parameterType="com.ambition.entity.Shop.Shop" resultMap="shopListResult">
-        SELECT shop_id,shopname,password,shopaddress,createdate,shopstate,telephone,businessman,shopinfo,delete_status from
-        tbl_shop where delete_status = #{deleteStatus}
+        SELECT shop_id,shopname,password,shopaddress,createdate,shopstate,telephone,businessman,shopinfo,delete_status
+        from
+        tbl_shop where 1=1
+        <if test="deleteStatus!=null">
+            and delete_status = #{deleteStatus}
+        </if>
         <if test="shopName!=null &amp;&amp; !&quot;&quot;.equals(shopName.trim())">
             and shopname like '%' #{shopName} '%'
         </if>
         <if test="telephone!=null &amp;&amp; !&quot;&quot;.equals(telephone.trim())">
-            and telephone like '%' #{telephone} '%'
+            and telephone = #{telephone}
+        </if>
+        <if test="passWord!=null &amp;&amp; !&quot;&quot;.equals(passWord.trim())">
+            and password = #{passWord}
         </if>
         <if test="startDate!=null &amp;&amp; !&quot;&quot;.equals(startDate.trim())">
             <if test="endDate!=null  &amp;&amp; !&quot;&quot;.equals(endDate.trim())">
@@ -95,14 +102,23 @@
 
     <!--实现用户信息修改-->
     <update id="editShop" parameterType="com.ambition.entity.Shop.Shop">
-        update tbl_shop set telephone = #{telephone}
+        update tbl_shop set shopname=#{shopName}
         <if test="passWord!=null">
             , password=#{passWord}
         </if>
         <if test="shopInfo!=null">
             , shopinfo=#{shopInfo}
         </if>
-        ,shopname=#{shopName},shopaddress=#{shopAddress},businessman=#{businessMan} where shop_id = #{shopId}
+        <if test="telephone!=null">
+            ,telephone = #{telephone}
+        </if>
+        <if test="shopAddress!=null">
+            ,shopaddress=#{shopAddress}
+        </if>
+        <if test="businessMan!=null">
+            ,businessman=#{businessMan}
+        </if>
+        where shop_id = #{shopId}
     </update>
 
 
@@ -110,21 +126,29 @@
     <!--客户注册时信息，地址表和信息表同时插入，但地址都为空-->
     <insert id="addShop" parameterType="com.ambition.entity.Shop.Shop">
         insert into tbl_shop (shopname,
-                              password,
-                              shopaddress,
-                              createdate,
-                              shopstate,
-                              telephone,
-                              businessman,
-                              delete_status)
+        password,
+        createdate,
+        shopstate,
+        telephone,
+        <if test="shopAddress!=null">
+            shopaddress,
+        </if>
+        <if test="businessMan!=null">
+            businessman,
+        </if>
+        delete_status)
         values (#{shopName},
-                #{passWord},
-                #{shopAddress},
-                #{createDate},
-                #{shopState},
-                #{telephone},
-                #{businessMan},
-                #{deleteStatus})
+        #{passWord},
+        #{createDate},
+        #{shopState},
+        #{telephone},
+        <if test="shopAddress!=null">
+            #{shopAddress},
+        </if>
+        <if test="businessMan!=null">
+            #{businessMan},
+        </if>
+        #{deleteStatus})
     </insert>
 
 

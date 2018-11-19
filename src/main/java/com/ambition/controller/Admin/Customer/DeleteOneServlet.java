@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author: ambition
  * @create: 2018-10-30 15:19
  **/
-@WebServlet(name = "DeleteOneCustomerServlet", urlPatterns = "/customerdelOne")
+@WebServlet("/customerdelOne.ro")
 public class DeleteOneServlet extends HttpServlet {
 
     @Override

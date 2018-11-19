@@ -130,7 +130,7 @@
         form.on('submit(demo)', function (data) {
             $.ajax({
                 type: "POST",//提交方式
-                url: "<%=path%>/editShop",//提交的地址
+                url: "<%=path%>/editShop.ro",//提交的地址
                 data: "shopname=" + $("#shopname").val() + "&password=" + $("#pass1").val() + "&telephone=" + $("#telephone").val() + "&shopId=" + $("#shopId").val() + "&shopAddress=" + $("#shopAddress").val() + "&businessMan=" + $("#businessMan").val(),
                 datatype: "text",
                 success: function () {//成功之后返回的信息 msg就是返回的内容

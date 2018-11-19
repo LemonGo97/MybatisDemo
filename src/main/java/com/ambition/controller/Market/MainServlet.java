@@ -19,7 +19,7 @@ import java.util.List;
  * @Date: 2018/11/16 18:18
  * @Version 1.0
  */
-@WebServlet("/shopMainServlet")
+@WebServlet("/shopMainServlet.bu")
 public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

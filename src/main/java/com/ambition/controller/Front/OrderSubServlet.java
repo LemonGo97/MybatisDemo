@@ -23,7 +23,7 @@ import java.util.UUID;
  * @author: ambition
  * @create: 2018-11-12 09:45
  **/
-@WebServlet("/FileUpload")
+@WebServlet("/FileUpload.us")
 @MultipartConfig
 public class OrderSubServlet extends HttpServlet {
     @Override
@@ -87,7 +87,7 @@ public class OrderSubServlet extends HttpServlet {
         BrowersfilePath="/upload"+BrowersDirPath+File.separator+BrowersfilePath;
         OrderService orderService=new OrderService();
         Integer orderId=orderService.addOrder(BrowersfilePath,BrowersfileSize,Shop,customerId,0,userAddress,ways);
-        out.write(overJSON(true,"/payServlet?orderId="+orderId));
+        out.write(overJSON(true,"/payServlet.pubus?orderId="+orderId));
     }
 
     /**

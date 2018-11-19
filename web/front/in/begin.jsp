@@ -134,7 +134,7 @@
 
         upload.render({
             elem: '#fileupload'
-            , url: '<%=path%>/FileUpload'
+            , url: '<%=path%>/FileUpload.us'
             , accept: 'file'
             , auto: false
             , exts: 'doc|docx|pdf|png|jpg|xls|txt'

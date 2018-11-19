@@ -56,7 +56,7 @@
 
         <div class="am-g">
             <div class="am-u-sm-12">
-                <form class="am-form" method="get" action="/customerQueryOrder">
+                <form class="am-form" method="get" action="/customerQueryOrder.us">
                     <input hidden name="customerId" value="<%=userId%>">
                     <%--在这里获取session中的用户ID并放到这里--%>
                     <table class="am-table am-table-striped am-table-hover table-main">
@@ -75,6 +75,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:if test="${orders.size()<=0}">
+                            <tr><td colspan="10">您还没有订单</td> </tr>
+                        </c:if>
                         <c:forEach items="${orders}" var="order" varStatus="status">
                             <tr>
                                 <td>${status.index + 1}</td>
@@ -184,7 +187,7 @@
                 var orderId = ordId;
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/delOrderOne",//提交的地址
+                    url: "/delOrderOne.us",//提交的地址
                     data: "orderId=" + orderId,//携带的数据参数
                     datatype: "text",//数据类型
                     success: function (msg) {//成功之后返回的信息 msg就是返回的内容
@@ -213,13 +216,13 @@
                 var datas = "orderId=" + orderId + "&operate=" + "cancels";
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/payServlet",//提交的地址
+                    url: "/payServlet.pubus",//提交的地址
                     data: datas,//携带的数据参数
                     datatype: "text",//数据类型
                     success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                         if (msg == "success") {
                             alert("订单取消成功");
-                            window.location = "/customerQueryOrder?customerId=<%=userId%>";
+                            window.location = "/customerQueryOrder.us?customerId=<%=userId%>";
                         } else {
                             alert("订单取消失败");
                             alert(msg);
@@ -239,7 +242,7 @@
     }
 
     function pays(ordId) {
-        window.location = "/payServlet?orderId=" + ordId;
+        window.location = "/payServlet.pubus?orderId=" + ordId;
     }
 
     function revices(ordId) {
@@ -252,13 +255,13 @@
                 var datas = "orderId=" + orderId + "&operate=" + "shouhuo";
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/payServlet",//提交的地址
+                    url: "/payServlet.pubus",//提交的地址
                     data: datas,//携带的数据参数
                     datatype: "text",//数据类型
                     success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                         if (msg == "success") {
                             alert("收货成功");
-                            window.location = "/customerQueryOrder?customerId=<%=userId%>";
+                            window.location = "/customerQueryOrder.us?customerId=<%=userId%>";
                         } else {
                             alert("收货失败");
                             alert(msg);

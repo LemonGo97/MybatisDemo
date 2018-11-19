@@ -22,7 +22,7 @@ import java.util.List;
  * @author: ambition
  * @create: 2018-10-30 16:12
  **/
-@WebServlet(name = "RecBatchShopServlet",urlPatterns = "/recbatchshop")
+@WebServlet("/recbatchshop.ro")
 public class RecBatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

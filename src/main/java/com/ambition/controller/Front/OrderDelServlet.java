@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Date: 2018/11/10 10:09
  * @Version 1.0
  */
-@WebServlet(name = "OrderDelServlet",urlPatterns = "/delOrderOne")
+@WebServlet("/delOrderOne.us")
 public class OrderDelServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码格式

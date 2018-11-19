@@ -38,11 +38,7 @@
                 <h4 class="header-title m-t-0 m-b-30">总收入</h4>
                 <div class="widget-chart-1 am-cf">
                     <div class="widget-detail-2">
-                                <span class="badge  pull-left m-t-20  am-round"
-                                      style="color: #fff; background: #0e90d2;">32% <i
-                                        class="zmdi zmdi-trending-up"></i> </span>
-                        <h2 class="m-b-0"> 8451 </h2>
-                        <p class="text-muted m-b-25">Revenue today</p>
+                        <h2 class="m-b-0"> 订单收入 </h2>
                     </div>
                 </div>
             </div>
@@ -53,11 +49,7 @@
                 <h4 class="header-title m-t-0 m-b-30">总接单量</h4>
                 <div class="widget-chart-1 am-cf">
                     <div class="widget-detail-2">
-                                <span class="badge  pull-left m-t-20  am-round"
-                                      style="color: #fff; background: #0e90d2;">32% <i
-                                        class="zmdi zmdi-trending-up"></i> </span>
-                        <h2 class="m-b-0"> 8451 </h2>
-                        <p class="text-muted m-b-25">Revenue today</p>
+                        <h2 class="m-b-0"> 总接单量 </h2>
                     </div>
                 </div>
             </div>
@@ -85,6 +77,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:if test="${orderList.size()<=0}">
+                        <tr><td colspan="5">您还没有订单</td> </tr>
+                        </c:if>
                         <c:forEach items="${orderList}" var="order" varStatus="status">
                             <tr>
                                 <td>${order.orderId}</td>

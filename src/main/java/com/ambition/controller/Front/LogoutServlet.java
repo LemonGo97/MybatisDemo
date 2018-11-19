@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Date: 2018/11/10 18:10
  * @Version 1.0
  */
-@WebServlet("/customerlogout.do")
+@WebServlet("/customerlogout.us")
 public class LogoutServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

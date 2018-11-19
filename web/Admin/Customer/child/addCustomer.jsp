@@ -125,7 +125,7 @@
         form.on('submit(demo)', function (data) {
             $.ajax({
                 type: "POST",//提交方式
-                url: "<%=path%>/addOnecustomer",//提交的地址
+                url: "<%=path%>/addOnecustomer.ro",//提交的地址
                 // data: data.field,//携带的数据参数
                 data: "username="+$("#username").val()+"&password="+$("#pass1").val()+"&telephone="+$("#telephone").val(),
                 datatype: "text",

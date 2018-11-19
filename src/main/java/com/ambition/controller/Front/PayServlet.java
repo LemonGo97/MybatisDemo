@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  * @Date: 2018/11/13 15:15
  * @Version 1.0
  */
-@WebServlet("/payServlet")
+@WebServlet("/payServlet.pubus")
 public class PayServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

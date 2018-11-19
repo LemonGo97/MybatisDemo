@@ -25,7 +25,7 @@ import java.util.List;
  * @author: ambition
  * @create: 2018-11-18 16:52
  **/
-@WebServlet("/shopInfo")
+@WebServlet("/shopInfo.bu")
 public class InfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +35,7 @@ public class InfoServlet extends HttpServlet {
         if (edit.equals("yep")&&edit!=null){
             //执行信息维护功能
 
+
             //接受页面的值
             String shopId=req.getParameter("shopId");
             String shopname=req.getParameter("shopname");
@@ -42,12 +43,11 @@ public class InfoServlet extends HttpServlet {
             String telephone=req.getParameter("telephone");
             String businessman=req.getParameter("businessman");
             String shopinfo=req.getParameter("shopinfo");
-
             //调用维护服务的添加方法
             MaintainService maintainService=new MaintainService();
             maintainService.editShop(shopname,null,shopaddress,telephone,businessman,shopId,shopinfo);
 
-            req.getRequestDispatcher("/shopInfo?edit=nope&shopTel="+session.getAttribute("shopTel")).forward(req,resp);
+            req.getRequestDispatcher("/shopInfo.bu?edit=nope&shopTel="+session.getAttribute("shopTel")).forward(req,resp);
         }
         if (edit.equals("nope")){
             //不执行信息维护
@@ -60,5 +60,20 @@ public class InfoServlet extends HttpServlet {
             req.setAttribute("shopList",shopList);
             req.getRequestDispatcher("/Shop/in/Shopinfo.jsp").forward(req,resp);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        //接受页面的值
+
+        String shopId=req.getParameter("shopId");
+        String telephone=req.getParameter("telephone");
+        String shopname=req.getParameter("shopname");
+        String password=req.getParameter("password");
+        //调用维护服务的添加方法
+        MaintainService maintainService=new MaintainService();
+        maintainService.editShop(shopname,password,null,telephone,null,shopId,null);
+
     }
 }

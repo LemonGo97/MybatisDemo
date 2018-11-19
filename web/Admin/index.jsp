@@ -66,14 +66,14 @@
                 <ul class="sub-menu">
                     <li>
                         <%--在这里，href表示servlet中写的地址，main代表ifream--%>
-                        <a _href="/customerlist" target="jumpage">
+                        <a _href="/customerlist.ro" target="jumpage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>用户列表</cite>
 
                         </a>
                     </li>
                     <li>
-                        <a _href="/customeRec" target="jumpage">
+                        <a _href="/customeRec.ro" target="jumpage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>小黑屋</cite>
                         </a>
@@ -88,21 +88,15 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/shoplist" target="jumpage">
+                        <a _href="/shoplist.ro" target="jumpage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>店铺列表</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="/shopRec" target="jumpage">
+                        <a _href="/shopRec.ro" target="jumpage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商家黑名单</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="<%=path%>/after/pages/article/category.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>开店申请</cite>
                         </a>
                     </li>
                 </ul>
@@ -115,47 +109,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/adminQueryOrder" target="jumpage">
+                        <a _href="/adminQueryOrder.ro" target="jumpage">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>
                     </li>
                 </ul>
             </li>
-            <%--<li>--%>
-                <%--<a href="javascript:;">--%>
-                    <%--<i class="iconfont">&#xe726;</i>--%>
-                    <%--<cite>管理员管理</cite>--%>
-                    <%--<i class="iconfont nav_right">&#xe697;</i>--%>
-                <%--</a>--%>
-                <%--<ul class="sub-menu">--%>
-                    <%--<li>--%>
-                        <%--<a _href="<%=path%>/after/pages/admin/list.jsp">--%>
-                            <%--<i class="iconfont">&#xe6a7;</i>--%>
-                            <%--<cite>管理员列表</cite>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a _href="<%=path%>/after/pages/admin/role.jsp">--%>
-                            <%--<i class="iconfont">&#xe6a7;</i>--%>
-                            <%--<cite>角色管理</cite>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a _href="<%=path%>/after/pages/admin/cate.jsp">--%>
-                            <%--<i class="iconfont">&#xe6a7;</i>--%>
-                            <%--<cite>权限分类</cite>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a _href="<%=path%>/after/pages/admin/rule.jsp">--%>
-                            <%--<i class="iconfont">&#xe6a7;</i>--%>
-                            <%--<cite>权限管理</cite>--%>
-                        <%--</a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
-
             <a class="sub-menu" style="font-size: 14px;    padding: 10px 15px 10px 20px;    display: block;    cursor: pointer;" href="javascript:void(0)" onclick="location.href='/adminlogout.ro'">
                 <i class="iconfont" style="padding-right: 10px; line-height: 14px;">&#xe6ce;</i>
                 <cite>退出系统</cite>

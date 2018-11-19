@@ -37,7 +37,7 @@
                 //进行ajax提交
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/customeRegister.do",//提交的地址
+                    url: "/customeRegister.lous",//提交的地址
                     data: "telephone="+$(this).val(),//携带的数据参数
                     datatype:"text",//数据类型
                     success: function(msg){//成功之后返回的信息 msg就是返回的内容
@@ -74,7 +74,7 @@
                         <div class="content-style-form content-style-form-1">
                             <span class="icon icon-close">关闭</span>
                             <h2>登 陆</h2>
-                            <form method="post" id="formsignin" action="/customerlogin.do">
+                            <form method="post" id="formsignin" action="/customerlogin.lous">
                                 <input type="text" name="isDel" value="0" hidden/>
                                 <p><label>手机号</label><input type="text" name="telephone" maxlength="11"/></p>
                                 <p><label>密码</label><input type="password" name="password" maxlength="20"/></p>
@@ -92,7 +92,7 @@
                         <div class="content-style-form content-style-form-2">
                             <span class="icon icon-close">关闭</span>
                             <h2>注 册</h2>
-                            <form id="formsignup" method="post" action="/customeRegister.do">
+                            <form id="formsignup" method="post" action="/customeRegister.lous">
                                 <p><label>您的昵称</label><input type="text" name="username" maxlength="8" /></p>
                                 <p><label>您的手机号码</label><input id="telephone" name="telephone" type="text" maxlength="11"  /></p>
                                 <p><label>输入您的密码</label><input type="password" name="password" /></p>
@@ -106,7 +106,6 @@
             <p>hahahaha hahaha haha hahah haha haha haha haha hahahah hahahaha hahahah hahah haha hahahah hahahah hahaha hahahah hahahaha.</p>
         </div><!-- /form-mockup -->
     </section>
-    <div align="center"><a href="/index.jsp">返回首页</a></div>
 </div><!-- /container -->
 <script src="<%=path%>/front/js/classie.js"></script>
 <script src="<%=path%>/front/js/uiMorphingButton_fixed.js"></script>

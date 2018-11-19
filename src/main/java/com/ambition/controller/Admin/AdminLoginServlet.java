@@ -19,7 +19,7 @@ import java.util.List;
  * @Date: 2018/11/13 22:45
  * @Version 1.0
  */
-@WebServlet("/adminLogin.ro")
+@WebServlet("/adminLogin.loro")
 public class AdminLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

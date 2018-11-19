@@ -38,25 +38,25 @@
         <div id="nav-logo"><img src="<%=path%>/front/images/ico.png"/></div>
         <div id="navul">
             <ul>
-                <a href="<%=path%>/front/welcome.jsp" target="jumpage">
+                <a href="<%=path%>/front/in/welcome.jsp" target="jumpage">
                     <li>
                         <i class="am-icon-home am-icon-btn"></i>
                         <div>个人首页</div>
                     </li>
                 </a>
-                <a href="/queryAddress?customerId=<%=userId%>" target="jumpage">
+                <a href="/queryAddress.us?customerId=<%=userId%>" target="jumpage">
                     <li>
                         <i class="am-icon-print am-icon-btn"></i>
                         <div>开始打印</div>
                     </li>
                 </a>
-                <a href="/customerQueryOrder?customerId=<%=userId%>" target="jumpage">
+                <a href="/customerQueryOrder.us?customerId=<%=userId%>" target="jumpage">
                     <li>
                         <i class="am-icon-list am-icon-btn"></i>
                         <div>订单管理</div>
                     </li>
                 </a>
-                <a href="<%=path%>/customerInfoQuery?userId=<%=userId%>&isDel=0" target="jumpage">
+                <a href="<%=path%>/customerInfoQuery.us?userId=<%=userId%>&isDel=0" target="jumpage">
                     <li>
                         <i class="am-icon-child am-icon-btn"></i>
                         <div>个人设置</div>
@@ -98,7 +98,7 @@
                 </a>
             </ul>
         </div>
-        <a href="/customerlogout.do">
+        <a href="/customerlogout.us">
             <div id="loginout" class="am-animation-slide-right am-u-lg-2">
                 LOGOUT
             </div>
@@ -107,7 +107,7 @@
 
     <div id="plan" class="am-animation-slide-right">
         <div id="plancontent">
-            <iframe name="jumpage" src='<%=path%>/front/welcome.jsp' frameborder="0" scrolling="yes"
+            <iframe name="jumpage" src='<%=path%>/front/in/welcome.jsp' frameborder="0" scrolling="yes"
                     style="width: 100%;height: 100%;margin-bottom: 50px" class="weIframe"></iframe>
         </div>
     </div>

@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Date: 2018/11/7 16:34
  * @Version 1.0
  */
-@WebServlet(name = "EditAddressServlet",urlPatterns = "/editAddress")
+@WebServlet("/editAddress.ro")
 public class EditAddressServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

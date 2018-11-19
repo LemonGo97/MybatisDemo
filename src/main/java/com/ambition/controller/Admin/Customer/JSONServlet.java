@@ -15,7 +15,7 @@ import java.io.PrintWriter;
  * @Date: 2018/11/1 0:52
  * @Version 1.0
  */
-@WebServlet(name = "CustomerJSONServlet",urlPatterns = "/jsonCustomer")
+@WebServlet("/jsonCustomer.ro")
 public class JSONServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request,response);

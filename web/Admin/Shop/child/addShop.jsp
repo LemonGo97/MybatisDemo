@@ -129,7 +129,7 @@
         form.on('submit(demo)', function (data) {
             $.ajax({
                 type: "POST",//提交方式
-                url: "<%=path%>/addOneShop",//提交的地址
+                url: "<%=path%>/addOneShop.ro",//提交的地址
                 // data: data.field,//携带的数据参数
                 data: "shopname=" + $("#shopname").val() + "&businessMan=" + $("#businessMan").val()+ "&password=" + $("#pass1").val() + "&telephone=" + $("#telephone").val() + "&shopaddress=" + $("#shopaddress").val(),
                 datatype: "text",

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>后台模板</title>
+    <title>店铺信息维护</title>
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/amazeui.css"/>
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/core.css"/>
@@ -86,7 +86,7 @@
 
         $.ajax({
             type: "GET",//提交方式
-            url: "/shopInfo",//提交的地址
+            url: "/shopInfo.bu",//提交的地址
             data: dataByinfo,//携带的数据参数
             datatype: "text",//数据类型
             success: function (msg) {//成功之后返回的信息 msg就是返回的内容

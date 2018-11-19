@@ -55,13 +55,13 @@
         var datas= "orderId=" + orderId + "&operate=" + "over";
         $.ajax({
             type: "GET",//提交方式
-            url: "/payServlet",//提交的地址
+            url: "/payServlet.pubus",//提交的地址
             data: datas,//携带的数据参数
             datatype: "text",//数据类型
             success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                 if (msg=="success"){
                     alert("订单创建成功");
-                    window.location = "/customerQueryOrder?customerId=<%=userId%>";
+                    window.location = "/customerQueryOrder.us?customerId=<%=userId%>";
                 }else{
                     alert("支付失败");
                     alert(msg);
@@ -75,7 +75,7 @@
     }
 
     function cancel() {
-        window.location = "/customerQueryOrder?customerId=<%=userId%>";
+        window.location = "/customerQueryOrder.us?customerId=<%=userId%>";
     }
 
 </script>

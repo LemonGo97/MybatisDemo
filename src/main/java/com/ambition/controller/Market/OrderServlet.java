@@ -16,7 +16,7 @@ import java.util.List;
  * @Date: 2018/11/17 14:47
  * @Version 1.0
  */
-@WebServlet("/ShopOrderServlet")
+@WebServlet("/ShopOrderServlet.bu")
 public class OrderServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

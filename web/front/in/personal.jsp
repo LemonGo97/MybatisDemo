@@ -153,7 +153,7 @@
 
                         <div class="am-form-group">
                             <div class="am-u-sm-9 am-u-sm-push-3">
-                                <button type="button" id="okMsg" class="am-btn am-btn-primary" >保存修改</button>
+                                <button type="button" id="okMsg"  onclick="" class="am-btn am-btn-primary" >保存修改</button>
                             </div>
                         </div>
                     </form>
@@ -170,7 +170,11 @@
 <script src="<%=path%>/front/assets/js/amazeui.min.js"></script>
 
 <script src="<%=path%>/front/assets/js/app.js"></script>
+<script>
+    function testdoune() {
 
+    }
+</script>
 <script>
     layui.use(['jquery', 'upload'], function () {
         var $ = layui.jquery
@@ -184,7 +188,7 @@
             ,auto: false
             ,size: '3072'
             ,bindAction: '#okMsg'
-            ,url: '<%=path%>/customerInfoEdit'
+            ,url: '<%=path%>/customerInfoEdit.us'
             ,data: {
                 username: function () {
                     return $("#user-name").val();
@@ -216,7 +220,7 @@
             }
             ,before: function(obj){
                 layer.load();
-
+                alert(1)
             }
             ,done: function(res){
                 //如果上传失败

@@ -20,18 +20,17 @@ import java.util.List;
  * @Date: 2018/11/16 17:11
  * @Version 1.0
  */
-@WebServlet("/MarketServlet")
+@WebServlet("/MarketServlet.bu")
 public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");       //调用Service层方法进行用户查询
         ListService listService=new ListService();
-        List<Shop> shopList=listService.queryShopList("22222222201","0");
+        HttpSession session=request.getSession();
+        List<Shop> shopList=listService.queryShopList(String.valueOf(session.getAttribute("phone")),"0");
 //        List<Customer> customers=loginService.customerInfoQuery(String.valueOf(session.getAttribute("userId")),"0");
 //        String headimages=customers.get(0).getHeaderimages();
 
         request.setAttribute("shopList",shopList);
-        HttpSession session=request.getSession();
-        session.setAttribute("shopId",shopList.get(0).getShopId());
         request.getRequestDispatcher("/Shop/in/index.jsp").forward(request,response);
     }
 }

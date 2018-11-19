@@ -98,7 +98,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-            , url: '<%=path%>/jsonShop?del=0' //数据接口
+            , url: '<%=path%>/jsonShop.ro?del=0' //数据接口
             , title: '商户表'
             , height: 472
             , page: true //开启分页
@@ -124,7 +124,7 @@
 
             table.render({
                 elem: '#demo'
-                , url: '<%=path%>/jsonShop?del=0' //数据接口
+                , url: '<%=path%>/jsonShop.ro?del=0' //数据接口
                 , where: data.field
                 , title: '商户表'
                 , height: 472
@@ -151,7 +151,7 @@
 
 
         form.on("switch(switchTest)",function () {
-            $.post({url:'<%=path%>/shopState',data:{shopId:this.value,shopState:this.checked}});
+            $.post({url:'<%=path%>/shopState.ro',data:{shopId:this.value,shopState:this.checked}});
         });
 
 
@@ -187,7 +187,7 @@
                         // obj.del();
                         $.ajax({
                             type: "get",//提交方式
-                            url: "<%=path%>/shopdeletebatch",//提交的地址
+                            url: "<%=path%>/shopdeletebatch.ro",//提交的地址
                             data: delIds,
                             datatype: "text",
                             success: function () {//成功之后返回的信息 msg就是返回的内容
@@ -228,7 +228,7 @@
                     //向服务端发送删除指令
                     $.ajax({
                         type: "get",//提交方式
-                        url: "<%=path%>/shopdelOne",//提交的地址
+                        url: "<%=path%>/shopdelOne.ro",//提交的地址
                         // data: data.field,//携带的数据参数
                         data: "shopId=" + obj.data.shopId,
                         datatype: "text",
@@ -246,13 +246,6 @@
                 });
             } else if (layEvent === 'edit') {
 
-                // var arr = [];
-                // console.log( data.length);
-                // for(var i = 1; i< data.length; i++){
-                //     console.log(123);
-                //     console.log($(data[i]).text());
-                //     arr.push($(data[i]).text());//拿到点击按钮的当前那条信息的内容 放到一个数组里
-                // }
 
                 layer.open({
                     type: 2,

@@ -81,7 +81,7 @@
         //执行一个 table 实例
         table.render({
             elem: '#demo'
-            , url: '<%=path%>/jsonCustomer?del=1' //数据接口
+            , url: '<%=path%>/jsonCustomer.ro?del=1' //数据接口
             , title: '用户表'
             , height: 472
             , page: true //开启分页
@@ -102,7 +102,7 @@
         form.on('submit(submit)', function (data) {
             table.render({
                 elem: '#demo'
-                , url: '<%=path%>/jsonCustomer?del=1' //数据接口
+                , url: '<%=path%>/jsonCustomer.ro?del=1' //数据接口
                 , where: data.field
                 , title: '用户表'
                 , height: 472
@@ -144,7 +144,7 @@
                         // obj.del();
                         $.ajax({
                             type: "get",//提交方式
-                            url: "<%=path%>/recbatch",//提交的地址
+                            url: "<%=path%>/recbatch.ro",//提交的地址
                             data: delIds,
                             datatype: "text",
                             success: function () {//成功之后返回的信息 msg就是返回的内容
@@ -183,7 +183,7 @@
                     //向服务端发送删除指令
                     $.ajax({
                         type: "get",//提交方式
-                        url: "<%=path%>/recone",//提交的地址
+                        url: "<%=path%>/recone.ro",//提交的地址
                         // data: data.field,//携带的数据参数
                         data: "userId=" + obj.data.userId,
                         datatype: "text",

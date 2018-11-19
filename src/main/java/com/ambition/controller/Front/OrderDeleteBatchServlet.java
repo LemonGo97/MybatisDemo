@@ -22,7 +22,7 @@ import java.util.List;
  * @author: ambition
  * @create: 2018-10-30 16:12
  **/
-@WebServlet( "/Orderdeletebatch")
+@WebServlet( "/Orderdeletebatch.us")
 public class OrderDeleteBatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

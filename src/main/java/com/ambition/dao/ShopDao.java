@@ -38,14 +38,28 @@ public class ShopDao {
             //通过sqlSession执行Sql语句
             Shop shop=new Shop();
             //主要参数
-            shop.setShopName(shopname);
-            shop.setStartDate(startdate);
-            shop.setEndDate(enddate);
-            shop.setTelephone(telephone);
+            if (shopname!=null&&!shopname.equals("")){
+                shop.setShopName(shopname);
+            }
+            if (startdate!=null&&!startdate.equals("")){
+                shop.setStartDate(startdate);
+            }
+            if (enddate!=null&&!enddate.equals("")){
+                shop.setEndDate(enddate);
+            }
+            if (telephone!=null&&!telephone.equals("")){
+                shop.setTelephone(telephone);
+            }
+            if (page!=null){
+                shop.setPages(page);
+            }
+            if (limit!=null){
+                shop.setLimits(limit);
+            }
+            if (deleteStatus!=null){
+                shop.setDeleteStatus(deleteStatus);
+            }
             //额外参数
-            shop.setPages(page);
-            shop.setLimits(limit);
-            shop.setDeleteStatus(deleteStatus);
             shopsList=sqlSession.selectList("Shop.queryShopList",shop);
             LogTools.show("ShopDao","执行Mybatis查询全部商家语句成功");
         } catch (Exception e) {
@@ -224,11 +238,15 @@ public class ShopDao {
         try {
             sqlSession=dbAccess.getSqlSession();
             Shop shop=new Shop();
+            if (shopaddress!=null&&!shopaddress.equals("")){
+                shop.setShopAddress(shopaddress);
+            }
+            if (bussinessman!=null&&!bussinessman.equals("")){
+                shop.setBusinessMan(bussinessman);
+            }
             shop.setShopName(shopname);
-            shop.setBusinessMan(bussinessman);
             shop.setPassWord(password);
             shop.setTelephone(telephone);
-            shop.setShopAddress(shopaddress);
             shop.setShopState(0);
             shop.setDeleteStatus(0);
             shop.setCreateDate(new Date(System.currentTimeMillis()));
@@ -320,14 +338,21 @@ public class ShopDao {
             sqlSession=dbAccess.getSqlSession();
             //通过sqlSession执行Sql语句
             Shop shop=new Shop();
-            shop.setShopName(shopname);
+            if (shopname!=null&&!shopname.equals("")){
+                shop.setShopName(shopname);
+            }
             if (password!=null&&!password.equals("")){
                 shop.setPassWord(password);
             }
-            shop.setTelephone(telephone);
-            shop.setShopAddress(shopaddress);
-            shop.setBusinessMan(businessman);
-
+            if (telephone!=null&&!telephone.equals("")){
+                shop.setTelephone(telephone);
+            }
+            if (shopaddress!=null&&!shopaddress.equals("")){
+                shop.setShopAddress(shopaddress);
+            }
+            if (businessman!=null&&!businessman.equals("")){
+                shop.setBusinessMan(businessman);
+            }
             if (shopinfo!=null&&!shopinfo.equals("")){
                 shop.setShopInfo(shopinfo);
             }
@@ -367,5 +392,29 @@ public class ShopDao {
                 sqlSession.close();
             }
         }
+    }
+    public List<Shop> ShopLogin(String telephone,String password,Integer delFlag) {
+        DBAccess dbAccess = new DBAccess();
+        List<Shop> shopList = new ArrayList<Shop>();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            Shop shop=new Shop();
+            shop.setTelephone(telephone);
+            shop.setPassWord(password);
+            shop.setDeleteStatus(delFlag);
+            shopList=sqlSession.selectList("Shop.queryShopList",shop);
+            LogTools.show("CustomerDao","执行Mybatis查询全部用户语句成功");
+        } catch (Exception e) {
+            LogTools.show("CustomerDao","执行Mybatis查询全部用户语句之前失败");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                LogTools.show("CustomerDao","关闭Mybatis连接");
+                sqlSession.close();
+            }
+        }
+        return shopList;
     }
 }

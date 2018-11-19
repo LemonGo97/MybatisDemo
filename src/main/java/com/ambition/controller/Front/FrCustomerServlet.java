@@ -17,7 +17,7 @@ import java.util.List;
  * @Date: 2018/11/15 14:05
  * @Version 1.0
  */
-@WebServlet("/FrCustomer")
+@WebServlet("/FrCustomer.us")
 public class FrCustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置编码格式

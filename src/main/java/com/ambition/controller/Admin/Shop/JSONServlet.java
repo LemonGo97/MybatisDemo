@@ -21,7 +21,7 @@ import java.io.PrintWriter;
  * @author: ambition
  * @create: 2018-11-05 09:23
  **/
-@WebServlet(name = "ShopJSONServlet",urlPatterns = "/jsonShop")
+@WebServlet("/jsonShop.ro")
 public class JSONServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

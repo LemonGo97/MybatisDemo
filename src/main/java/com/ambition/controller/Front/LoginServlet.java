@@ -18,7 +18,7 @@ import java.util.List;
  * @Date: 2018/11/8 15:49
  * @Version 1.0
  */
-@WebServlet(name = "CustomerLoginServlet", urlPatterns = "/customerlogin.do")
+@WebServlet("/customerlogin.lous")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -45,7 +45,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("phone",phone);
             session.setAttribute("createdate",createdate);
             session.setAttribute("headimages",headimages);
-            response.sendRedirect("/FrCustomer");
+            //用户状态改变
+//            loginService.customerStateChange(userId);
+            response.sendRedirect("/FrCustomer.us");
         } else {
 //            response.sendRedirect("/front/login.jsp");
             response.sendRedirect("/front/login.jsp?error=yes");

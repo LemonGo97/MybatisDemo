@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author: ambition
  * @create: 2018-10-30 15:19
  **/
-@WebServlet(name = "RecOneShopServlet", urlPatterns = "/reconeshop")
+@WebServlet("/reconeshop.ro")
 public class RecOneServlet extends HttpServlet {
 
     @Override

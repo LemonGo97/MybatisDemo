@@ -127,7 +127,7 @@
         form.on('submit(demo)', function (data) {
             $.ajax({
                 type: "POST",//提交方式
-                url: "<%=path%>/editCustomer",//提交的地址
+                url: "<%=path%>/editCustomer.ro",//提交的地址
                 data: "username="+$("#username").val()+"&password="+$("#pass1").val()+"&telephone="+$("#telephone").val()+"&userId="+$("#userId").val(),
                 datatype: "text",
                 success: function(){//成功之后返回的信息 msg就是返回的内容

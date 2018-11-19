@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  * @Date: 2018/11/9 10:05
  * @Version 1.0
  */
-@WebServlet(name = "RegisterServlet",urlPatterns ="/customeRegister.do" )
+@WebServlet("/customeRegister.lous" )
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");

@@ -25,7 +25,7 @@ public class CustomerLoginFilter implements Filter {
 
         HttpServletRequest request=(HttpServletRequest) req;
         LogTools.DEBUG("页面请求==========>",request.getServletPath());
-        if (request.getServletPath().indexOf("/front/in/")!=-1){
+        if (request.getServletPath().indexOf(".us")!=-1){
             HttpSession session=request.getSession();
             if (session.getAttribute("userId")!=null){
                 //登陆成功，不进行拦截
@@ -34,7 +34,27 @@ public class CustomerLoginFilter implements Filter {
                 req.setAttribute("msg", "您还没有登录，请先登录！！");
                 req.getRequestDispatcher("/front/login.jsp").forward(req, resp);
             }
-        }else{
+        }else if(request.getServletPath().indexOf(".bu")!=-1){
+            HttpSession session=request.getSession();
+            if (session.getAttribute("shopId")!=null){
+                //登陆成功，不进行拦截
+                chain.doFilter(req, resp);
+            }else{
+                req.setAttribute("msg", "您还没有登录，请先登录！！");
+                req.getRequestDispatcher("/Shop/login.jsp").forward(req, resp);
+            }
+        }
+        else if(request.getServletPath().indexOf(".ro")!=-1){
+            HttpSession session=request.getSession();
+            if (session.getAttribute("adminName")!=null){
+                //登陆成功，不进行拦截
+                chain.doFilter(req, resp);
+            }else{
+                req.setAttribute("msg", "您还没有登录，请先登录！！");
+                req.getRequestDispatcher("/Admin/login.jsp").forward(req, resp);
+            }
+        }
+        else{
             //别的操作，不进行拦截
             chain.doFilter(req, resp);
         }

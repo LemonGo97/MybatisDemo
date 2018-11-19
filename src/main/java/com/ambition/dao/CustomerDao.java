@@ -8,6 +8,7 @@ package com.ambition.dao;
 import com.ambition.db.DBAccess;
 import com.ambition.entity.Customer.Customer;
 import com.ambition.entity.Customer.CustomerAddress;
+import com.ambition.entity.Customer.CustomerState;
 import com.ambition.util.LogTools;
 import org.apache.ibatis.session.SqlSession;
 
@@ -425,6 +426,29 @@ public class CustomerDao {
             customer.setQq(qq);
             customer.setIntro(intro);
             customer.setHeaderimages(headerimages);
+            sqlSession.update("Customer.editCustomerOther",customer);
+            sqlSession.commit();
+            LogTools.show("CustomerDao","用户修改事务成功提交");
+        } catch (Exception e) {
+            sqlSession.rollback();
+            LogTools.show("CustomerDao","用户修改事务失败，回滚操作");
+            e.printStackTrace();
+        } finally {
+            if (sqlSession != null) {
+                sqlSession.close();
+            }
+        }
+    }
+
+    public void customerStateChange(Integer userId,Integer state) {
+        DBAccess dbAccess = new DBAccess();
+        SqlSession sqlSession = null;
+        try {
+            sqlSession=dbAccess.getSqlSession();
+            //通过sqlSession执行Sql语句
+            CustomerState customer=new CustomerState();
+            customer.setCustomerState(state);
+            customer.setCustomerId(userId);
             sqlSession.update("Customer.editCustomerOther",customer);
             sqlSession.commit();
             LogTools.show("CustomerDao","用户修改事务成功提交");

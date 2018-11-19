@@ -120,7 +120,7 @@
 
                     $.ajax({
                         type: "GET",//提交方式
-                        url: "<%=path%>/delOrderOne",//提交的地址
+                        url: "<%=path%>/delOrderOne.us",//提交的地址
                         data: "orderId=" + orderId,
                         datatype: "text",
                         success: function () {//成功之后返回的信息 msg就是返回的内容
@@ -142,7 +142,7 @@
             var $ = layui.jquery;
             var msgs = $("#stat option:selected").val();
         //     alert(msgs)
-            window.location = "/adminQueryOrder?status=" + msgs;
+            window.location = "/adminQueryOrder.ro?status=" + msgs;
 
         })
     }

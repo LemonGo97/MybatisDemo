@@ -21,7 +21,7 @@ import java.io.IOException;
  * @author: ambition
  * @create: 2018-10-30 22:42
  **/
-@WebServlet(name = "AddOneCustomerServlet",urlPatterns = "/addOnecustomer")
+@WebServlet("/addOnecustomer.ro")
 public class AddOneServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

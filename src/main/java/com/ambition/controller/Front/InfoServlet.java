@@ -19,7 +19,7 @@ import java.util.List;
  * @Date: 2018/11/10 15:11
  * @Version 1.0
  */
-@WebServlet("/customerInfoQuery")
+@WebServlet("/customerInfoQuery.us")
 public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

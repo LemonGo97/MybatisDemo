@@ -23,7 +23,7 @@ import java.util.List;
  * @author: ambition
  * @create: 2018-11-09 19:29
  **/
-@WebServlet("/customerQueryOrder")
+@WebServlet("/customerQueryOrder.us")
 public class OrderQueryServlet extends HttpServlet {
 
     @Override

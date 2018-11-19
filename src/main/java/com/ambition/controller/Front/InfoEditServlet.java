@@ -20,7 +20,7 @@ import java.util.UUID;
  * @Date: 2018/11/10 16:04
  * @Version 1.0
  */
-@WebServlet("/customerInfoEdit")
+@WebServlet("/customerInfoEdit.us")
 @MultipartConfig
 public class InfoEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

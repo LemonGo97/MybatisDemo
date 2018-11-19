@@ -17,7 +17,7 @@ import java.util.List;
  * @Date: 2018/11/12 18:00
  * @Version 1.0
  */
-@WebServlet("/queryAddress")
+@WebServlet("/queryAddress.us")
 public class QueryCustomerAddressServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

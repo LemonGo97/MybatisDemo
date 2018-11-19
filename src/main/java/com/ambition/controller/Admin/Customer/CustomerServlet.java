@@ -19,7 +19,7 @@ import java.io.IOException;
  * @author: ambition
  * @create: 2018-10-29 19:21
  **/
-@WebServlet(name = "CustomerServlet" ,urlPatterns = "/customerlist")
+@WebServlet("/customerlist.ro")
 public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -60,6 +60,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:if test="${orderList.size()<=0}">
+                            <tr><td colspan="5">您还没有订单</td> </tr>
+                        </c:if>
                         <c:forEach items="${orderList}" var="order" varStatus="status">
                             <tr>
                                 <td><input type="checkbox"/></td>
@@ -145,13 +148,13 @@
                 var datas = "orderId=" + orderId + "&operate=" + "jiedan";
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/payServlet",//提交的地址
+                    url: "/payServlet.pubus",//提交的地址
                     data: datas,//携带的数据参数
                     datatype: "text",//数据类型
                     success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                         if (msg == "success") {
                             alert("接单成功");
-                            window.location = "/ShopOrderServlet?shopId=<%=shopId%>";
+                            window.location = "/ShopOrderServlet.bu?shopId=<%=shopId%>";
                         } else {
                             alert("接单失败");
                             alert(msg);
@@ -179,13 +182,13 @@
                 var datas = "orderId=" + orderId + "&operate=" + "paidan";
                 $.ajax({
                     type: "GET",//提交方式
-                    url: "/payServlet",//提交的地址
+                    url: "/payServlet.pubus",//提交的地址
                     data: datas,//携带的数据参数
                     datatype: "text",//数据类型
                     success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                         if (msg == "success") {
                             alert("派单成功");
-                            window.location = "/ShopOrderServlet?shopId=<%=shopId%>";
+                            window.location = "/ShopOrderServlet.bu?shopId=<%=shopId%>";
                         } else {
                             alert("派单失败");
                             alert(msg);
