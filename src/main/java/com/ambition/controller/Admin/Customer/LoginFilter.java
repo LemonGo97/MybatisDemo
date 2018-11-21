@@ -14,7 +14,7 @@ import java.io.IOException;
  * @Version 1.0
  */
 @WebFilter("/*")
-public class CustomerLoginFilter implements Filter {
+public class LoginFilter implements Filter {
     public void destroy() {
     }
 

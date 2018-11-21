@@ -11,8 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<a href="Admin/login.jsp">平台管理方登陆</a>
-<a href="front/login.jsp">用户服务体验方登陆</a>
-<a href="Shop/login.jsp">商户服务体验方登陆</a>
+<a href="Admin/index.jsp">平台管理方登陆</a>
+<a href="/FrCustomer.us">用户服务体验方登陆</a>
+<a href="/MarketServlet.bu">商户服务体验方登陆</a>
 </body>
 </html>
