@@ -55,10 +55,6 @@
     <table class="layui-table">
         <thead>
         <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                        class="layui-icon">&#xe605;</i></div>
-            </th>
             <th class="table-orderId">ID</th>
             <th class="table-orderFile">文件</th>
             <th class="table-money">订单金额</th>
@@ -75,10 +71,6 @@
 
         <c:forEach items="${orders}" var="order" varStatus="status">
             <tr>
-                <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${order.orderId}'><i
-                            class="layui-icon">&#xe605;</i></div>
-                </td>
                 <td>${status.index + 1}</td>
                 <td><a href="<%=path%>${order.orderFile}">文件</a></td>
                 <td>￥${order.money}</td>

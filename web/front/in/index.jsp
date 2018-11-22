@@ -78,7 +78,7 @@
 
         <div id="userinfo" class="am-u-lg-6 am-animation-slide-top">
             <ul>
-                <li id="face"><img src="<%=path%><%=headimages%>"/></li>
+                <li id="face"><img style="width: 70px;height: auto;" src="<%=path%><%=headimages%>"/></li>
                 <li id="nickname">
                     <div id="nickname_username"><%=username%></div>
                     <div id="nickname_role">用户</div>

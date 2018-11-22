@@ -1,9 +1,4 @@
 package com.ambition.db;
-/**
- * @Author: ambition
- * @Date: 2018/10/29 19:07
- * @Version 1.0
- */
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,7 +12,6 @@ import java.io.Reader;
  * @program: MybatisDemo
  * @description: MyBatis数据库连接操作初始化
  * @author: ambition
- * @create: 2018-10-29 19:07
  **/
 
 public class DBAccess {

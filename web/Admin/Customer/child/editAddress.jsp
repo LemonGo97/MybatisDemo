@@ -116,7 +116,7 @@
         form.on('submit(demo)', function (data) {
             $.ajax({
                 type: "POST",//提交方式
-                url: "<%=path%>/editAddress.ro",//提交的地址
+                url: "<%=path%>/editAddress.pubro",//提交的地址
                 data: "userId="+$("#userId").val()+"&address1="+$("#address1").val()+"&address2="+$("#address2").val()+"&address3="+$("#address3").val(),
                 datatype: "text",
                 success: function(){//成功之后返回的信息 msg就是返回的内容

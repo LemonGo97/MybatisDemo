@@ -48,7 +48,6 @@
                     <table class="am-table am-table-striped am-table-hover table-main">
                         <thead>
                         <tr>
-                            <th class="table-check"><input type="checkbox"/></th>
                             <th class="table-orderId">ID</th>
                             <th class="table-money">订单金额</th>
                             <th class="table-OrderState am-hide-sm-only">订单状态</th>
@@ -65,7 +64,6 @@
                         </c:if>
                         <c:forEach items="${orderList}" var="order" varStatus="status">
                             <tr>
-                                <td><input type="checkbox"/></td>
                                 <td>${status.index + 1}</td>
                                 <td>￥${order.money}</td>
                                 <td class="am-hide-sm-only">

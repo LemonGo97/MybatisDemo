@@ -15,7 +15,7 @@ import java.io.IOException;
  * @Date: 2018/11/7 16:34
  * @Version 1.0
  */
-@WebServlet("/editAddress.ro")
+@WebServlet("/editAddress.pubro")
 public class EditAddressServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,7 +24,6 @@ public class EditAddressServlet extends HttpServlet {
         String address1=request.getParameter("address1");
         String address2=request.getParameter("address2");
         String address3=request.getParameter("address3");
-        LogTools.DEBUG("EditAddressServlet:",userId+address1+address2+address3);
 
 
         MaintainService maintainService=new MaintainService();

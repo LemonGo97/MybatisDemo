@@ -73,6 +73,9 @@ public class OrderService {
 
     public Integer addOrder(String orderFile, double money, String shopId, String customerId, Integer orderState, String address, String ways) {
         OrderDao orderDao = new OrderDao();
+        if(money<0.50){
+            money=0.50;
+        }
         return orderDao.addOrder(orderFile, money, Integer.valueOf(shopId), Integer.valueOf(customerId), orderState, address, ways);
     }
 
