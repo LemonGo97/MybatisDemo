@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="Admin/index.jsp">平台管理方登陆</a>
+<a href="/AdminIndex.ro">平台管理方登陆</a>
 <a href="/FrCustomer.us">用户服务体验方登陆</a>
 <a href="/MarketServlet.bu">商户服务体验方登陆</a>
 </body>

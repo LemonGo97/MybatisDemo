@@ -34,7 +34,7 @@ public class AdminLoginServlet extends HttpServlet {
             HttpSession session=request.getSession();
             //把获取到的用户信息保存起来
             session.setAttribute("adminName",adminAccount);
-            response.sendRedirect("/Admin/index.jsp");
+            response.sendRedirect("/AdminIndex.ro");
         }else {
             response.sendRedirect("/Admin/login.jsp?error=yes");
             //登陆失败
