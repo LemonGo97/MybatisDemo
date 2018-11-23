@@ -92,6 +92,7 @@
             success: function (msg) {//成功之后返回的信息 msg就是返回的内容
                 // $("#usernameMsg").html(msg);
                 layer.msg("店铺信息更新成功")
+                parent.location.reload();
             },
             error: function () {//失败后调用的函数
                 layer.msg("店铺信息更新失败")
