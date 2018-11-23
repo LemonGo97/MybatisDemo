@@ -26,4 +26,7 @@
         <location>/404.jsp</location>
     </error-page>
 
+    <session-config>
+        <session-timeout>1440</session-timeout>
+    </session-config>
 </web-app>
