@@ -20,6 +20,7 @@ public class AdminLogoutServlet extends HttpServlet {
         //把session中的登陆信息干掉 返回登陆页面
         HttpSession session=req.getSession();
         session.removeAttribute("adminName");
+        req.getSession().invalidate();
         resp.sendRedirect("/Admin/login.jsp");
     }
 }

@@ -28,6 +28,7 @@ public class LogoutServlet extends HttpServlet {
         session.removeAttribute("phone");
         session.removeAttribute("shopId");
         session.removeAttribute("shopTel");
+        req.getSession().invalidate();
         resp.sendRedirect("/Shop/login.jsp");
     }
 }

@@ -31,6 +31,7 @@ public class LogoutServlet extends HttpServlet {
         session.removeAttribute("phone");
         session.removeAttribute("createdate");
         session.removeAttribute("headimages");
+        req.getSession().invalidate();
         resp.sendRedirect("/front/login.jsp");
     }
 }
