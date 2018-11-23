@@ -38,7 +38,7 @@
                 <h4 class="header-title m-t-0 m-b-30">总收入</h4>
                 <div class="widget-chart-1 am-cf">
                     <div class="widget-detail-2">
-                        <h2 class="m-b-0"> 订单收入 </h2>
+                        <h2 class="m-b-0"> ￥1198.22 </h2>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <h4 class="header-title m-t-0 m-b-30">总接单量</h4>
                 <div class="widget-chart-1 am-cf">
                     <div class="widget-detail-2">
-                        <h2 class="m-b-0"> 总接单量 </h2>
+                        <h2 class="m-b-0"> 200单 </h2>
                     </div>
                 </div>
             </div>

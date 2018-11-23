@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("createdate",createdate);
             session.setAttribute("headimages",headimages);
             //用户状态改变
-//            loginService.customerStateChange(userId);
+            loginService.customerStateChange(userId,1);
             response.sendRedirect("/FrCustomer.us");
         } else {
 //            response.sendRedirect("/front/login.jsp");

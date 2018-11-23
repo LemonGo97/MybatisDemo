@@ -78,12 +78,15 @@
                 <li><a href="/shopMainServlet.bu?shopId=<%=shopId%>&limit=8" target="jumpage"><span class="am-icon-home"  style="margin-right: 10px"></span> 首页</a></li>
                 <li class="admin-parent">
                     <a href="/ShopOrderServlet.bu?shopId=<%=shopId%>" target="jumpage"><span class="am-icon-calendar-check-o"  style="margin-right: 10px"></span>
-                        订单管理 <span
-                                class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                        订单管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
                 </li>
                 <li class="admin-parent">
-                    <a href="/shopInfo.bu?edit=nope&shopTel=<%=shopList.get(0).getTelephone()%>" target="jumpage"><i class="am-icon-cogs"
-                                                                                      aria-hidden="true" style="margin-right: 10px"></i> 店铺维护 <span
+                    <a href="/shopInfo.bu?edit=nope&shopTel=<%=shopList.get(0).getTelephone()%>" target="jumpage"><i class="am-icon-cogs" aria-hidden="true" style="margin-right: 10px"></i> 店铺维护 <span
+                            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+
+                </li>
+                <li class="admin-parent">
+                    <a href="/404.jsp" target="jumpage"><i class="am-icon-bug" aria-hidden="true" style="margin-right: 10px"></i> 提交反馈 <span
                             class="am-icon-angle-right am-fr am-margin-right"></span></a>
 
                 </li>

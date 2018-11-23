@@ -56,12 +56,19 @@
                         <div>订单管理</div>
                     </li>
                 </a>
+                <a href="/customerInfoQuery.us" target="jumpage">
+                    <li>
+                        <i class="am-icon-bug am-icon-btn"></i>
+                        <div>提交反馈</div>
+                    </li>
+                </a>
                 <a href="<%=path%>/customerInfoQuery.us?userId=<%=userId%>&isDel=0" target="jumpage">
                     <li>
                         <i class="am-icon-child am-icon-btn"></i>
                         <div>个人设置</div>
                     </li>
                 </a>
+
             </ul>
         </div>
 
@@ -136,7 +143,6 @@
         $('#plan').css('width', pagewidth * 0.86 + 'px');
         if (window.screen.height == 768) {
             $('#plan').css('height', pageheight - 52 - pagepadding * 4-189 + 'px');
-            alert(pageheight - 52 - pagepadding * 4 + 'px')
             // 587.28px
         } else {
             $('#plan').css('height', pageheight - 40 - pagepadding * 4-189 + 'px');

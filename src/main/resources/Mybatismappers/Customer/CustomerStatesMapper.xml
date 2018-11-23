@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CustomerStates">
+    <update id="changeCustomerState" parameterType="com.ambition.entity.Customer.CustomerState">
+        update tbl_cu_state set customer_state = #{customerState} where customer_id = #{customerId}
+    </update>
     <resultMap id="customerStatesList" type="com.ambition.entity.Customer.CustomerState">
         <id column="record_id" jdbcType="INTEGER" property="recordId"/>
         <result column="customer_id" jdbcType="INTEGER" javaType="Integer" property="customerId"/>

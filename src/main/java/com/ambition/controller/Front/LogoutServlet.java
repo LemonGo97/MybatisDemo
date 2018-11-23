@@ -1,5 +1,6 @@
 package com.ambition.controller.Front;
 
+import com.ambition.service.Front.LoginService;
 import com.ambition.util.LogTools;
 
 import javax.servlet.ServletException;
@@ -22,8 +23,14 @@ public class LogoutServlet extends HttpServlet {
         //把session中的登陆信息干掉 返回登陆页面
         HttpSession session=req.getSession();
         LogTools.INFO("用户注销控制器返回的信息=====>","用户："+session.getAttribute("username")+" 退出登陆");
+        LoginService loginService=new LoginService();
+        Integer userId=(Integer)session.getAttribute("userId");
+        loginService.customerStateChange(userId,0);
         session.removeAttribute("userId");
         session.removeAttribute("username");
+        session.removeAttribute("phone");
+        session.removeAttribute("createdate");
+        session.removeAttribute("headimages");
         resp.sendRedirect("/front/login.jsp");
     }
 }

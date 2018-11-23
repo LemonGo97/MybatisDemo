@@ -449,7 +449,7 @@ public class CustomerDao {
             CustomerState customer=new CustomerState();
             customer.setCustomerState(state);
             customer.setCustomerId(userId);
-            sqlSession.update("Customer.editCustomerOther",customer);
+            sqlSession.update("CustomerStates.changeCustomerState",customer);
             sqlSession.commit();
             LogTools.show("CustomerDao","用户修改事务成功提交");
         } catch (Exception e) {

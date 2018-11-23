@@ -116,6 +116,27 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-notice"></i>
+                    <cite>用户反馈</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="/adminQueryOrder.ro" target="jumpage">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>商家反馈</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="/adminQueryOrder.ro" target="jumpage">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>顾客反馈</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <a class="sub-menu" style="font-size: 14px;    padding: 10px 15px 10px 20px;    display: block;    cursor: pointer;" href="javascript:void(0)" onclick="location.href='/adminlogout.ro'">
                 <i class="iconfont" style="padding-right: 10px; line-height: 14px;">&#xe6ce;</i>
                 <cite>退出系统</cite>

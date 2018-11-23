@@ -220,7 +220,6 @@
             }
             ,before: function(obj){
                 layer.load();
-                alert(1)
             }
             ,done: function(res){
                 //如果上传失败
