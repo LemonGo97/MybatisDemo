@@ -15,9 +15,10 @@
 
         <if test="shopId!=null">
             and a.shop_id = #{shopId}
-            <if test="limits!=null">
-                order by order_id DESC limit #{limits}
-            </if>
+        </if>
+        order by order_id DESC
+        <if test="limits!=null">
+            limit #{limits}
         </if>
 
     </select>
