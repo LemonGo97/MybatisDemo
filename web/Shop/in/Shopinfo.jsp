@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/page/typography.css"/>
     <link rel="stylesheet" href="<%=path%>/Shop/assets/css/page/form.css"/>
     <link rel="stylesheet" href="<%=path%>/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/address-master/dist/amazeui.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/address-master/dist/amazeui.address.css" />
     <script src="<%=path%>/layui/layui.all.js"></script>
 </head>
 <body style="overflow: auto;">
@@ -43,7 +45,7 @@
                             <input type="tel" disabled aria-disabled="true" value="${shop.telephone}"  style="width: 75%;" id="telephone" placeholder="输入手机号码" required/>
                         </div>
 
-                        <div class="am-form-group">
+                        <div class="am-form-group" id="addresses">
                             <label for="shopaddress">详细地址：</label>
                             <input type="text"  value="${shop.shopAddress}"  style="width: 75%;" id="shopaddress" placeholder="输入店铺详细地址" required/>
                         </div>
@@ -69,6 +71,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript" src="<%=path%>/Shop/assets/js/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="<%=path%>/Shop/assets/js/amazeui.min.js"></script>
 <script type="text/javascript" src="<%=path%>/Shop/assets/js/app.js"></script>
@@ -99,6 +103,29 @@
             }
         });
     }
+</script>
+<script src="<%=path%>/layui/address-master/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    $(function() {
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, false);
+        //	带底部的
+        $("#addresses").address({
+            prov: "广东省",
+            city: "清远市",
+            district: "阳山县",
+            scrollToCenter: true,
+            footer: true,
+            selectEnd: function(json) {
+                console.log(JSON.stringify(json));
+            }
+        });
+    });
 </script>
 </body>
 </html>

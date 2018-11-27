@@ -68,7 +68,7 @@
         <div class="mockup-content">
             <p>hah hahahahahah hahah haha hahahah hahahah hahahahah haha.</p>
             <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
-                <button type="button"><font size="5">登 陆</font></button>
+                <button type="button"><font size="5">登 录</font></button>
                 <div class="morph-content">
                     <div>
                         <div class="content-style-form content-style-form-1">
@@ -78,7 +78,7 @@
                                 <input type="text" name="isDel" value="0" hidden/>
                                 <p><label>手机号</label><input type="text" name="telephone" maxlength="11"/></p>
                                 <p><label>密码</label><input type="password" name="password" maxlength="20"/></p>
-                                <p><button onclick="mysingin()">登 陆</button></p>
+                                <p><button onclick="mysingin()">登 录</button></p>
                             </form>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
     function mysingup() {
         var formsignup = document.getElementById('formsignup');
         formsignup.submit();
-        alert("注册成功，请使用手机号和密码登陆")
+        alert("注册成功，请使用手机号和密码登录")
     }
     (function() {
         var docElem = window.document.documentElement, didScroll, scrollPosition;

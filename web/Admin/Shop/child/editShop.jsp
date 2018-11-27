@@ -31,8 +31,10 @@
             margin-left: 180px;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/address-master/dist/amazeui.min.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/layui/address-master/dist/amazeui.address.css" />
 </head>
-<body>
+<body  style="overflow: auto;">
 <form class="layui-form" action="">
     <input id="shopId" type="text" name="shopId" hidden="hidden"/>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -65,7 +67,7 @@
     <div class="layui-form-item">
         <div class="layui-inline">
 
-            <div class="layui-input-inline">
+            <div class="layui-input-inline" id="addresses">
                 <input id="shopAddress" type="text" name="shopAddress"
                        autocomplete="off" class="layui-input"/>
             </div>
@@ -162,5 +164,28 @@
     };
 </script>
 
+<script src="<%=path%>/layui/address-master/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/iscroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=path%>/layui/address-master/dist/address.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    $(function() {
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, false);
+        //	带底部的
+        $("#addresses").address({
+            prov: "广东省",
+            city: "清远市",
+            district: "阳山县",
+            scrollToCenter: true,
+            footer: true,
+            selectEnd: function(json) {
+                console.log(JSON.stringify(json));
+            }
+        });
+    });
+</script>
 </body>
 </html>
